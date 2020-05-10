@@ -2,11 +2,16 @@
   "name": "mosahayaBack",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "12.x.x"
+  },
   "scripts": {
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev -r dotenv/config --respawn --transpileOnly ./src/index.ts",
+    "dev": "ts-node-dev -r dotenv/config --respawn --transpileOnly ./src/index.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "build": "tsc && npm run lint"
+    "build": "tsc && npm run lint",
+    "deploy": "npm run build && gcloud app deploy"
   },
   "author": "subrat kumar gantayat",
   "license": "ISC",
