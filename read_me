@@ -1,0 +1,6 @@
+406  for validation notAcceptable
+
+422 for mongoose validation  badData
+417  for data  expectationFailed
+
+502 badGateway

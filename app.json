@@ -1,0 +1,19 @@
+{
+  "apps" : [{
+    "name"            : "mosahayaBack",
+    "script"          : "dist/index.js",
+    "exec_mode"       : "fork",
+    "wait_ready":true,
+    "kill_timeout"    : 30000,
+    "listen_timeout"  : 10000,
+    "merge_logs"      : true,
+    "error_file"      : "./pm2logs/error/err.log",
+    "out_file"        : "./pm2logs/log/out.log",
+    "log_date_format" : "YYYY-MM-DD HH:mm Z",
+    "env": {
+      "NODE_ENV": "prod",
+      "LOG_LEVEL": "info",
+      "PORT": "9000"
+    }
+  }]
+}

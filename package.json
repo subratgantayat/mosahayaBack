@@ -1,0 +1,36 @@
+{
+  "name": "mosahayaBack",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node-dev -r dotenv/config --respawn --transpileOnly ./src/index.ts",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "build": "tsc && npm run lint"
+  },
+  "author": "subrat kumar gantayat",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "@hapi/hapi": "^19.1.1",
+    "@hapi/inert": "^6.0.1",
+    "@hapi/joi": "^17.1.1",
+    "@hapi/vision": "^6.0.0",
+    "good": "^8.1.2",
+    "good-console": "^8.0.0",
+    "good-squeeze": "^5.1.0",
+    "hapi-good-winston": "^3.0.0",
+    "hapi-swagger": "^13.0.0",
+    "joi-objectid": "^3.0.1",
+    "mongoose": "^5.9.11"
+  },
+  "devDependencies": {
+    "@types/hapi__hapi": "^19.0.3",
+    "@types/mongoose": "^5.7.14",
+    "dotenv": "^8.2.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "tslint": "^6.1.1",
+    "tslint-consistent-codestyle": "^1.16.0",
+    "typescript": "^3.8.3"
+  }
+}

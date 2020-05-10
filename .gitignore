@@ -1,0 +1,6 @@
+dist/
+node_modules/
+pm2logs/*
+.env
+.idea/*
+**/.DS_Store
