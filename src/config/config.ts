@@ -23,11 +23,11 @@ export default {
         }
     },
     database: {
-        host: '127.0.0.1',
-        port: 27017,
-        name: 'mosohaya',
-        username: 'thitapp',
-        password: 'thitapp080'
+        host: process.env.DB_HOST || '127.0.0.1',
+        port: process.env.DB_PORT || 27017,
+        name: process.env.DB_DATABASE || 'mosohaya',
+        username: process.env.DB_USERNAME || 'thitapp',
+        password: process.env.DB_PASSWORD || 'thitapp080'
     },
     databaseOptions: {
         useNewUrlParser: true,

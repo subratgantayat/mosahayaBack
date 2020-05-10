@@ -13,7 +13,12 @@
     "env": {
       "NODE_ENV": "prod",
       "LOG_LEVEL": "info",
-      "PORT": "9000"
+      "PORT": "9000",
+      "DB_HOST": "ds337718.mlab.com",
+      "DB_PORT": "37718",
+      "DB_DATABASE": "mosohaya",
+      "DB_USERNAME": "thitapp",
+      "DB_PASSWORD": "thitapp080"
     }
   }]
 }
