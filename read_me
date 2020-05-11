@@ -9,3 +9,4 @@
 
 to deploy
 gcloud app deploy
+gcloud app logs read

@@ -2,7 +2,7 @@ runtime: nodejs
 env: flex
 env_variables:
   NODE_ENV: "prod"
-  LOG_LEVEL: "info"
+  LOG_LEVEL: "debug"
   DB_HOST: "ds337718.mlab.com"
   DB_PORT: "37718"
   DB_DATABASE: "mosohaya"

@@ -84,6 +84,7 @@ const schema: Schema = new Schema(
                 },
                 locality:{
                     type: String,
+                    required: true,
                     trim: true,
                     minlength:1,
                     maxlength:100000
@@ -116,6 +117,7 @@ const schema: Schema = new Schema(
                 locality:{
                     type: String,
                     trim: true,
+                    required: true,
                     minlength:1,
                     maxlength:100000
                 }
@@ -123,12 +125,14 @@ const schema: Schema = new Schema(
             contactPerson:{
                 contactName:{
                     type: String,
+                    required: true,
                     trim: true,
                     minlength:1,
                     maxlength:1000
                 },
                 contactMobNumber:{
                     type: String,
+                    required: true,
                     trim: true,
                     minlength:10,
                     maxlength:10,
@@ -276,7 +280,6 @@ const schema: Schema = new Schema(
         healthData:{
             currentCondition:{
                 type: [String],
-                required: true,
                 enum: KeyvalueConfig.getValueArray('currentCondition')
             },
             currentConditionOther:{
@@ -287,7 +290,6 @@ const schema: Schema = new Schema(
             },
             symptoms:{
                 type: [String],
-                required: true,
                 enum: KeyvalueConfig.getValueArray('symptoms')
             },
             symptomsOther:{
@@ -298,7 +300,6 @@ const schema: Schema = new Schema(
             },
             goodHabits:{
                 type: [String],
-                required: true,
                 enum: KeyvalueConfig.getValueArray('goodHabits')
             },
             goodHabitsOther:{
@@ -309,7 +310,6 @@ const schema: Schema = new Schema(
             },
             badHabits:{
                 type: [String],
-                required: true,
                 enum: KeyvalueConfig.getValueArray('badHabits')
             },
             badHabitsOther:{

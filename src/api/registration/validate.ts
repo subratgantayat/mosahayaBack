@@ -19,18 +19,18 @@ export default {
                     state:Joi.string().required().valid( ...KeyvalueConfig.getStateArray()),
                     district:Joi.string().required().valid( ...KeyvalueConfig.getDistrictArray()),
                     postalCode:Joi.string().required().trim().length(6).pattern(/^([1-9])([0-9]){5}$/),
-                    locality:Joi.string().trim().min(1).max(100000)
+                    locality:Joi.string().required().trim().min(1).max(100000)
                 }).required(),
                 permanentAddress:Joi.object().keys({
                     country:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('country')),
                     state:Joi.string().required().valid( ...KeyvalueConfig.getStateArray()),
                     district:Joi.string().required().valid( ...KeyvalueConfig.getDistrictArray()),
                     postalCode:Joi.string().required().trim().length(6).pattern(/^([1-9])([0-9]){5}$/),
-                    locality:Joi.string().trim().min(1).max(100000)
+                    locality:Joi.string().required().trim().min(1).max(100000)
                 }).required(),
                 contactPerson:Joi.object().keys({
-                    contactName:Joi.string().trim().min(0).max(1000),
-                    contactMobNumber:Joi.string().trim().length(10).pattern(/^[6-9]+[0-9]+$/)
+                    contactName:Joi.string().required().trim().min(0).max(1000),
+                    contactMobNumber:Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/)
                 }).required()
             }).required(),
             skillData:Joi.object().keys({
@@ -66,13 +66,12 @@ export default {
                 })
             ),
             healthData:Joi.object().keys({
-                currentCondition:Joi.array().min(0).max(100000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('currentCondition'))).required(),
-                currentConditionOther:Joi.string().trim().min(1).max(10000),
-                symptoms:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('symptoms'))).required(),
+                currentCondition:Joi.array().min(0).max(100000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('currentCondition'))),
+                symptoms:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('symptoms'))),
                 symptomsOther:Joi.string().trim().min(1).max(10000),
-                goodHabits:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('goodHabits'))).required(),
+                goodHabits:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('goodHabits'))),
                 goodHabitsOther:Joi.string().trim().min(1).max(10000),
-                badHabits:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('badHabits'))).required(),
+                badHabits:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('badHabits'))),
                 badHabitsOther:Joi.string().trim().min(1).max(10000),
                 otherClinicalData:Joi.string().trim().min(1).max(100000),
                 isContactWithPatient: Joi.boolean(),
@@ -83,7 +82,7 @@ export default {
                 workingFPublic: Joi.boolean(),
                 hasToilet: Joi.boolean(),
                 doingSanitize: Joi.boolean()
-            }).required(),
+            }),
             travelHistory: Joi.array().min(0).max(10000).items(
                 Joi.object().keys({
                     source:Joi.string().required().trim().min(1).max(100000),
