@@ -13,7 +13,7 @@ const PORT = Utils.getEnvVariable('PORT', true);
 export default class Server {
     public static async start(): Promise<Hapi.Server> {
         try {
-            Logger.info( `Hapi base URL: ${__dirname}`);
+            Logger.info(`Hapi base URL: ${__dirname}`);
             Server._instance = new Hapi.Server({
                 port: PORT,
                 routes: {
@@ -42,8 +42,9 @@ export default class Server {
             await Server._instance.start();
 
             Logger.info('Server - Up and running!');
-            process.send('ready');
-
+            if (process.env.IS_PM2) {
+                process.send('ready');
+            }
             return Server._instance;
         } catch (error) {
             Logger.error(`Server - There was something wrong: ${error}`);

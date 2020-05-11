@@ -1,928 +1,909 @@
-const keyvalue: any = {
-    registerBy: [
-        {
-            name: 'Config.RegisterBy.self',
-            value: 'self'
+const i18: any = {
+    'Config': {
+        'Country': {
+            'india': 'India'
         },
-        {
-            name: 'Config.RegisterBy.localContact',
-            value: 'local contact'
-        },
-        {
-            name: 'Config.RegisterBy.gramPanchyat',
-            value: 'grampanchyat'
-        },
-        {
-            name: 'Config.RegisterBy.industry',
-            value: 'industry'
-        },
-        {
-            name: 'Config.RegisterBy.others',
-            value: 'others'
-        }
-    ],
-    category: [
+        'State': {
+            'andhra': 'Andhra Pradesh',
+            'arunachal': 'Arunachal Pradesh',
+            'assam': 'Assam',
+            'bihar': 'Bihar',
+            'chandigarh': 'Chandigarh (UT)',
+            'chhattisgarh': 'Chhattisgarh',
+            'dadra': 'Dadra and Nagar Haveli (UT)',
+            'daman': 'Daman and Diu (UT)',
+            'delhi': 'Delhi (NCT)',
+            'goa': 'Goa',
+            'gujarat': 'Gujarat',
+            'haryana': 'Haryana',
+            'himachal': 'Himachal Pradesh',
+            'jammu': 'Jammu and Kashmir',
+            'jharkhand': 'Jharkhand',
+            'karnataka': 'Karnataka',
+            'kerala': 'Kerala',
+            'lakshadweep': 'Lakshadweep (UT)',
+            'madhya': 'Madhya Pradesh',
+            'maharashtra': 'Maharashtra',
+            'manipur': 'Manipur',
+            'meghalaya': 'Meghalaya',
+            'mizoram': 'Mizoram',
+            'nagaland': 'Nagaland',
+            'odisha': 'Odisha',
+            'puducherry': 'Puducherry (UT)',
+            'punjab': 'Punjab',
+            'rajasthan': 'Rajasthan',
+            'sikkim': 'Sikkim',
+            'tamil': 'Tamil Nadu',
+            'telangana': 'Telangana',
+            'tripura': 'Tripura',
+            'uttarakhand': 'Uttarakhand',
+            'uttar': 'Uttar Pradesh',
+            'west': 'West Bengal'
 
-        {
-            name: 'Config.Category.migrant',
-            value: 'migrant'
         },
-        {
-            name: 'Config.Category.professional',
-            value: 'professional'
-        },
-        {
-            name: 'Config.Category.others',
-            value: 'others'
+        'District': {
+            'anantapur': 'Anantapur',
+            'chittoor': 'Chittoor',
+            'eastGodavari': 'East Godavari',
+            'guntur': 'Guntur',
+            'krishna': 'Krishna',
+            'kurnool': 'Kurnool',
+            'nellore': 'Nellore',
+            'prakasam': 'Prakasam',
+            'srikakulam': 'Srikakulam',
+            'visakhapatnam': 'Visakhapatnam',
+            'vizianagaram': 'Vizianagaram',
+
+            'westGodavari': 'West Godavari',
+
+            'ysrKadapa': 'YSR Kadapa',
+            'tawang': 'Tawang',
+
+            'westKameng': 'West Kameng',
+
+            'eastKameng': 'East Kameng',
+
+            'papumPare': 'Papum Pare',
+
+            'kurungKumey': 'Kurung Kumey',
+
+            'kraDaadi': 'Kra Daadi',
+
+            'lowerSubansiri': 'Lower Subansiri',
+
+            'upperSubansiri': 'Upper Subansiri',
+
+            'westSiang': 'West Siang',
+
+            'eastSiang': 'East Siang',
+            'siang': 'Siang',
+
+            'upperSiang': 'Upper Siang',
+
+            'lowerSiang': 'Lower Siang',
+
+
+            'lowerDibangValley': 'Lower Dibang Valley',
+
+            'dibangValley': 'Dibang Valley',
+            'anjaw': 'Anjaw',
+            'lohit': 'Lohit',
+            'namsai': 'Namsai',
+            'changlang': 'Changlang',
+            'tirap': 'Tirap',
+            'longding': 'Longding',
+            'baksa': 'Baksa',
+            'barpeta': 'Barpeta',
+            'biswanath': 'Biswanath',
+            'bongaigaon': 'Bongaigaon',
+            'cachar': 'Cachar',
+            'charaideo': 'Charaideo',
+            'chirang': 'Chirang',
+            'darrang': 'Darrang',
+            'dhemaji': 'Dhemaji',
+            'dhubri': 'Dhubri',
+            'dibrugarh': 'Dibrugarh',
+            'goalpara': 'Goalpara',
+            'golaghat': 'Golaghat',
+            'hailakandi': 'Hailakandi',
+            'hojai': 'Hojai',
+            'jorhat': 'Jorhat',
+
+            'kamrupMetropolitan': 'Kamrup Metropolitan',
+            'kamrup': 'Kamrup',
+
+            'karbiAnglong': 'Karbi Anglong',
+            'karimganj': 'Karimganj',
+            'kokrajhar': 'Kokrajhar',
+            'lakhimpur': 'Lakhimpur',
+            'majuli': 'Majuli',
+            'morigaon': 'Morigaon',
+            'nagaon': 'Nagaon',
+            'nalbari': 'Nalbari',
+
+            'dimaHasao': 'Dima Hasao',
+            'sivasagar': 'Sivasagar',
+            'sonitpur': 'Sonitpur',
+
+            'southSalmaraMankachar': 'South Salmara-Mankachar',
+            'tinsukia': 'Tinsukia',
+            'udalguri': 'Udalguri',
+
+
+            'westKarbiAnglong': 'West Karbi Anglong',
+            'araria': 'Araria',
+            'arwal': 'Arwal',
+            'aurangabad': 'Aurangabad',
+            'banka': 'Banka',
+            'begusarai': 'Begusarai',
+            'bhagalpur': 'Bhagalpur',
+            'bhojpur': 'Bhojpur',
+            'buxar': 'Buxar',
+            'darbhanga': 'Darbhanga',
+
+
+            'eastChamparanMotihari': 'East Champaran (Motihari)',
+            'gaya': 'Gaya',
+            'gopalganj': 'Gopalganj',
+            'jamui': 'Jamui',
+            'jehanabad': 'Jehanabad',
+
+
+            'kaimurBhabua': 'Kaimur (Bhabua)',
+            'katihar': 'Katihar',
+            'khagaria': 'Khagaria',
+            'kishanganj': 'Kishanganj',
+            'lakhisarai': 'Lakhisarai',
+            'madhepura': 'Madhepura',
+            'madhubani': 'Madhubani',
+
+
+            'mungerMonghyr': 'Munger (Monghyr)',
+            'muzaffarpur': 'Muzaffarpur',
+            'nalanda': 'Nalanda',
+            'nawada': 'Nawada',
+            'patna': 'Patna',
+
+
+            'purniaPurnea': 'Purnia (Purnea)',
+            'rohtas': 'Rohtas',
+            'saharsa': 'Saharsa',
+            'samastipur': 'Samastipur',
+            'saran': 'Saran',
+            'sheikhpura': 'Sheikhpura',
+            'sheohar': 'Sheohar',
+            'sitamarhi': 'Sitamarhi',
+            'siwan': 'Siwan',
+            'supaul': 'Supaul',
+            'vaishali': 'Vaishali',
+
+            'westChamparan': 'West Champaran',
+            'chandigarh': 'Chandigarh',
+            'balod': 'Balod',
+
+            'balodaBazar': 'Baloda Bazar',
+            'balrampur-cg': 'Balrampur',
+            'bastar': 'Bastar',
+            'bemetara': 'Bemetara',
+            'bijapur': 'Bijapur',
+            'bilaspur-cg': 'Bilaspur',
+            'dantewadaSouthBastar': 'Dantewada (South Bastar)',
+            'dhamtari': 'Dhamtari',
+            'durg': 'Durg',
+            'gariyaband': 'Gariyaband',
+            'janjgirChampa': 'Janjgir-Champa',
+            'jashpur': 'Jashpur',
+            'kabirdhamKawardha': 'Kabirdham (Kawardha)',
+            'kankerNorthBastar': 'Kanker (North Bastar)',
+            'kondagaon': 'Kondagaon',
+            'korba': 'Korba',
+            'korea': 'Korea (Koriya)',
+            'mahasamund': 'Mahasamund',
+            'mungeli': 'Mungeli',
+            'narayanpur': 'Narayanpur',
+            'raigarh': 'Raigarh',
+            'raipur': 'Raipur',
+            'rajnandgaon': 'Rajnandgaon',
+            'sukma': 'Sukma',
+            'surajpur': 'Surajpur  ',
+            'surguja': 'Surguja',
+            'dadraNagarHaveli': 'Dadra & Nagar Haveli',
+            'daman': 'Daman',
+            'diu': 'Diu',
+            'centralDelhi': 'Central Delhi',
+            'eastDelhi': 'East Delhi',
+            'newDelhi': 'New Delhi',
+            'northDelhi': 'North Delhi',
+            'northEastDelhi': 'North East  Delhi',
+
+
+            'northWestDelhi': 'North West  Delhi',
+            'shahdara': 'Shahdara',
+
+            'southDelhi': 'South Delhi',
+
+
+            'southEastDelhi': 'South East Delhi',
+
+
+            'southWestDelhi': 'South West  Delhi',
+
+            'westDelhi': 'West Delhi',
+
+            'northGoa': 'North Goa',
+
+            'southGoa': 'South Goa',
+            'ahmedabad': 'Ahmedabad',
+            'amreli': 'Amreli',
+            'anand': 'Anand',
+            'aravalli': 'Aravalli',
+            'banaskanthaPalanpur': 'Banaskantha (Palanpur)',
+            'bharuch': 'Bharuch',
+            'bhavnagar': 'Bhavnagar',
+            'botad': 'Botad',
+            'chhotaUdepur': 'Chhota Udepur',
+            'dahod': 'Dahod',
+            'dangsAhwa': 'Dangs (Ahwa)',
+            'devbhoomiDwarka': 'Devbhoomi Dwarka',
+            'gandhinagar': 'Gandhinagar',
+            'girSomnath': 'Gir Somnath',
+            'jamnagar': 'Jamnagar',
+            'junagadh': 'Junagadh',
+            'kachchh': 'Kachchh',
+
+
+            'khedaNadiad': 'Kheda (Nadiad)',
+            'mahisagar': 'Mahisagar',
+            'mehsana': 'Mehsana',
+            'morbi': 'Morbi',
+
+
+            'narmadaRajpipla': 'Narmada (Rajpipla)',
+            'navsari': 'Navsari',
+
+
+            'panchmahalGodhra': 'Panchmahal (Godhra)',
+            'patan': 'Patan',
+            'porbandar': 'Porbandar',
+            'rajkot': 'Rajkot',
+
+
+            'sabarkanthaHimmatnagar': 'Sabarkantha (Himmatnagar)',
+            'surat': 'Surat',
+            'surendranagar': 'Surendranagar',
+
+
+            'tapiVyara': 'Tapi (Vyara)',
+            'vadodara': 'Vadodara',
+            'valsad': 'Valsad',
+            'ambala': 'Ambala',
+            'bhiwani': 'Bhiwani',
+
+            'charkhiDadri': 'Charkhi Dadri',
+            'faridabad': 'Faridabad',
+            'fatehabad': 'Fatehabad',
+            'gurgaon': 'Gurgaon',
+            'hisar': 'Hisar',
+            'jhajjar': 'Jhajjar',
+            'jind': 'Jind',
+            'kaithal': 'Kaithal',
+            'karnal': 'Karnal',
+            'kurukshetra': 'Kurukshetra',
+            'mahendragarh': 'Mahendragarh',
+            'mewat': 'Mewat',
+            'palwal': 'Palwal',
+            'panchkula': 'Panchkula',
+            'panipat': 'Panipat',
+            'rewari': 'Rewari',
+            'rohtak': 'Rohtak',
+            'sirsa': 'Sirsa',
+            'sonipat': 'Sonipat',
+            'yamunanagar': 'Yamunanagar',
+            'bilaspur': 'Bilaspur',
+            'chamba': 'Chamba',
+            'hamirpur': 'Hamirpur',
+            'kangra': 'Kangra',
+            'kinnaur': 'Kinnaur',
+            'kullu': 'Kullu',
+            'lahaulAmpSpiti': 'Lahaul &amp; Spiti',
+            'mandi': 'Mandi',
+            'shimla': 'Shimla',
+
+
+            'sirmaurSirmour': 'Sirmaur (Sirmour)',
+            'solan': 'Solan',
+            'una': 'Una',
+            'anantnag': 'Anantnag',
+            'bandipore': 'Bandipore',
+            'baramulla': 'Baramulla',
+            'budgam': 'Budgam',
+            'doda': 'Doda',
+            'ganderbal': 'Ganderbal',
+            'jammu': 'Jammu',
+            'kargil': 'Kargil',
+            'kathua': 'Kathua',
+            'kishtwar': 'Kishtwar',
+            'kulgam': 'Kulgam',
+            'kupwara': 'Kupwara',
+            'leh': 'Leh',
+            'poonch': 'Poonch',
+            'pulwama': 'Pulwama',
+            'rajouri': 'Rajouri',
+            'ramban': 'Ramban',
+            'reasi': 'Reasi',
+            'samba': 'Samba',
+            'shopian': 'Shopian',
+            'srinagar': 'Srinagar',
+            'udhampur': 'Udhampur',
+            'bokaro': 'Bokaro',
+            'chatra': 'Chatra',
+            'deoghar': 'Deoghar',
+            'dhanbad': 'Dhanbad',
+            'dumka': 'Dumka',
+
+            'eastSinghbhum': 'East Singhbhum',
+            'garhwa': 'Garhwa',
+            'giridih': 'Giridih',
+            'godda': 'Godda',
+            'gumla': 'Gumla',
+            'hazaribag': 'Hazaribag',
+            'jamtara': 'Jamtara',
+            'khunti': 'Khunti',
+            'koderma': 'Koderma',
+            'latehar': 'Latehar',
+            'lohardaga': 'Lohardaga',
+            'pakur': 'Pakur',
+            'palamu': 'Palamu',
+            'ramgarh': 'Ramgarh',
+            'ranchi': 'Ranchi',
+            'sahibganj': 'Sahibganj',
+
+
+            'seraikelaKharsawan': 'Seraikela-Kharsawan',
+            'simdega': 'Simdega',
+
+            'westSinghbhum': 'West Singhbhum',
+            'bagalkot': 'Bagalkot',
+
+
+            'ballariBellary': 'Ballari (Bellary)',
+
+
+            'belagaviBelgaum': 'Belagavi (Belgaum)',
+
+            'bengaluruBangaloreRural': 'Bengaluru (Bangalore) Rural',
+            'bengaluruBangaloreUrban': 'Bengaluru (Bangalore) Urban',
+            'bidar': 'Bidar',
+            'chamarajanagar': 'Chamarajanagar',
+            'chikballapur': 'Chikballapur',
+
+
+            'chikkamagaluruChikmagalur': 'Chikkamagaluru (Chikmagalur)',
+            'chitradurga': 'Chitradurga',
+
+            'dakshinaKannada': 'Dakshina Kannada',
+            'davangere': 'Davangere',
+            'dharwad': 'Dharwad',
+            'gadag': 'Gadag',
+            'hassan': 'Hassan',
+            'haveri': 'Haveri',
+
+
+            'kalaburagiGulbarga': 'Kalaburagi (Gulbarga)',
+            'kodagu': 'Kodagu',
+            'kolar': 'Kolar',
+            'koppal': 'Koppal',
+            'mandya': 'Mandya',
+
+
+            'mysuruMysore': 'Mysuru (Mysore)',
+            'raichur': 'Raichur',
+            'ramanagara': 'Ramanagara',
+            'shivamoggaShimoga': 'Shivamogga (Shimoga)',
+            'tumakuruTumkur': 'Tumakuru (Tumkur)',
+            'udupi': 'Udupi',
+            'uttaraKannadaKarwar': 'Uttara Kannada (Karwar)',
+
+            'vijayapuraBijapur': 'Vijayapura (Bijapur)',
+            'yadgir': 'Yadgir',
+            'alappuzha': 'Alappuzha',
+            'ernakulam': 'Ernakulam',
+            'idukki': 'Idukki',
+            'kannur': 'Kannur',
+            'kasaragod': 'Kasaragod',
+            'kollam': 'Kollam',
+            'kottayam': 'Kottayam',
+            'kozhikode': 'Kozhikode',
+            'malappuram': 'Malappuram',
+            'palakkad': 'Palakkad',
+            'pathanamthitta': 'Pathanamthitta',
+            'thiruvananthapuram': 'Thiruvananthapuram',
+            'thrissur': 'Thrissur',
+            'wayanad': 'Wayanad',
+            'agatti': 'Agatti',
+            'amini': 'Amini',
+            'androth': 'Androth',
+            'bithra': 'Bithra',
+            'chethlath': 'Chethlath',
+            'kavaratti': 'Kavaratti',
+            'kadmath': 'Kadmath',
+            'kalpeni': 'Kalpeni',
+            'kilthan': 'Kilthan',
+            'minicoy': 'Minicoy',
+
+            'agarMalwa': 'Agar Malwa',
+            'alirajpur': 'Alirajpur',
+            'anuppur': 'Anuppur',
+            'ashoknagar': 'Ashoknagar',
+            'balaghat': 'Balaghat',
+            'barwani': 'Barwani',
+            'betul': 'Betul',
+            'bhind': 'Bhind',
+            'bhopal': 'Bhopal',
+            'burhanpur': 'Burhanpur',
+            'chhatarpur': 'Chhatarpur',
+            'chhindwara': 'Chhindwara',
+            'damoh': 'Damoh',
+            'datia': 'Datia',
+            'dewas': 'Dewas',
+            'dhar': 'Dhar',
+            'dindori': 'Dindori',
+            'guna': 'Guna',
+            'gwalior': 'Gwalior',
+            'harda': 'Harda',
+            'hoshangabad': 'Hoshangabad',
+            'indore': 'Indore',
+            'jabalpur': 'Jabalpur',
+            'jhabua': 'Jhabua',
+            'katni': 'Katni',
+            'khandwa': 'Khandwa',
+            'khargone': 'Khargone',
+            'mandla': 'Mandla',
+            'mandsaur': 'Mandsaur',
+            'morena': 'Morena',
+            'narsinghpur': 'Narsinghpur',
+            'neemuch': 'Neemuch',
+            'panna': 'Panna',
+            'raisen': 'Raisen',
+            'rajgarh': 'Rajgarh',
+            'ratlam': 'Ratlam',
+            'rewa': 'Rewa',
+            'sagar': 'Sagar',
+            'satna': 'Satna',
+            'sehore': 'Sehore',
+            'seoni': 'Seoni',
+            'shahdol': 'Shahdol',
+            'shajapur': 'Shajapur',
+            'sheopur': 'Sheopur',
+            'shivpuri': 'Shivpuri',
+            'sidhi': 'Sidhi',
+            'singrauli': 'Singrauli',
+            'tikamgarh': 'Tikamgarh',
+            'ujjain': 'Ujjain',
+            'umaria': 'Umaria',
+            'vidisha': 'Vidisha',
+            'ahmednagar': 'Ahmednagar',
+            'akola': 'Akola',
+            'amravati': 'Amravati',
+            'aurangabad ': 'Aurangabad',
+            'beed': 'Beed',
+            'bhandara': 'Bhandara',
+            'buldhana': 'Buldhana',
+            'chandrapur': 'Chandrapur',
+            'dhule': 'Dhule',
+            'gadchiroli': 'Gadchiroli',
+            'gondia': 'Gondia',
+            'hingoli': 'Hingoli',
+            'jalgaon': 'Jalgaon',
+            'jalna': 'Jalna',
+            'kolhapur': 'Kolhapur',
+            'latur': 'Latur',
+
+            'mumbaiCity': 'Mumbai City',
+
+            'mumbaiSuburban': 'Mumbai Suburban',
+            'nagpur': 'Nagpur',
+            'nanded': 'Nanded',
+            'nandurbar': 'Nandurbar',
+            'nashik': 'Nashik',
+            'osmanabad': 'Osmanabad',
+            'palghar': 'Palghar',
+            'parbhani': 'Parbhani',
+            'pune': 'Pune',
+            'raigad': 'Raigad',
+            'ratnagiri': 'Ratnagiri',
+            'sangli': 'Sangli',
+            'satara': 'Satara',
+            'sindhudurg': 'Sindhudurg',
+            'solapur': 'Solapur',
+            'thane': 'Thane',
+            'wardha': 'Wardha',
+            'washim': 'Washim',
+            'yavatmal': 'Yavatmal',
+            'bishnupur': 'Bishnupur',
+            'chandel': 'Chandel',
+            'churachandpur': 'Churachandpur',
+
+            'imphalEast': 'Imphal East',
+
+            'imphalWest': 'Imphal West',
+            'jiribam': 'Jiribam',
+            'kakching': 'Kakching',
+            'kamjong': 'Kamjong',
+            'kangpokpi': 'Kangpokpi',
+            'noney': 'Noney',
+            'pherzawl': 'Pherzawl',
+            'senapati': 'Senapati',
+            'tamenglong': 'Tamenglong',
+            'tengnoupal': 'Tengnoupal',
+            'thoubal': 'Thoubal',
+            'ukhrul': 'Ukhrul',
+
+
+            'eastGaroHills': 'East Garo Hills',
+
+
+            'eastJaintiaHills': 'East Jaintia Hills',
+
+
+            'eastKhasiHills': 'East Khasi Hills',
+
+
+            'northGaroHills': 'North Garo Hills',
+
+            'riBhoi': 'Ri Bhoi',
+
+
+            'southGaroHills': 'South Garo Hills',
+
+
+            'southWestGaroHills': 'South West Garo Hills ',
+
+
+            'southWestKhasiHills': 'South West Khasi Hills',
+
+
+            'westGaroHills': 'West Garo Hills',
+
+
+            'westJaintiaHills': 'West Jaintia Hills',
+
+
+            'westKhasiHills': 'West Khasi Hills',
+            'aizawl': 'Aizawl',
+            'champhai': 'Champhai',
+            'kolasib': 'Kolasib',
+            'lawngtlai': 'Lawngtlai',
+            'lunglei': 'Lunglei',
+            'mamit': 'Mamit',
+            'saiha': 'Saiha',
+            'serchhip': 'Serchhip',
+            'dimapur': 'Dimapur',
+            'kiphire': 'Kiphire',
+            'kohima': 'Kohima',
+            'longleng': 'Longleng',
+            'mokokchung': 'Mokokchung',
+            'mon': 'Mon',
+            'peren': 'Peren',
+            'phek': 'Phek',
+            'tuensang': 'Tuensang',
+            'wokha': 'Wokha',
+            'zunheboto': 'Zunheboto',
+            'angul': 'Angul',
+            'balangir': 'Balangir',
+            'balasore': 'Balasore',
+            'bargarh': 'Bargarh',
+            'bhadrak': 'Bhadrak',
+            'boudh': 'Boudh',
+            'cuttack': 'Cuttack',
+            'deogarh': 'Deogarh',
+            'dhenkanal': 'Dhenkanal',
+            'gajapati': 'Gajapati',
+            'ganjam': 'Ganjam',
+            'jagatsinghapur': 'Jagatsinghapur',
+            'jajpur': 'Jajpur',
+            'jharsuguda': 'Jharsuguda',
+            'kalahandi': 'Kalahandi',
+            'kandhamal': 'Kandhamal',
+            'kendrapara': 'Kendrapara',
+
+
+            'kendujharKeonjhar': 'Kendujhar (Keonjhar)',
+            'khordha': 'Khordha',
+            'koraput': 'Koraput',
+            'malkangiri': 'Malkangiri',
+            'mayurbhanj': 'Mayurbhanj',
+            'nabarangpur': 'Nabarangpur',
+            'nayagarh': 'Nayagarh',
+            'nuapada': 'Nuapada',
+            'puri': 'Puri',
+            'rayagada': 'Rayagada',
+            'sambalpur': 'Sambalpur',
+            'sonepur': 'Sonepur',
+            'sundargarh': 'Sundargarh',
+            'karaikal': 'Karaikal',
+            'mahe': 'Mahe',
+            'pondicherry': 'Pondicherry',
+            'yanam': 'Yanam',
+            'amritsar': 'Amritsar',
+            'barnala': 'Barnala',
+            'bathinda': 'Bathinda',
+            'faridkot': 'Faridkot',
+
+            'fatehgarhSahib': 'Fatehgarh Sahib',
+            'fazilka': 'Fazilka',
+            'ferozepur': 'Ferozepur',
+            'gurdaspur': 'Gurdaspur',
+            'hoshiarpur': 'Hoshiarpur',
+            'jalandhar': 'Jalandhar',
+            'kapurthala': 'Kapurthala',
+            'ludhiana': 'Ludhiana',
+            'mansa': 'Mansa',
+            'moga': 'Moga',
+            'muktsar': 'Muktsar',
+            'nawanshahr': 'Nawanshahr (Shahid Bhagat Singh Nagar)',
+            'pathankot': 'Pathankot',
+            'patiala': 'Patiala',
+            'rupnagar': 'Rupnagar',
+            'sahibzada': 'Sahibzada Ajit Singh Nagar (Mohali)',
+            'sangrur': 'Sangrur',
+
+            'tarnTaran': 'Tarn Taran',
+            'ajmer': 'Ajmer',
+            'alwar': 'Alwar',
+            'banswara': 'Banswara',
+            'baran': 'Baran',
+            'barmer': 'Barmer',
+            'bharatpur': 'Bharatpur',
+            'bhilwara': 'Bhilwara',
+            'bikaner': 'Bikaner',
+            'bundi': 'Bundi',
+            'chittorgarh': 'Chittorgarh',
+            'churu': 'Churu',
+            'dausa': 'Dausa',
+            'dholpur': 'Dholpur',
+            'dungarpur': 'Dungarpur',
+            'hanumangarh': 'Hanumangarh',
+            'jaipur': 'Jaipur',
+            'jaisalmer': 'Jaisalmer',
+            'jalore': 'Jalore',
+            'jhalawar': 'Jhalawar',
+            'jhunjhunu': 'Jhunjhunu',
+            'jodhpur': 'Jodhpur',
+            'karauli': 'Karauli',
+            'kota': 'Kota',
+            'nagaur': 'Nagaur',
+            'pali': 'Pali',
+            'pratapgarhRajastan': 'Pratapgarh',
+            'rajsamand': 'Rajsamand',
+
+            'sawaiMadhopur': 'Sawai Madhopur',
+            'sikar': 'Sikar',
+            'sirohi': 'Sirohi',
+
+            'sriGanganagar': 'Sri Ganganagar',
+            'tonk': 'Tonk',
+            'udaipur': 'Udaipur',
+
+            'eastSikkim': 'East Sikkim',
+
+            'northSikkim': 'North Sikkim',
+
+            'southSikkim': 'South Sikkim',
+
+            'westSikkim': 'West Sikkim',
+            'ariyalur': 'Ariyalur',
+            'chennai': 'Chennai',
+            'coimbatore': 'Coimbatore',
+            'cuddalore': 'Cuddalore',
+            'dharmapuri': 'Dharmapuri',
+            'dindigul': 'Dindigul',
+            'erode': 'Erode',
+            'kanchipuram': 'Kanchipuram',
+            'kanyakumari': 'Kanyakumari',
+            'karur': 'Karur',
+            'krishnagiri': 'Krishnagiri',
+            'madurai': 'Madurai',
+            'nagapattinam': 'Nagapattinam',
+            'namakkal': 'Namakkal',
+            'nilgiris': 'Nilgiris',
+            'perambalur': 'Perambalur',
+            'pudukkottai': 'Pudukkottai',
+            'ramanathapuram': 'Ramanathapuram',
+            'salem': 'Salem',
+            'sivaganga': 'Sivaganga',
+            'thanjavur': 'Thanjavur',
+            'theni': 'Theni',
+
+
+            'thoothukudiTuticorin': 'Thoothukudi (Tuticorin)',
+            'tiruchirappalli': 'Tiruchirappalli',
+            'tirunelveli': 'Tirunelveli',
+            'tiruppur': 'Tiruppur',
+            'tiruvallur': 'Tiruvallur',
+            'tiruvannamalai': 'Tiruvannamalai',
+            'tiruvarur': 'Tiruvarur',
+            'vellore': 'Vellore',
+            'viluppuram': 'Viluppuram',
+            'virudhunagar': 'Virudhunagar',
+            'adilabad': 'Adilabad',
+
+            'bhadradriKothagudem': 'Bhadradri Kothagudem',
+            'hyderabad': 'Hyderabad',
+            'jagtial': 'Jagtial',
+            'jangaon': 'Jangaon',
+
+            'jayashankarBhoopalpally': 'Jayashankar Bhoopalpally',
+
+            'jogulambaGadwal': 'Jogulamba Gadwal',
+            'kamareddy': 'Kamareddy',
+            'karimnagar': 'Karimnagar',
+            'khammam': 'Khammam',
+
+
+            'komaramBheemAsifabad': 'Komaram Bheem Asifabad',
+            'mahabubabad': 'Mahabubabad',
+            'mahabubnagar': 'Mahabubnagar',
+            'mancherial': 'Mancherial',
+            'medak': 'Medak',
+            'medchal': 'Medchal',
+            'nagarkurnool': 'Nagarkurnool',
+            'nalgonda': 'Nalgonda',
+            'nirmal': 'Nirmal',
+            'nizamabad': 'Nizamabad',
+            'peddapalli': 'Peddapalli',
+
+            'rajannaSircilla': 'Rajanna Sircilla',
+            'rangareddy': 'Rangareddy',
+            'sangareddy': 'Sangareddy',
+            'siddipet': 'Siddipet',
+            'suryapet': 'Suryapet',
+            'vikarabad': 'Vikarabad',
+            'wanaparthy': 'Wanaparthy',
+
+
+            'warangalRural': 'Warangal (Rural)',
+
+
+            'warangalUrban': 'Warangal (Urban)',
+
+            'yadadriBhuvanagiri': 'Yadadri Bhuvanagiri',
+            'dhalai': 'Dhalai',
+            'gomati': 'Gomati',
+            'khowai': 'Khowai',
+
+            'northTripura': 'North Tripura',
+            'sepahijala': 'Sepahijala',
+
+            'southTripura': 'South Tripura',
+            'unakoti': 'Unakoti',
+
+            'westTripura': 'West Tripura',
+            'almora': 'Almora',
+            'bageshwar': 'Bageshwar',
+            'chamoli': 'Chamoli',
+            'champawat': 'Champawat',
+            'dehradun': 'Dehradun',
+            'haridwar': 'Haridwar',
+            'nainital': 'Nainital',
+
+            'pauriGarhwal': 'Pauri Garhwal',
+            'pithoragarh': 'Pithoragarh',
+            'rudraprayag': 'Rudraprayag',
+
+            'tehriGarhwal': 'Tehri Garhwal',
+
+
+            'udhamSinghNagar': 'Udham Singh Nagar',
+            'uttarkashi': 'Uttarkashi',
+            'agra': 'Agra',
+            'aligarh': 'Aligarh',
+            'allahabad': 'Allahabad',
+
+            'ambedkarNagar': 'Ambedkar Nagar',
+
+            'amethi': 'Amethi (Chatrapati Sahuji Mahraj Nagar)',
+            'amroha': 'Amroha (J.P. Nagar)',
+            'auraiya': 'Auraiya',
+            'azamgarh': 'Azamgarh',
+            'baghpat': 'Baghpat',
+            'bahraich': 'Bahraich',
+            'ballia': 'Ballia',
+            'balrampur': 'Balrampur',
+            'banda': 'Banda',
+            'barabanki': 'Barabanki',
+            'bareilly': 'Bareilly',
+            'basti': 'Basti',
+            'bhadohi': 'Bhadohi',
+            'bijnor': 'Bijnor',
+            'budaun': 'Budaun',
+            'bulandshahr': 'Bulandshahr',
+            'chandauli': 'Chandauli',
+            'chitrakoot': 'Chitrakoot',
+            'deoria': 'Deoria',
+            'etah': 'Etah',
+            'etawah': 'Etawah',
+            'faizabad': 'Faizabad',
+            'farrukhabad': 'Farrukhabad',
+            'fatehpur': 'Fatehpur',
+            'firozabad': 'Firozabad',
+
+
+            'gautamBuddhaNagar': 'Gautam Buddha Nagar',
+            'ghaziabad': 'Ghaziabad',
+            'ghazipur': 'Ghazipur',
+            'gonda': 'Gonda',
+            'gorakhpur': 'Gorakhpur',
+            'hamirpurUp': 'Hamirpur',
+
+
+            'hapurPanchsheelNagar': 'Hapur (Panchsheel Nagar)',
+            'hardoi': 'Hardoi',
+            'hathras': 'Hathras',
+            'jalaun': 'Jalaun',
+            'jaunpur': 'Jaunpur',
+            'jhansi': 'Jhansi',
+            'kannauj': 'Kannauj',
+
+            'kanpurDehat': 'Kanpur Dehat',
+            'kanpurNagar': 'Kanpur Nagar',
+            'kanshiramNagarKasganj': 'Kanshiram Nagar (Kasganj)',
+            'kaushambi': 'Kaushambi',
+            'kushinagarPadrauna': 'Kushinagar (Padrauna)',
+            'lakhimpurKheri': 'Lakhimpur - Kheri',
+            'lalitpur': 'Lalitpur',
+            'lucknow': 'Lucknow',
+            'maharajganj': 'Maharajganj',
+            'mahoba': 'Mahoba',
+            'mainpuri': 'Mainpuri',
+            'mathura': 'Mathura',
+            'mau': 'Mau',
+            'meerut': 'Meerut',
+            'mirzapur': 'Mirzapur',
+            'moradabad': 'Moradabad',
+            'muzaffarnagar': 'Muzaffarnagar',
+            'pilibhit': 'Pilibhit',
+            'pratapgarh': 'Pratapgarh',
+            'raeBareli': 'RaeBareli',
+            'rampur': 'Rampur',
+            'saharanpur': 'Saharanpur',
+            'sambhalBhimNagar': 'Sambhal (Bhim Nagar)',
+            'santKabirNagar': 'Sant Kabir Nagar',
+            'shahjahanpur': 'Shahjahanpur',
+            'shamaliPrabuddhNagar': 'Shamali (Prabuddh Nagar)',
+            'shravasti': 'Shravasti',
+            'siddharthNagar': 'Siddharth Nagar',
+            'sitapur': 'Sitapur',
+            'sonbhadra': 'Sonbhadra',
+            'sultanpur': 'Sultanpur',
+            'unnao': 'Unnao',
+            'varanasi': 'Varanasi',
+            'alipurduar': 'Alipurduar',
+            'bankura': 'Bankura',
+            'birbhum': 'Birbhum',
+            'burdwanBardhaman': 'Burdwan (Bardhaman)',
+            'coochBehar': 'Cooch Behar',
+            'dakshinDinajpurSouthDinajpur': 'Dakshin Dinajpur (South Dinajpur)',
+            'darjeeling': 'Darjeeling',
+            'hooghly': 'Hooghly',
+            'howrah': 'Howrah',
+            'jalpaiguri': 'Jalpaiguri',
+            'kalimpong': 'Kalimpong',
+            'kolkata': 'Kolkata',
+            'malda': 'Malda',
+            'murshidabad': 'Murshidabad',
+            'nadia': 'Nadia',
+            'north_24Parganas': 'North 24 Parganas',
+            'paschimMedinipurWestMedinipur': 'Paschim Medinipur (West Medinipur)',
+            'purbaMedinipurEastMedinipur': 'Purba Medinipur (East Medinipur)',
+            'purulia': 'Purulia',
+            'south_24Parganas': 'South 24 Parganas',
+            'uttarDinajpurNorthDinajpur': 'Uttar Dinajpur (North Dinajpur)'
         }
-    ],
-    gender: [
-        {
-            name: 'Config.Gender.male',
-            value: 'male'
-        },
-        {
-            name: 'Config.Gender.female',
-            value: 'female'
-        },
-        {
-            name: 'Config.Gender.others',
-            value: 'others'
-        }
-    ],
-    skills: [
-        {name: 'Config.Skills.farmer', value: 'farmer'}, {
-            name: 'Config.Skills.farm/PlantationWorker',
-            value: 'farm/ plantation worker'
-        }, {name: 'Config.Skills.gardener', value: 'gardener'}, {
-            name: 'Config.Skills.floriculturist',
-            value: 'floriculturist'
-        }, {name: 'Config.Skills.dairyFarmer', value: 'dairy farmer'}, {
-            name: 'Config.Skills.fisherman',
-            value: 'fisherman'
-        }, {name: 'Config.Skills.poultryFarmer', value: 'poultry farmer'}, {
-            name: 'Config.Skills.goat/PigFarmer',
-            value: 'goat/ pig farmer'
-        }, {name: 'Config.Skills.sericulturist', value: 'sericulturist'}, {
-            name: 'Config.Skills.beekeeper',
-            value: 'beekeeper'
-        }, {name: 'Config.Skills.bamboo/TimberGrower', value: 'bamboo/ timber grower'}, {
-            name: 'Config.Skills.soilSampler/Collector',
-            value: 'soil sampler/ collector'
-        }, {
-            name: 'Config.Skills.agriculturalMachineryOperator',
-            value: 'agricultural machinery operator'
-        }, {name: 'Config.Skills.tractorMechanic', value: 'tractor mechanic'}, {
-            name: 'Config.Skills.pumpMechanic',
-            value: 'pump mechanic'
-        }, {name: 'Config.Skills.irrigationServiceTechnician', value: 'irrigation service technician'}, {
-            name: 'Config.Skills.baker',
-            value: 'baker'
-        }, {name: 'Config.Skills.dairyProductsProcessor', value: 'dairy products processor'}, {
-            name: 'Config.Skills.grainMiller',
-            value: 'grain miller'
-        }, {
-            name: 'Config.Skills.pulseProcessingTechnician',
-            value: 'pulse processing technician'
-        }, {
-            name: 'Config.Skills.fruits&VegetablesProcessor',
-            value: 'fruits & vegetables processor'
-        }, {name: 'Config.Skills.fish&SeafoodProcessor', value: 'fish & seafood processor'}, {
-            name: 'Config.Skills.meat&PoultryProcessor',
-            value: 'meat & poultry processor'
-        }, {
-            name: 'Config.Skills.agricultureProduceBuyer',
-            value: 'agriculture produce buyer'
-        }, {
-            name: 'Config.Skills.foodProductsPackagingTechnician',
-            value: 'food products packaging technician'
-        }, {
-            name: 'Config.Skills.coldStorageTechnician',
-            value: 'cold storage technician'
-        }, {
-            name: 'Config.Skills.geologicalAssistant/Sampler',
-            value: 'geological assistant/ sampler'
-        }, {name: 'Config.Skills.miningSurveyAssistant', value: 'mining survey assistant'}, {
-            name: 'Config.Skills.gisModellingTechnician',
-            value: 'gis modelling technician'
-        }, {
-            name: 'Config.Skills.helper/Assistant(miningOperations)',
-            value: 'helper/ assistant (mining operations)'
-        }, {name: 'Config.Skills.mineDriller(exploration)', value: 'mine driller (exploration)'}, {
-            name: 'Config.Skills.drillOperator',
-            value: 'drill operator'
-        }, {name: 'Config.Skills.blaster', value: 'blaster'}, {
-            name: 'Config.Skills.heavyEarthMovingMachinery(hemm)Operator',
-            value: 'heavy earth moving machinery (hemm) operator'
-        }, {
-            name: 'Config.Skills.undergroundMiningMachineryOperator(any)',
-            value: 'underground mining machinery operator (any)'
-        }, {name: 'Config.Skills.fireman', value: 'fireman'}, {
-            name: 'Config.Skills.mineElectrician',
-            value: 'mine electrician'
-        }, {name: 'Config.Skills.hemmMechanic', value: 'hemm mechanic'}, {
-            name: 'Config.Skills.miningMachinist',
-            value: 'mining machinist'
-        }, {name: 'Config.Skills.oreProcessingOperator', value: 'ore processing operator'}, {
-            name: 'Config.Skills.landSurveyor',
-            value: 'land surveyor'
-        }, {name: 'Config.Skills.draughtsman(civil)', value: 'draughtsman (civil)'}, {
-            name: 'Config.Skills.mason',
-            value: 'mason'
-        }, {name: 'Config.Skills.barbender&SteelFixer', value: 'barbender & steel fixer'}, {
-            name: 'Config.Skills.shutteringCarpenter',
-            value: 'shuttering carpenter'
-        }, {name: 'Config.Skills.scaffolder', value: 'scaffolder'}, {
-            name: 'Config.Skills.electrician',
-            value: 'electrician'
-        }, {name: 'Config.Skills.plumber', value: 'plumber'}, {
-            name: 'Config.Skills.façadeInstaller',
-            value: 'façade installer'
-        }, {name: 'Config.Skills.painter&Decorator', value: 'painter & decorator'}, {
-            name: 'Config.Skills.realEstateConsultant',
-            value: 'real estate consultant'
-        }, {name: 'Config.Skills.chemicalPlantOperator', value: 'chemical plant operator'}, {
-            name: 'Config.Skills.draughtsman(mechanical)',
-            value: 'draughtsman (mechanical)'
-        }, {name: 'Config.Skills.electrician', value: 'electrician'}, {
-            name: 'Config.Skills.electroplater',
-            value: 'electroplater'
-        }, {name: 'Config.Skills.fitter', value: 'fitter'}, {
-            name: 'Config.Skills.plumber(industrial)',
-            value: 'plumber (industrial)'
-        }, {name: 'Config.Skills.instrumentMechanic', value: 'instrument mechanic'}, {
-            name: 'Config.Skills.labAssistant(chemicalPlant)',
-            value: 'lab assistant (chemical plant)'
-        }, {name: 'Config.Skills.liftAndEscalatorMechanic', value: 'lift and escalator mechanic'}, {
-            name: 'Config.Skills.machinist',
-            value: 'machinist'
-        }, {
-            name: 'Config.Skills.machinist(grinder)',
-            value: 'machinist (grinder)'
-        }, {
-            name: 'Config.Skills.maintenanceMechanic(chemicalPlant)',
-            value: 'maintenance mechanic (chemical plant)'
-        }, {name: 'Config.Skills.marineFitter', value: 'marine fitter'}, {
-            name: 'Config.Skills.mechanic(miningMachinery)',
-            value: 'mechanic (mining machinery)'
-        }, {name: 'Config.Skills.mechanic(auto)', value: 'mechanic (auto)'}, {
-            name: 'Config.Skills.mechanic(refrigeration&Ac)',
-            value: 'mechanic (refrigeration & ac)'
-        }, {
-            name: 'Config.Skills.mechanicMachineToolsMaintenance',
-            value: 'mechanic machine tools maintenance'
-        }, {name: 'Config.Skills.mechanicMechatronics', value: 'mechanic mechatronics'}, {
-            name: 'Config.Skills.mechanicMedicalElectronics',
-            value: 'mechanic medical electronics'
-        }, {
-            name: 'Config.Skills.operatorAdvancedMachineTools',
-            value: 'operator advanced machine tools'
-        }, {name: 'Config.Skills.spinningTechnician', value: 'spinning technician'}, {
-            name: 'Config.Skills.textileMechatronicsTechnician',
-            value: 'textile mechatronics technician'
-        }, {
-            name: 'Config.Skills.textileWetProcessingTechnician',
-            value: 'textile wet processing technician'
-        }, {
-            name: 'Config.Skills.tool&DieMaker(dies&Moulds)',
-            value: 'tool & die maker (dies & moulds)'
-        }, {
-            name: 'Config.Skills.tool&DieMaker(pressTools,Jigs&Fixtures)',
-            value: 'tool & die maker (press tools, jigs & fixtures)'
-        }, {name: 'Config.Skills.turner', value: 'turner'}, {
-            name: 'Config.Skills.weavingTechnician',
-            value: 'weaving technician'
-        }, {name: 'Config.Skills.refractoryTechnician', value: 'refractory technician'}, {
-            name: 'Config.Skills.foundryManTechnician',
-            value: 'foundry man technician'
-        }, {name: 'Config.Skills.industrialPainter', value: 'industrial painter'}, {
-            name: 'Config.Skills.mechanic(dieselEngine)',
-            value: 'mechanic (diesel engine)'
-        }, {
-            name: 'Config.Skills.mechanicAutoElectrical&Electronics',
-            value: 'mechanic auto electrical & electronics'
-        }, {
-            name: 'Config.Skills.mechanicLens/prismGrinding',
-            value: 'mechanic lens/prism grinding'
-        }, {
-            name: 'Config.Skills.plasticProcessingOperator',
-            value: 'plastic processing operator'
-        }, {name: 'Config.Skills.pumpOperator-cum-mechanic', value: 'pump operator-cum-mechanic'}, {
-            name: 'Config.Skills.rubberTechnician',
-            value: 'rubber technician'
-        }, {
-            name: 'Config.Skills.mechanicAutoBodyRepair',
-            value: 'mechanic auto body repair'
-        }, {
-            name: 'Config.Skills.mechanicAutoBodyPainting',
-            value: 'mechanic auto body painting'
-        }, {
-            name: 'Config.Skills.technicianPowerElectronicSystem',
-            value: 'technician power electronic system'
-        }, {name: 'Config.Skills.welder', value: 'welder'}, {
-            name: 'Config.Skills.sheetMetalWorker',
-            value: 'sheet metal worker'
-        }, {
-            name: 'Config.Skills.fireTechnology&IndustrialSafetyEngineer',
-            value: 'fire technology & industrial safety engineer'
-        }, {name: 'Config.Skills.retailOperationsAssistant', value: 'retail operations assistant'}, {
-            name: 'Config.Skills.retailCashier',
-            value: 'retail cashier'
-        }, {name: 'Config.Skills.retailSalesAssociate', value: 'retail sales associate'}, {
-            name: 'Config.Skills.distributorSalesman',
-            value: 'distributor salesman'
-        }, {
-            name: 'Config.Skills.freshFruits&VegetableVendor',
-            value: 'fresh fruits & vegetable vendor'
-        }, {name: 'Config.Skills.fish&MeatVendor', value: 'fish & meat vendor'}, {
-            name: 'Config.Skills.merchandiser',
-            value: 'merchandiser'
-        }, {name: 'Config.Skills.visualMerchandiser', value: 'visual merchandiser'}, {
-            name: 'Config.Skills.warehouseAssociate',
-            value: 'warehouse associate'
-        }, {name: 'Config.Skills.courierAssociate', value: 'courier associate'}, {
-            name: 'Config.Skills.driver(truck/Tanker)',
-            value: 'driver (truck/ tanker)'
-        }, {name: 'Config.Skills.vesselOperator', value: 'vessel operator'}, {
-            name: 'Config.Skills.cargoHandler',
-            value: 'cargo handler'
-        }, {name: 'Config.Skills.cargoEquipmentHandler', value: 'cargo equipment handler'}, {
-            name: 'Config.Skills.eximExecutive',
-            value: 'exim executive'
-        }, {name: 'Config.Skills.weaver(handloom)', value: 'weaver (handloom)'}, {
-            name: 'Config.Skills.weaver(powerloom)',
-            value: 'weaver (powerloom)'
-        }, {name: 'Config.Skills.knitter', value: 'knitter'}, {
-            name: 'Config.Skills.tailor',
-            value: 'tailor'
-        }, {name: 'Config.Skills.sewingMachineOperator', value: 'sewing machine operator'}, {
-            name: 'Config.Skills.handEmbroiderer',
-            value: 'hand embroiderer'
-        }, {
-            name: 'Config.Skills.teacher(pre-primary&Primary)',
-            value: 'teacher (pre-primary & primary)'
-        }, {
-            name: 'Config.Skills.teacher(secondary&HigherSecondary)',
-            value: 'teacher (secondary & higher secondary)'
-        }, {
-            name: 'Config.Skills.teacher(higherEducation)',
-            value: 'teacher (higher education)'
-        }, {
-            name: 'Config.Skills.teacher(vocational&Technical)',
-            value: 'teacher (vocational & technical)'
-        }, {
-            name: 'Config.Skills.teacher(physical&Sports)',
-            value: 'teacher (physical & sports)'
-        }, {name: 'Config.Skills.teacher(music&Arts)', value: 'teacher (music & arts)'}, {
-            name: 'Config.Skills.teacher(specialNeeds)',
-            value: 'teacher (special needs)'
-        }, {
-            name: 'Config.Skills.educationalContentCreator',
-            value: 'educational content creator'
-        }, {name: 'Config.Skills.doctor(allopathic)', value: 'doctor (allopathic)'}, {
-            name: 'Config.Skills.doctor(aayush)',
-            value: 'doctor (aayush)'
-        }, {name: 'Config.Skills.dentist', value: 'dentist'}, {
-            name: 'Config.Skills.nurse',
-            value: 'nurse'
-        }, {name: 'Config.Skills.pharmacist', value: 'pharmacist'}, {
-            name: 'Config.Skills.pharmacyAssistant',
-            value: 'pharmacy assistant'
-        }, {
-            name: 'Config.Skills.medicalSalesRepresentative',
-            value: 'medical sales representative'
-        }, {name: 'Config.Skills.physiotherapist', value: 'physiotherapist'}, {
-            name: 'Config.Skills.assistantPhysiotherapist',
-            value: 'assistant physiotherapist'
-        }, {
-            name: 'Config.Skills.medicalTechnician(anySpecialty)',
-            value: 'medical technician (any specialty)'
-        }, {name: 'Config.Skills.medicalLabTechnician', value: 'medical lab technician'}, {
-            name: 'Config.Skills.dietician',
-            value: 'dietician'
-        }, {name: 'Config.Skills.arogyaMitra', value: 'arogya mitra'}, {
-            name: 'Config.Skills.frontLineHealthWorker',
-            value: 'front line health worker'
-        }, {name: 'Config.Skills.homeHealthAide', value: 'home health aide'}, {
-            name: 'Config.Skills.geriatricCareAssistant',
-            value: 'geriatric care assistant'
-        }, {
-            name: 'Config.Skills.patientRelationsAssociate(hospital)',
-            value: 'patient relations associate (hospital)'
-        }, {
-            name: 'Config.Skills.hospital/ClinicAdministrator',
-            value: 'hospital/ clinic administrator'
-        }, {
-            name: 'Config.Skills.speechAudioTherapyAssistant',
-            value: 'speech audio therapy assistant'
-        }, {
-            name: 'Config.Skills.telehealthServicesCoordinator',
-            value: 'telehealth services coordinator'
-        }, {
-            name: 'Config.Skills.fashionJewelleryMaker(handicraft)',
-            value: 'fashion jewellery maker (handicraft)'
-        }, {
-            name: 'Config.Skills.woodwareMaker(handicraft)',
-            value: 'woodware maker (handicraft)'
-        }, {
-            name: 'Config.Skills.stonecraftMaker(handicraft)',
-            value: 'stonecraft maker (handicraft)'
-        }, {
-            name: 'Config.Skills.ceramicWareMaker(handicraft)',
-            value: 'ceramic ware maker (handicraft)'
-        }, {
-            name: 'Config.Skills.bamboowareMaker(handicraft)',
-            value: 'bambooware maker (handicraft)'
-        }, {
-            name: 'Config.Skills.paperMacheArtisan(handicraft)',
-            value: 'paper mache artisan (handicraft)'
-        }, {
-            name: 'Config.Skills.agarbattiMaker(handicraft)',
-            value: 'agarbatti maker (handicraft)'
-        }, {
-            name: 'Config.Skills.carpetMaker(handicraft)',
-            value: 'carpet maker (handicraft)'
-        }, {
-            name: 'Config.Skills.glasswareMaker(handicraft)',
-            value: 'glassware maker (handicraft)'
-        }, {
-            name: 'Config.Skills.metalwareMaker(handicraft)',
-            value: 'metalware maker (handicraft)'
-        }, {
-            name: 'Config.Skills.driver(autorikshaw/car/Taxi)',
-            value: 'driver (autorikshaw/car/ taxi)'
-        }, {
-            name: 'Config.Skills.driver(bus/commercialVehicle)',
-            value: 'driver (bus/commercial vehicle)'
-        }, {
-            name: 'Config.Skills.automotiveServiceTechnician(2&3Wheeler)',
-            value: 'automotive service technician (2 & 3 wheeler)'
-        }, {
-            name: 'Config.Skills.automotiveServiceTechnician(4Wheeler)',
-            value: 'automotive service technician (4 wheeler)'
-        }, {
-            name: 'Config.Skills.automotiveSalesConsultant',
-            value: 'automotive sales consultant'
-        }, {name: 'Config.Skills.securityGuard(unarmed)', value: 'security guard (unarmed)'}, {
-            name: 'Config.Skills.securityGuard(armed)',
-            value: 'security guard (armed)'
-        }, {name: 'Config.Skills.securitySupervisor', value: 'security supervisor'}, {
-            name: 'Config.Skills.cctvSupervisor',
-            value: 'cctv supervisor'
-        }, {name: 'Config.Skills.personalSecurityOfficer', value: 'personal security officer'}, {
-            name: 'Config.Skills.privateInvestigator',
-            value: 'private investigator'
-        }, {name: 'Config.Skills.chef', value: 'chef'}, {
-            name: 'Config.Skills.commisChef(chefAssistant)',
-            value: 'commis chef (chef assistant)'
-        }, {name: 'Config.Skills.cook/KitchenSteward', value: 'cook/ kitchen steward'}, {
-            name: 'Config.Skills.bartender',
-            value: 'bartender'
-        }, {name: 'Config.Skills.food&BeveragesSteward', value: 'food & beverages steward'}, {
-            name: 'Config.Skills.bellboy',
-            value: 'bellboy'
-        }, {name: 'Config.Skills.concierge', value: 'concierge'}, {
-            name: 'Config.Skills.guestRelationsExecutive',
-            value: 'guest relations executive'
-        }, {
-            name: 'Config.Skills.hotelFrontOfficeAssociate',
-            value: 'hotel front office associate'
-        }, {name: 'Config.Skills.housekeepingExecutive', value: 'housekeeping executive'}, {
-            name: 'Config.Skills.touristGuide',
-            value: 'tourist guide'
-        }, {name: 'Config.Skills.travelConsultant', value: 'travel consultant'}, {
-            name: 'Config.Skills.domesticMaid',
-            value: 'domestic maid'
-        }, {name: 'Config.Skills.deepCleaningAssistant', value: 'deep cleaning assistant'}, {
-            name: 'Config.Skills.laundryExecutive',
-            value: 'laundry executive'
-        }, {name: 'Config.Skills.domesticCook', value: 'domestic cook'}, {
-            name: 'Config.Skills.childCaretaker',
-            value: 'child caretaker'
-        }, {name: 'Config.Skills.elderlyCaretaker', value: 'elderly caretaker'}, {
-            name: 'Config.Skills.caregiver-Newborn&Mother',
-            value: 'caregiver - newborn & mother'
-        }, {name: 'Config.Skills.caregiver-SpecialNeeds', value: 'caregiver - special needs'}, {
-            name: 'Config.Skills.goldsmith',
-            value: 'goldsmith'
-        }, {
-            name: 'Config.Skills.imitationJewelleryMaker',
-            value: 'imitation jewellery maker'
-        }, {name: 'Config.Skills.diamondSetJewelleryMaker', value: 'diamond set jewellery maker'}, {
-            name: 'Config.Skills.diamondProcessor',
-            value: 'diamond processor'
-        }, {name: 'Config.Skills.gemstoneProcessor', value: 'gemstone processor'}, {
-            name: 'Config.Skills.jewelleryRetailer',
-            value: 'jewellery retailer'
-        }, {
-            name: 'Config.Skills.mobilePhoneHardwareRepairTechnician',
-            value: 'mobile phone hardware repair technician'
-        }, {
-            name: 'Config.Skills.setTopBoxInstallation&RepairTechnician',
-            value: 'set top box installation & repair technician'
-        }, {
-            name: 'Config.Skills.fieldTechnician-Computing&Peripherals',
-            value: 'field technician - computing & peripherals'
-        }, {name: 'Config.Skills.fieldEngineer-Tv', value: 'field engineer - tv'}, {
-            name: 'Config.Skills.fieldTechnician-Ac',
-            value: 'field technician - ac'
-        }, {
-            name: 'Config.Skills.fieldTechnician-Refrigerator',
-            value: 'field technician - refrigerator'
-        }, {
-            name: 'Config.Skills.fieldTechnician-Ups&Inverter',
-            value: 'field technician - ups & inverter'
-        }, {
-            name: 'Config.Skills.fieldTechnician-WashingMachine',
-            value: 'field technician - washing machine'
-        }, {
-            name: 'Config.Skills.fieldTechnician-OtherHomeAppliances',
-            value: 'field technician - other home appliances'
-        }, {
-            name: 'Config.Skills.solarPanelInstallationTechnician',
-            value: 'solar panel installation technician'
-        }, {
-            name: 'Config.Skills.solarPvSystemInstallationEngineer',
-            value: 'solar pv system installation engineer'
-        }, {
-            name: 'Config.Skills.solarPvSystemRepairTechnician',
-            value: 'solar pv system repair technician'
-        }, {
-            name: 'Config.Skills.electronicsAssemblyOperator',
-            value: 'electronics assembly operator'
-        }, {
-            name: 'Config.Skills.electronicsTestingTechnician',
-            value: 'electronics testing technician'
-        }, {name: 'Config.Skills.vlsiDesignEngineer', value: 'vlsi design engineer'}, {
-            name: 'Config.Skills.embeddedSoftwareEngineer',
-            value: 'embedded software engineer'
-        }, {name: 'Config.Skills.barber', value: 'barber'}, {
-            name: 'Config.Skills.hairStylist',
-            value: 'hair stylist'
-        }, {name: 'Config.Skills.beautyTherapist', value: 'beauty therapist'}, {
-            name: 'Config.Skills.spaTherapist',
-            value: 'spa therapist'
-        }, {name: 'Config.Skills.pedicurist&Manicurist', value: 'pedicurist & manicurist'}, {
-            name: 'Config.Skills.mehendiSpecialist',
-            value: 'mehendi specialist'
-        }, {name: 'Config.Skills.tattooArtist', value: 'tattoo artist'}, {
-            name: 'Config.Skills.fitnessTrainer',
-            value: 'fitness trainer'
-        }, {name: 'Config.Skills.yogaInstructor', value: 'yoga instructor'}, {
-            name: 'Config.Skills.beauty&WellnessConsultant',
-            value: 'beauty & wellness consultant'
-        }, {
-            name: 'Config.Skills.carpenter-WoodenFurniture',
-            value: 'carpenter - wooden furniture'
-        }, {
-            name: 'Config.Skills.delivery&InstallationExecutive-Furniture&Fitting',
-            value: 'delivery & installation executive - furniture & fitting'
-        }, {
-            name: 'Config.Skills.fitter-ModularFurniture',
-            value: 'fitter - modular furniture'
-        }, {
-            name: 'Config.Skills.installer-Glassdoors&Windows',
-            value: 'installer - glassdoors & windows'
-        }, {name: 'Config.Skills.interiorDesigner', value: 'interior designer'}, {
-            name: 'Config.Skills.salesExecutive-Furniture&Fittings',
-            value: 'sales executive - furniture & fittings'
-        }, {name: 'Config.Skills.leatherWorker', value: 'leather worker'}, {
-            name: 'Config.Skills.shoe&FootwearMaker',
-            value: 'shoe & footwear maker'
-        }, {name: 'Config.Skills.leatherGoods&GarmentsMaker', value: 'leather goods & garments maker'}, {
-            name: 'Config.Skills.saddleMaker',
-            value: 'saddle maker'
-        }, {
-            name: 'Config.Skills.footwear&AlliedGoodsRepairer',
-            value: 'footwear & allied goods repairer'
-        }, {name: 'Config.Skills.footwear&LeatherGoodsSeller', value: 'footwear & leather goods seller'}, {
-            name: 'Config.Skills.cravoice',
-            value: 'cravoice'
-        }, {name: 'Config.Skills.craNon-voice', value: 'cra non-voice'}, {
-            name: 'Config.Skills.softwareDeveloper',
-            value: 'software developer'
-        }, {name: 'Config.Skills.softwareEngineer', value: 'software engineer'}, {
-            name: 'Config.Skills.webDeveloper',
-            value: 'web developer'
-        }, {
-            name: 'Config.Skills.web&MobileApplicationDeveloper',
-            value: 'web & mobile application developer'
-        }, {name: 'Config.Skills.userExperienceDesigner', value: 'user experience designer'}, {
-            name: 'Config.Skills.uiDeveloper',
-            value: 'ui developer'
-        }, {name: 'Config.Skills.technicalWriter', value: 'technical writer'}, {
-            name: 'Config.Skills.testEngineer',
-            value: 'test engineer'
-        }, {name: 'Config.Skills.databaseAdministrator', value: 'database administrator'}, {
-            name: 'Config.Skills.cloudApplicationDeveloper',
-            value: 'cloud application developer'
-        }, {
-            name: 'Config.Skills.cloudInfrastructureAnalyst',
-            value: 'cloud infrastructure analyst'
-        }, {name: 'Config.Skills.itSecurityAnalyst', value: 'it security analyst'}, {
-            name: 'Config.Skills.iotEngineer',
-            value: 'iot engineer'
-        }, {name: 'Config.Skills.associateDataAnalyst', value: 'associate data analyst'}, {
-            name: 'Config.Skills.devopsEngineer',
-            value: 'devops engineer'
-        }, {name: 'Config.Skills.siteReliabilityEngineer', value: 'site reliability engineer'}, {
-            name: 'Config.Skills.dataScientist',
-            value: 'data scientist'
-        }, {name: 'Config.Skills.softwareProductManager', value: 'software product manager'}, {
-            name: 'Config.Skills.softwareQaEngineer',
-            value: 'software qa engineer'
-        }, {name: 'Config.Skills.itConsultant', value: 'it consultant'}, {
-            name: 'Config.Skills.accountant',
-            value: 'accountant'
-        }, {
-            name: 'Config.Skills.businessCorrespondent&Facilitator',
-            value: 'business correspondent & facilitator'
-        }, {name: 'Config.Skills.debtRecoveryAgent', value: 'debt recovery agent'}, {
-            name: 'Config.Skills.equityDealer',
-            value: 'equity dealer'
-        }, {
-            name: 'Config.Skills.frontDeskOfficer-FinancialInstitutions',
-            value: 'front desk officer - financial institutions'
-        }, {
-            name: 'Config.Skills.gst-AccountsAssistant',
-            value: 'gst- accounts assistant'
-        }, {
-            name: 'Config.Skills.insolvency&BankruptcyAssociate',
-            value: 'insolvency & bankruptcy associate'
-        }, {name: 'Config.Skills.insuranceAgent', value: 'insurance agent'}, {
-            name: 'Config.Skills.lifeInsuranceAgent',
-            value: 'life insurance agent'
-        }, {name: 'Config.Skills.loanApprovalOfficer', value: 'loan approval officer'}, {
-            name: 'Config.Skills.loanProcessingOfficer',
-            value: 'loan processing officer'
-        }, {name: 'Config.Skills.microfinanceExecutive', value: 'microfinance executive'}, {
-            name: 'Config.Skills.mutualFundAgent',
-            value: 'mutual fund agent'
-        }, {name: 'Config.Skills.broadbandTechnician', value: 'broadband technician'}, {
-            name: 'Config.Skills.fttxInstaller',
-            value: 'fttx installer'
-        }, {name: 'Config.Skills.in-storePromoter', value: 'in-store promoter'}, {
-            name: 'Config.Skills.lineAssembler-TelecomProducts',
-            value: 'line assembler - telecom products'
-        }, {name: 'Config.Skills.networkAdministrator', value: 'network administrator'}, {
-            name: 'Config.Skills.opticalFiberSplicer',
-            value: 'optical fiber splicer'
-        }, {name: 'Config.Skills.opticalFiberTechnician', value: 'optical fiber technician'}, {
-            name: 'Config.Skills.rFSiteSurveyor',
-            value: 'r f site surveyor'
-        }, {
-            name: 'Config.Skills.salesExecutiveBroadband',
-            value: 'sales executive broadband'
-        }, {
-            name: 'Config.Skills.telecomEmbeddedHardwareDeveloper',
-            value: 'telecom embedded hardware developer'
-        }, {
-            name: 'Config.Skills.telecomNetworkSecurityTechnician',
-            value: 'telecom network security technician'
-        }, {
-            name: 'Config.Skills.telecomSurfaceMountTechnology(smt)Technician',
-            value: 'telecom surface mount technology (smt) technician'
-        }, {
-            name: 'Config.Skills.telecomTechnician-IotDevice/system',
-            value: 'telecom technician - iot device/system'
-        }, {
-            name: 'Config.Skills.telecomTerminalEquipmentApplicationDeveloper',
-            value: 'telecom terminal equipment application developer'
-        }, {
-            name: 'Config.Skills.telecomTower/BayInstallationSupervisor',
-            value: 'telecom tower / bay installation supervisor'
-        }, {name: 'Config.Skills.towerTechnician', value: 'tower technician'}, {
-            name: 'Config.Skills.wirelessTechnician',
-            value: 'wireless technician'
-        }, {name: 'Config.Skills.actor', value: 'actor'}, {
-            name: 'Config.Skills.animator',
-            value: 'animator'
-        }, {name: 'Config.Skills.cameraman', value: 'cameraman'}, {
-            name: 'Config.Skills.characterDesigner',
-            value: 'character designer'
-        }, {name: 'Config.Skills.clean-upArtist', value: 'clean-up artist'}, {
-            name: 'Config.Skills.colourist',
-            value: 'colourist'
-        }, {name: 'Config.Skills.journalist', value: 'journalist'}, {
-            name: 'Config.Skills.compositor',
-            value: 'compositor'
-        }, {name: 'Config.Skills.dancer', value: 'dancer'}, {
-            name: 'Config.Skills.graphicDesigner',
-            value: 'graphic designer'
-        }, {name: 'Config.Skills.hairdresser', value: 'hairdresser'}, {
-            name: 'Config.Skills.layoutDesigner',
-            value: 'layout designer'
-        }, {name: 'Config.Skills.lightingArtist', value: 'lighting artist'}, {
-            name: 'Config.Skills.make-upArtist',
-            value: 'make-up artist'
-        }, {name: 'Config.Skills.musicProgrammer', value: 'music programmer'}, {
-            name: 'Config.Skills.productionAssistant',
-            value: 'production assistant'
-        }, {name: 'Config.Skills.propsMaster', value: 'props master'}, {
-            name: 'Config.Skills.prostheticsArtist',
-            value: 'prosthetics artist'
-        }, {name: 'Config.Skills.renderingArtist', value: 'rendering artist'}, {
-            name: 'Config.Skills.searchEngineOptimizationExecutive',
-            value: 'search engine optimization executive'
-        }, {name: 'Config.Skills.setDecorator', value: 'set decorator'}, {
-            name: 'Config.Skills.socialMediaExecutive',
-            value: 'social media executive'
-        }, {name: 'Config.Skills.soundDesigner', value: 'sound designer'}, {
-            name: 'Config.Skills.soundEditor',
-            value: 'sound editor'
-        }, {name: 'Config.Skills.soundEngineer', value: 'sound engineer'}, {
-            name: 'Config.Skills.storyboardArtist',
-            value: 'storyboard artist'
-        }, {name: 'Config.Skills.texturingArtist', value: 'texturing artist'}, {
-            name: 'Config.Skills.vfxEditor',
-            value: 'vfx editor'
-        }, {name: 'Config.Skills.voiceOverArtist', value: 'voice over artist'},
-        {
-            name: 'Config.Skills.others',
-            value: 'others'
-        }
-    ],
-    sectors: [
-        {name: 'Config.Sectors.agriculture', value: 'agriculture'}, {
-            name: 'Config.Sectors.foodProcessing',
-            value: 'food processing'
-        }, {name: 'Config.Sectors.mining', value: 'mining'}, {
-            name: 'Config.Sectors.construction&RealEstate',
-            value: 'construction & real estate'
-        }, {
-            name: 'Config.Sectors.manufacturing&HeavyEngineering',
-            value: 'manufacturing & heavy engineering'
-        }, {name: 'Config.Sectors.retail', value: 'retail'}, {
-            name: 'Config.Sectors.logistics&Warehousing',
-            value: 'logistics & warehousing'
-        }, {name: 'Config.Sectors.textile&Apparel', value: 'textile & apparel'}, {
-            name: 'Config.Sectors.education&SkillDevelopment',
-            value: 'education & skill development'
-        }, {
-            name: 'Config.Sectors.healthcare&Pharmaceuticals',
-            value: 'health care & pharmaceuticals'
-        }, {name: 'Config.Sectors.handicraft', value: 'handicraft'}, {
-            name: 'Config.Sectors.autoSales,Service&Operations',
-            value: 'auto sales, service & operations'
-        }, {name: 'Config.Sectors.privateSecurity', value: 'private security'}, {
-            name: 'Config.Sectors.tourism,Hospitality&Travel',
-            value: 'tourism, hospitality & travel'
-        }, {name: 'Config.Sectors.domesticHelp', value: 'domestic help'}, {
-            name: 'Config.Sectors.gems&Jewellery',
-            value: 'gems & jewellery'
-        }, {
-            name: 'Config.Sectors.electronics&ItHardware',
-            value: 'electronics & it hardware'
-        }, {name: 'Config.Sectors.beautyAndWellness', value: 'beauty and wellness'}, {
-            name: 'Config.Sectors.furniture&Furnishing',
-            value: 'furniture & furnishing'
-        }, {name: 'Config.Sectors.leather&LeatherGoods', value: 'leather & leather goods'}, {
-            name: 'Config.Sectors.it&Ites',
-            value: 'it & ites'
-        }, {
-            name: 'Config.Sectors.banking,FinancialServices&Insurance',
-            value: 'banking, financial services & insurance'
-        }, {name: 'Config.Sectors.telecommunication', value: 'telecommunication'}, {
-            name: 'Config.Sectors.media&Entertainment',
-            value: 'media & entertainment'
-        },
-        {
-            name: 'Config.Sectors.others',
-            value: 'others'
-        }
-    ],
-    education: [
-        {
-            name: 'Config.Education.belowPrimary',
-            value: 'passed primary (class 8th)'
-        },
-        {
-            name: 'Config.Education.primary',
-            value: 'passed secondary (class 10th)'
-        },
-        {
-            name: 'Config.Education.secondary',
-            value: 'secondary'
-        },
-        {
-            name: 'Config.Education.higherSecondary',
-            value: 'passed higher secondary (Class 12th)'
-        },
-        {
-            name: 'Config.Education.diploma',
-            value: 'iti & diploma'
-        },
-        {
-            name: 'Config.Education.graduate',
-            value: 'graduate'
-        }
-    ],
-    povertyStatus: [
-        {
-            name: 'Config.PovertyStatus.bpl',
-            value: 'bpl'
-        },
-        {
-            name: 'Config.PovertyStatus.apl',
-            value: 'apl'
-        },
-        {
-            name: 'Config.PovertyStatus.others',
-            value: 'others'
-        }
-    ],
-    socialStatus: [
-        {
-            name: 'Config.SocialStatus.st',
-            value: 'st'
-        },
-        {
-            name: 'Config.SocialStatus.sc',
-            value: 'sc'
-        },
-        {
-            name: 'Config.SocialStatus.obc',
-            value: 'obc'
-        },
-        {
-            name: 'Config.SocialStatus.others',
-            value: 'others'
-        }
-    ],
-    annualIncome: [
-        {
-            name: 'Config.AnnualIncome.belowOne',
-            value: 'below one lakh'
-        },
-        {
-            name: 'Config.AnnualIncome.oneToThree',
-            value: 'between 1 to 3 lakhs'
-        },
-        {
-            name: 'Config.AnnualIncome.threeToFive',
-            value: 'between 3 to 5 lakhs'
-        },
-        {
-            name: 'Config.AnnualIncome.aboveFive',
-            value: 'above 5 lakhs'
-        }
-    ],
-    training: [
-        {
-            name: 'Config.Training.formal',
-            value: 'formal'
-        },
-        {
-            name: 'Config.Training.informal',
-            value: 'informal'
-        },
-        {
-            name: 'Config.Training.unskilled',
-            value: 'unskilled'
-        },
-        {
-            name: 'Config.Training.others',
-            value: 'others'
-        }
-    ],
-    currentCondition: [
-        {
-            name: 'Config.CurrentCondition.asthma',
-            value: 'asthma'
-        },
-        {
-            name: 'Config.CurrentCondition.cancer',
-            value: 'cancer'
-        },
-        {
-            name: 'Config.CurrentCondition.lungdisease',
-            value: 'lungdisease'
-        },
-        {
-            name: 'Config.CurrentCondition.diabetics',
-            value: 'diabetics'
-        },
-        {
-            name: 'Config.CurrentCondition.hypertension',
-            value: 'hypertension'
-        },
-        {
-            name: 'Config.CurrentCondition.heart',
-            value: 'heart'
-        },
-        {
-            name: 'Config.CurrentCondition.others',
-            value: 'others'
-        }
-    ],
-    symptoms: [
-        {
-            name: 'Config.Symptoms.fever',
-            value: 'fever'
-        },
-        {
-            name: 'Config.Symptoms.cough',
-            value: 'cough'
-        },
-        {
-            name: 'Config.Symptoms.breath',
-            value: 'breath'
-        },
-        {
-            name: 'Config.Symptoms.throat',
-            value: 'throat'
-        },
-        {
-            name: 'Config.Symptoms.voice',
-            value: 'voice'
-        },
-        {
-            name: 'Config.Symptoms.headache',
-            value: 'headache'
-        },
-        {
-            name: 'Config.Symptoms.nose',
-            value: 'nose'
-        },
-        {
-            name: 'Config.Symptoms.others',
-            value: 'others'
-        }
-    ],
-    goodHabits: [
-        {
-            name: 'Config.GoodHabits.yoga',
-            value: 'yoga'
-        },
-        {
-            name: 'Config.GoodHabits.exercise',
-            value: 'exercise'
-        },
-        {
-            name: 'Config.GoodHabits.water',
-            value: 'water'
-        },
-        {
-            name: 'Config.GoodHabits.fruits',
-            value: 'fruits'
-        },
-        {
-            name: 'Config.GoodHabits.others',
-            value: 'others'
-        }
-    ],
-    badHabits: [
-        {
-            name: 'Config.BadHabits.smoking',
-            value: 'smoking'
-        },
-        {
-            name: 'Config.BadHabits.drinking',
-            value: 'drinking'
-        },
-        {
-            name: 'Config.BadHabits.tobacco',
-            value: 'tobacco'
-        },
-        {
-            name: 'Config.BadHabits.junkfood',
-            value: 'junkfood'
-        },
-        {
-            name: 'Config.BadHabits.drugs',
-            value: 'drugs'
-        },
-        {
-            name: 'Config.BadHabits.others',
-            value: 'others'
-        }
-    ],
-    modeOfTravel: [
-        {
-            name: 'Config.ModeOfTravel.flight',
-            value: 'flight'
-        },
-        {
-            name: 'Config.ModeOfTravel.train',
-            value: 'train'
-        },
-        {
-            name: 'Config.ModeOfTravel.bus',
-            value: 'bus'
-        },
-        {
-            name: 'Config.ModeOfTravel.private',
-            value: 'private'
-        },
-        {
-            name: 'Config.ModeOfTravel.public',
-            value: 'public'
-        },
-        {
-            name: 'Config.ModeOfTravel.others',
-            value: 'others'
-        }
-    ],
+    }
+};
+
+const item: any = {
     country: [
         {
             name: 'Config.Country.india',
@@ -4027,50 +4008,53 @@ const keyvalue: any = {
     ]
 };
 
-const getValueArray = (name: string): string[] =>{
-    const returnValue: string[] =[];
-    if(keyvalue[name]){
-        for(const a of keyvalue[name]){
-            returnValue.push(a.value);
-        }
-    }
-    return returnValue;
+
+const toCamelCase = (str): string => {
+    return str
+        .replace(/\s(.)/g, function ($1) {
+            return $1.toUpperCase();
+        })
+        .replace(/\s/g, '')
+        .replace(/^(.)/, function ($1) {
+            return $1.toLowerCase();
+        });
 };
 
-const getStateArray = (): string[] =>{
-    const returnValue: string[] =[];
-    for(const a of keyvalue.country)
-    {
-        for(const s of a.states)
-        {
-            returnValue.push(s.value);
-        }
-    }
-    return returnValue;
+const hasLowerCase = (str: string) => {
+    return (/[a-z]/.test(str));
+};
+const hasUpperCase = (str: string) => {
+    return (/[A-Z]/.test(str));
 };
 
-const getDistrictArray = (): string[] =>{
-    const returnValue: string[] =[];
-    for(const a of keyvalue.country)
-    {
-        for(const s of a.states)
-        {
-            for(const d of s.districts)
-            {
-                returnValue.push(d.value);
+const verifyCountry = (): any => {
+    for (const a of item.country) {
+        if (!i18[a.name.split('.')[0]][a.name.split('.')[1]][a.name.split('.')[2]]) {
+            console.log(a.name + ' country not found');
+        }
+        if (hasUpperCase(a.value)) {
+            console.log(a.value + ' country value has upper case');
+        }
+        for (const b of a.states) {
+            if (!i18[b.name.split('.')[0]][b.name.split('.')[1]][b.name.split('.')[2]]) {
+                console.log(b.name + ' state not found');
+            }
+            if (hasUpperCase(b.value)) {
+                console.log(b.value + ' state value has upper case');
+            }
+            for (const c of b.districts) {
+                if (!i18[c.name.split('.')[0]][c.name.split('.')[1]][c.name.split('.')[2]]) {
+                    console.log(c.name + ' district not found');
+                }
+                if (hasUpperCase(c.value)) {
+                    console.log(c.value + ' district value has upper case');
+                }
             }
         }
     }
-    return returnValue;
+    return 'check console';
 };
 
 export default {
-    keyvalue,
-    getValueArray,
-    getStateArray,
-    getDistrictArray
+    verifyCountry
 };
-
-
-
-

@@ -55,7 +55,7 @@ export default {
             }),
             workHistory: Joi.array().min(0).max(10000).items(
                 Joi.object().keys({
-                    startDate:Joi.date().required().max('now').less(Joi.ref('endDate')),
+                    startDate:Joi.date().required().max('now'),
                     endDate:Joi.date().required().max('now'),
                     profile:Joi.string().required().trim().min(1).max(100000),
                     employer:Joi.string().required().trim().min(1).max(100000),
@@ -87,7 +87,7 @@ export default {
             travelHistory: Joi.array().min(0).max(10000).items(
                 Joi.object().keys({
                     source:Joi.string().required().trim().min(1).max(100000),
-                    travelStartDate:Joi.date().required().max('now').less(Joi.ref('travelEndDate')),
+                    travelStartDate:Joi.date().required().max('now'),
                     destination: Joi.string().required().trim().min(1).max(100000),
                     travelEndDate:Joi.date().required().max('now'),
                     modeOfTravel: Joi.string().required().valid( ...KeyvalueConfig.getValueArray('modeOfTravel')),

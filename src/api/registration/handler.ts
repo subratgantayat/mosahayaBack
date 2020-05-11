@@ -3,6 +3,8 @@ import * as Hapi from '@hapi/hapi';
 import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
 import KeyvalueConfig from '../../config/keyvalueConfig';
+import Makeskillsector from '../../config/makeskillsector';
+import Verifycountry from '../../config/verifycountry';
 import EXTERNALIZED_STRING from '../../assets/string-constants';
 const STRING = EXTERNALIZED_STRING.registration;
 
@@ -11,6 +13,9 @@ export default class Handler {
     public static async keyvalue(request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> {
         try {
             return KeyvalueConfig.keyvalue;
+            // return Makeskillsector.getSector();
+            //  return Makeskillsector.getSkill();
+            // return Verifycountry.verifyCountry();
         } catch (error) {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);
@@ -39,7 +44,6 @@ export default class Handler {
 
     public static async viewForm(request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> {
         try {
-            console.log(request.query);
             const modal: Model<any> = connection.model('registration');
             const query: any = request.query;
             query.dob =  new Date(query.dob).setHours(0,0,0,0);
@@ -50,7 +54,6 @@ export default class Handler {
                 Logger.error(`Provider response: ${JSON.stringify(result)}`);
                 return false;
             }*/
-        console.log(request.params.id);
             const data: any = await modal.findOne({_id: request.params.id, 'generalData.dob': query.dob}).exec();
             if(!data){
                 return Boom.badData(STRING.INVALID_ID_DOB);

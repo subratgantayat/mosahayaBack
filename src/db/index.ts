@@ -4,7 +4,7 @@ import {connection, connect, ConnectionOptions} from 'mongoose';
 import registration from '../model/registration';
 import Utils from '../helper/utils';
 
-const NODE_ENV = Utils.getEnvVariable('NODE_ENV', true);
+const NODE_ENV = Utils.getEnvVariable('NODE_ENV', false);
 
 export default class Db {
     public static async connect() {
