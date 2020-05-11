@@ -4,3 +4,8 @@
 417  for data  expectationFailed
 
 502 badGateway
+
+
+
+to deploy
+gcloud app deploy
