@@ -67,6 +67,7 @@ export default {
             ),
             healthData:Joi.object().keys({
                 currentCondition:Joi.array().min(0).max(100000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('currentCondition'))),
+                currentConditionOther:Joi.string().trim().min(1).max(10000),
                 symptoms:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('symptoms'))),
                 symptomsOther:Joi.string().trim().min(1).max(10000),
                 goodHabits:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('goodHabits'))),
