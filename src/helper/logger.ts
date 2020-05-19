@@ -1,7 +1,9 @@
 import * as Winston from 'winston';
+import {LoggingWinston}  from '@google-cloud/logging-winston';
 
 export class ApiLogger {
     public static newInstance(): Winston.Logger {
+        const loggingWinston = new LoggingWinston();
         const consoleTransport = new Winston.transports.Console({
             format: Winston.format.combine(
                 Winston.format.colorize(),
@@ -18,8 +20,10 @@ export class ApiLogger {
             level: process.env.LOG_LEVEL || 'info'
         });
 
+
         return Winston.createLogger({
-            transports: [consoleTransport]
+            level:  process.env.LOG_LEVEL || 'info',
+            transports: [consoleTransport,loggingWinston]
         });
     }
 }

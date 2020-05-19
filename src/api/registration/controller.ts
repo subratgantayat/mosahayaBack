@@ -1,5 +1,4 @@
 import * as Boom from '@hapi/boom';
-import * as Hapi from '@hapi/hapi';
 import Logger from '../../helper/logger';
 
 
