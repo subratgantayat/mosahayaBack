@@ -3,8 +3,9 @@ import * as Hapi from '@hapi/hapi';
 import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
 import KeyvalueConfig from '../../config/keyvalueConfig';
-import Makeskillsector from '../../config/makeskillsector';
+/*import Makeskillsector from '../../config/makeskillsector';
 import Verifycountry from '../../config/verifycountry';
+import Verifyenjson from '../../config/verifyenjson';*/
 import EXTERNALIZED_STRING from '../../assets/string-constants';
 const STRING = EXTERNALIZED_STRING.registration;
 
@@ -12,10 +13,11 @@ export default class Handler {
 
     public static async keyvalue(request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> {
         try {
-            return KeyvalueConfig.keyvalue;
+             return KeyvalueConfig.keyvalue;
             // return Makeskillsector.getSector();
             //  return Makeskillsector.getSkill();
             // return Verifycountry.verifyCountry();
+           /* return Verifyenjson.verifyEn('hi');*/
         } catch (error) {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);
