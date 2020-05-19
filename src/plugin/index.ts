@@ -12,11 +12,11 @@ export default class Plugins {
     public static async registerAll(server: Hapi.Server): Promise<Error | any> {
         try {
             await Plugins.inert(server);
-            if (NODE_ENV === 'development') {
+           // if (NODE_ENV === 'development') {
                 await Plugins.vision(server);
                 await Plugins.swagger(server);
                 Logger.info(`Visit: ${server.info.uri}/documentation for Swagger docs`);
-            }
+           // }
             await Plugins.good(server);
             if (LOG_LEVEL === 'debug') {
                 server.ext({

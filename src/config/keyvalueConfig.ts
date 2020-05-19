@@ -4027,38 +4027,44 @@ const keyvalue: any = {
     ]
 };
 
-const getValueArray = (name: string): string[] =>{
-    const returnValue: string[] =[];
-    if(keyvalue[name]){
-        for(const a of keyvalue[name]){
+const getValueArray = (name: string): string[] => {
+    const returnValue: string[] = [];
+    if (keyvalue[name]) {
+        for (const a of keyvalue[name]) {
             returnValue.push(a.value);
         }
     }
     return returnValue;
 };
 
-const getStateArray = (): string[] =>{
-    const returnValue: string[] =[];
-    for(const a of keyvalue.country)
-    {
-        for(const s of a.states)
-        {
-            returnValue.push(s.value);
+const getStateArray = (country: string): string[] => {
+    const returnValue: string[] = [];
+    for (const a of keyvalue.country) {
+        if (a.value === country) {
+            for (const s of a.states) {
+                returnValue.push(s.value);
+            }
+            break;
         }
     }
     return returnValue;
 };
 
-const getDistrictArray = (): string[] =>{
-    const returnValue: string[] =[];
-    for(const a of keyvalue.country)
-    {
-        for(const s of a.states)
+const getDistrictArray = (country: string, state: string): string[] => {
+    const returnValue: string[] = [];
+    for (const a of keyvalue.country) {
+        if(a.value === country)
         {
-            for(const d of s.districts)
-            {
-                returnValue.push(d.value);
+            for (const s of a.states) {
+                if(s.value === state)
+                {
+                    for (const d of s.districts) {
+                        returnValue.push(d.value);
+                    }
+                    break;
+                }
             }
+            break;
         }
     }
     return returnValue;

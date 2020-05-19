@@ -16,15 +16,25 @@ export default {
                 noOfFamilyMember:Joi.number().required().integer().min(0).max(1000),
                 presentAddress:Joi.object().keys({
                     country:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('country')),
-                    state:Joi.string().required().valid( ...KeyvalueConfig.getStateArray()),
-                    district:Joi.string().required().valid( ...KeyvalueConfig.getDistrictArray()),
+                    state: Joi.string().required().valid((Joi.in('country', {
+                        adjust: (value) => { return KeyvalueConfig.getStateArray(value)}
+                    }))),
+                    district: Joi.string().required().valid(Joi.in('..', {
+                        adjust: (value) => {
+                            return KeyvalueConfig.getDistrictArray(value.country, value.state)}
+                    })),
                     postalCode:Joi.string().required().trim().length(6).pattern(/^([1-9])([0-9]){5}$/),
                     locality:Joi.string().required().trim().min(1).max(100000)
                 }).required(),
                 permanentAddress:Joi.object().keys({
                     country:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('country')),
-                    state:Joi.string().required().valid( ...KeyvalueConfig.getStateArray()),
-                    district:Joi.string().required().valid( ...KeyvalueConfig.getDistrictArray()),
+                    state: Joi.string().required().valid((Joi.in('country', {
+                        adjust: (value) => { return KeyvalueConfig.getStateArray(value)}
+                    }))),
+                    district: Joi.string().required().valid(Joi.in('..', {
+                        adjust: (value) => {
+                            return KeyvalueConfig.getDistrictArray(value.country, value.state)}
+                    })),
                     postalCode:Joi.string().required().trim().length(6).pattern(/^([1-9])([0-9]){5}$/),
                     locality:Joi.string().required().trim().min(1).max(100000)
                 }).required(),
@@ -34,29 +44,29 @@ export default {
                 }).required()
             }).required(),
             skillData:Joi.object().keys({
-                skills:Joi.array().min(0).max(100000).items(Joi.string().valid( ...KeyvalueConfig.getValueArray('skills'))),
+                skills:Joi.array().required().min(0).max(1000).items(Joi.string().valid( ...KeyvalueConfig.getValueArray('skills'))),
                 skillsOther:Joi.string().trim().min(1).max(10000),
-                sectors:Joi.array().min(0).max(100000).items(Joi.string().valid( ...KeyvalueConfig.getValueArray('sectors'))),
+                sectors:Joi.array().required().min(0).max(1000).items(Joi.string().valid( ...KeyvalueConfig.getValueArray('sectors'))),
                 sectorsOther:Joi.string().trim().min(1).max(10000),
                 experience: Joi.object().keys({
                     expYear:Joi.number().integer().min(0).max(100),
                     expMonth:Joi.number().integer().min(0).max(110)
                 }),
-                education:Joi.string().valid( ...KeyvalueConfig.getValueArray('education')),
+                education:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('education')),
                 educationSpec:Joi.string().trim().min(1).max(1000000),
-                povertyStatus:Joi.string().valid( ...KeyvalueConfig.getValueArray('povertyStatus')),
+                povertyStatus:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('povertyStatus')),
                 povertyStatusOther:Joi.string().trim().min(1).max(1000),
-                socialStatus:Joi.string().valid( ...KeyvalueConfig.getValueArray('socialStatus')),
+                socialStatus:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('socialStatus')),
                 socialStatusOther:Joi.string().trim().min(1).max(1000),
-                annualIncome:Joi.string().valid( ...KeyvalueConfig.getValueArray('annualIncome')),
-                training:Joi.string().valid( ...KeyvalueConfig.getValueArray('training')),
+                annualIncome:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('annualIncome')),
+                training:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('training')),
                 trainingOther:Joi.string().trim().min(1).max(1000),
                 trainingSpec:Joi.string().trim().min(1).max(1000000)
-            }),
-            workHistory: Joi.array().min(0).max(10000).items(
+            }).required(),
+            workHistory: Joi.array().min(0).max(1000).items(
                 Joi.object().keys({
-                    startDate:Joi.date().required().max('now'),
-                    endDate:Joi.date().required().max('now'),
+                    startDate:Joi.date().required(),
+                    endDate:Joi.date().required().min(Joi.ref('startDate')).max('now'),
                     profile:Joi.string().required().trim().min(1).max(100000),
                     employer:Joi.string().required().trim().min(1).max(100000),
                     workSector:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('sectors')),
@@ -66,13 +76,13 @@ export default {
                 })
             ),
             healthData:Joi.object().keys({
-                currentCondition:Joi.array().min(0).max(100000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('currentCondition'))),
+                currentCondition:Joi.array().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('currentCondition'))),
                 currentConditionOther:Joi.string().trim().min(1).max(10000),
-                symptoms:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('symptoms'))),
+                symptoms:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('symptoms'))),
                 symptomsOther:Joi.string().trim().min(1).max(10000),
-                goodHabits:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('goodHabits'))),
+                goodHabits:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('goodHabits'))),
                 goodHabitsOther:Joi.string().trim().min(1).max(10000),
-                badHabits:Joi.array().min(0).max(100000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('badHabits'))),
+                badHabits:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('badHabits'))),
                 badHabitsOther:Joi.string().trim().min(1).max(10000),
                 otherClinicalData:Joi.string().trim().min(1).max(100000),
                 isContactWithPatient: Joi.boolean(),
@@ -84,12 +94,12 @@ export default {
                 hasToilet: Joi.boolean(),
                 doingSanitize: Joi.boolean()
             }),
-            travelHistory: Joi.array().min(0).max(10000).items(
+            travelHistory: Joi.array().min(0).max(1000).items(
                 Joi.object().keys({
                     source:Joi.string().required().trim().min(1).max(100000),
                     travelStartDate:Joi.date().required().max('now'),
                     destination: Joi.string().required().trim().min(1).max(100000),
-                    travelEndDate:Joi.date().required().max('now'),
+                    travelEndDate:Joi.date().required().min(Joi.ref('travelStartDate')).max('now'),
                     modeOfTravel: Joi.string().required().valid( ...KeyvalueConfig.getValueArray('modeOfTravel')),
                     modeOfTravelOther:Joi.string().trim().min(1).max(1000),
                     noOfPassenger:Joi.number().required().integer().min(0).max(100000)
@@ -98,7 +108,8 @@ export default {
             feedback:Joi.object().keys({
                 similarIndustry:Joi.string().trim().min(1).max(100000),
                 migrationReason:Joi.string().trim().min(1).max(100000),
-                minIncome:Joi.number().integer().min(0).max(1000000)
+                minIncome:Joi.number().integer().min(0).max(1000000),
+                otherInfo:Joi.string().trim().min(1).max(100000)
             })
         }).required()
     },

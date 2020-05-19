@@ -28,7 +28,8 @@ export default class Server {
                     validate: {
                         failAction: async (request: Hapi.Request, h: Hapi.ResponseToolkit, error: Error) => {
                             Logger.debug(`Server - request input error: ${error}`);
-                            throw Boom.badRequest(`Invalid request payload input`);
+                          //  throw Boom.badRequest(`Invalid request payload input`);
+                            throw Boom.badRequest(` ${error}`);
                         }
                     }
                 }

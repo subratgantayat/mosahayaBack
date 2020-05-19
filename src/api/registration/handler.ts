@@ -47,13 +47,6 @@ export default class Handler {
             const modal: Model<any> = connection.model('registration');
             const query: any = request.query;
             query.dob =  new Date(query.dob).setHours(0,0,0,0);
-        /*    const schema = JSON
-            const {error, value} = schema.validate(result);
-            if (error) {
-                Logger.error(`Invalid service detail response from provider: ${JSON.stringify(provider)} with error: ${error}`);
-                Logger.error(`Provider response: ${JSON.stringify(result)}`);
-                return false;
-            }*/
             const data: any = await modal.findOne({_id: request.params.id, 'generalData.dob': query.dob}).exec();
             if(!data){
                 return Boom.badData(STRING.INVALID_ID_DOB);

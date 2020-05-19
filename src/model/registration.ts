@@ -29,7 +29,10 @@ const schema: Schema = new Schema(
             },
             dob:{
                 type: Date,
-                required: true
+                required: true,
+                max() {
+                    return new Date()
+                }
             },
             gender:{
                 type: String,
@@ -61,18 +64,22 @@ const schema: Schema = new Schema(
             presentAddress:{
                 country:{
                     type: String,
-                    enum: KeyvalueConfig.getValueArray('country'),
-                    required: true
+                    required: true,
+                    enum: KeyvalueConfig.getValueArray('country')
                 },
                 state:{
                     type: String,
-                    enum: KeyvalueConfig.getStateArray(),
-                    required: true
+                    required: true,
+                    validate (v) {
+                        return KeyvalueConfig.getStateArray(this.generalData.presentAddress.country).includes(v);
+                    }
                 },
                 district:{
                     type: String,
-                    enum: KeyvalueConfig.getDistrictArray(),
-                    required: true
+                    required: true,
+                    validate (v) {
+                        return KeyvalueConfig.getDistrictArray(this.generalData.presentAddress.country, this.generalData.presentAddress.state ).includes(v);
+                    }
                 },
                 postalCode:{
                     type: String,
@@ -93,18 +100,22 @@ const schema: Schema = new Schema(
             permanentAddress:{
                 country:{
                     type: String,
-                    enum: KeyvalueConfig.getValueArray('country'),
-                    required: true
+                    required: true,
+                    enum: KeyvalueConfig.getValueArray('country')
                 },
                 state:{
                     type: String,
-                    enum: KeyvalueConfig.getStateArray(),
-                    required: true
+                    required: true,
+                    validate (v) {
+                        return KeyvalueConfig.getStateArray(this.generalData.presentAddress.country).includes(v);
+                    }
                 },
                 district:{
                     type: String,
-                    enum: KeyvalueConfig.getDistrictArray(),
-                    required: true
+                    required: true,
+                    validate (v) {
+                        return KeyvalueConfig.getDistrictArray(this.generalData.presentAddress.country, this.generalData.presentAddress.state ).includes(v);
+                    }
                 },
                 postalCode:{
                     type: String,
@@ -143,6 +154,7 @@ const schema: Schema = new Schema(
         skillData:{
             skills:{
                 type: [String],
+                required: true,
                 enum: KeyvalueConfig.getValueArray('skills')
             },
             skillsOther:{
@@ -153,6 +165,7 @@ const schema: Schema = new Schema(
             },
             sectors:{
                 type: [String],
+                required: true,
                 enum: KeyvalueConfig.getValueArray('sectors')
             },
             sectorsOther:{
@@ -175,6 +188,7 @@ const schema: Schema = new Schema(
             },
             education:{
                 type: String,
+                required: true,
                 enum: KeyvalueConfig.getValueArray('education')
             },
             educationSpec:{
@@ -185,6 +199,7 @@ const schema: Schema = new Schema(
             },
             povertyStatus:{
                 type: String,
+                required: true,
                 enum: KeyvalueConfig.getValueArray('povertyStatus')
             },
             povertyStatusOther:{
@@ -195,6 +210,7 @@ const schema: Schema = new Schema(
             },
             socialStatus:{
                 type: String,
+                required: true,
                 enum: KeyvalueConfig.getValueArray('socialStatus')
             },
             socialStatusOther:{
@@ -205,10 +221,12 @@ const schema: Schema = new Schema(
             },
             annualIncome:{
                 type: String,
+                required: true,
                 enum: KeyvalueConfig.getValueArray('annualIncome')
             },
             training:{
                 type: String,
+                required: true,
                 enum: KeyvalueConfig.getValueArray('training')
             },
             trainingOther:{
@@ -233,7 +251,13 @@ const schema: Schema = new Schema(
                     },
                     endDate:{
                         type: Date,
-                        required: true
+                        required: true,
+                        min() {
+                            return new Date(this.startDate)
+                        },
+                        max() {
+                            return new Date()
+                        }
                     },
                     profile:{
                         type: String,
@@ -372,7 +396,13 @@ const schema: Schema = new Schema(
                     },
                     travelEndDate:{
                         type: Date,
-                        required: true
+                        required: true,
+                        min() {
+                            return new Date(this.travelStartDate)
+                        },
+                        max() {
+                            return new Date()
+                        }
                     },
                     modeOfTravel:{
                         type: String,
@@ -411,6 +441,12 @@ const schema: Schema = new Schema(
                 type: Number,
                 min:0,
                 max:1000000
+            },
+            otherInfo:{
+                type: String,
+                trim: true,
+                minlength:1,
+                maxlength:100000
             }
         }
     },
