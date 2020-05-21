@@ -2,36 +2,72 @@ import * as Boom from '@hapi/boom';
 import * as Hapi from '@hapi/hapi';
 import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
-import KeyvalueConfig from '../../config/keyvalueConfig';
+import KeyValueConfig from '../../config/keyvalueConfig';
+import {OAuth2Client} from 'google-auth-library';
+
 /*import Makeskillsector from '../../config/makeskillsector';
 import Verifycountry from '../../config/verifycountry';
 import Verifyenjson from '../../config/verifyenjson';*/
+
 import EXTERNALIZED_STRING from '../../assets/string-constants';
+import Event from '../../events';
+import Utils from '../../helper/utils';
+
+const PUBSUB_VERIFICATION_TOKEN = Utils.getEnvVariable('PUBSUB_VERIFICATION_TOKEN', true);
 const STRING = EXTERNALIZED_STRING.registration;
+const authClient = new OAuth2Client();
 
 export default class Handler {
 
-    public static async keyvalue(request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> {
+    public static keyValue = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-             return KeyvalueConfig.keyvalue;
+            await Event.publish('hi');
+            return KeyValueConfig.keyvalue;
             // return Makeskillsector.getSector();
             //  return Makeskillsector.getSkill();
-            // return Verifycountry.verifyCountry();
-           /* return Verifyenjson.verifyEn('hi');*/
+            //  return Verifycountry.verifyUniqueDistrict();
+            //  return Verifyenjson.verifyEn('hi');
         } catch (error) {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);
         }
-    }
+    };
 
-    public static async create(request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> {
+    public static  messaging = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+        try {
+            if (request.query.token !== PUBSUB_VERIFICATION_TOKEN) {
+                return Boom.badData('Invalid request');
+            }
+            try {
+                const bearer = request.headers.Authorization;
+                const [, token] = bearer.match(/Bearer (.*)/);
+                const ticket = await authClient.verifyIdToken({
+                    idToken: token,
+                    audience: 'example.com'
+                });
+            } catch (e) {
+                return Boom.badData('Invalid token');
+            }
+            const payload: any = request.payload;
+            const message = Buffer.from(payload.message.data, 'base64').toString(
+                'utf-8'
+            );
+
+            return 'ok';
+        } catch (error) {
+            Logger.error(`${error}`);
+            return Boom.badImplementation(error);
+        }
+    };
+
+    public static create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const modal: Model<any> = connection.model('registration');
             const payload: any = request.payload;
-            payload.generalData.dob = new Date(payload.generalData.dob).setHours(0,0,0,0);
+            payload.generalData.dob = new Date(payload.generalData.dob).setHours(0, 0, 0, 0);
             const newModal: any = new modal(request.payload);
             const data: any = await newModal.save();
-            if(!data){
+            if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_CRAETING);
             }
             return {message: EXTERNALIZED_STRING.global.CREATED_SUCCESSFULLY, data};
@@ -42,15 +78,15 @@ export default class Handler {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);
         }
-    }
+    };
 
-    public static async viewForm(request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> {
+    public static viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             const modal: Model<any> = connection.model('registration');
             const query: any = request.query;
-            query.dob =  new Date(query.dob).setHours(0,0,0,0);
+            query.dob = new Date(query.dob).setHours(0, 0, 0, 0);
             const data: any = await modal.findOne({_id: request.params.id, 'generalData.dob': query.dob}).exec();
-            if(!data){
+            if (!data) {
                 return Boom.badData(STRING.INVALID_ID_DOB);
             }
             return {message: EXTERNALIZED_STRING.global.READ_SUCCESSFULLY, data};
@@ -61,5 +97,5 @@ export default class Handler {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);
         }
-    }
+    };
 }

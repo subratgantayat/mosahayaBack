@@ -8,3 +8,7 @@ env_variables:
   DB_DATABASE: "mosohaya"
   DB_USERNAME: "thitapp"
   DB_PASSWORD: "thitapp080"
+  GOOGLE_APPLICATION_CREDENTIALS: "./mosahaya-276614-263a0ec3bf0c.json"
+  TOPIC_NAME: "mosahaya"
+  PUBSUB_VERIFICATION_TOKEN: "mosahaya077messaging"
+

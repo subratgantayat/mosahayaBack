@@ -2,20 +2,20 @@ import * as Hapi from '@hapi/hapi';
 import Logger from './logger';
 
 export default class Utils {
-    public static getUrl(request: Hapi.Request): string {
+    public static getUrl = (request: Hapi.Request): string =>{
         return `${request.server.info.uri}${request.url.pathname}`;
-    }
+    };
 
-    public static getRootUrl(request: Hapi.Request): string {
+    public static getRootUrl = (request: Hapi.Request): string =>{
         return `${request.server.info.uri}`;
-    }
+    };
 
-    public static async responseFailAction(request: Hapi.Request, h: Hapi.ResponseToolkit, error: Error) {
+    public static responseFailAction = async (request: Hapi.Request, h: Hapi.ResponseToolkit, error: Error) => {
         Logger.error(`Server - response validation error: ${error}`);
         throw error;
-    }
+    };
 
-    public static getEnvVariable(name: string, exit: boolean): string | undefined {
+    public static getEnvVariable = (name: string, exit: boolean): string | undefined => {
         if (!process.env[name]) {
             Logger.error(name + ' environment variable not set');
             if (exit) {
@@ -23,15 +23,15 @@ export default class Utils {
             }
         }
         return process.env[name];
-    }
+    };
 
-    public static setBaseURL(base_dir: string): void {
+    public static setBaseURL = (base_dir: string): void  =>{
         Utils._base_dir = base_dir;
-    }
+    };
 
-    public static getBaseURL(): string {
+    public static getBaseURL = (): string =>{
         return Utils._base_dir;
-    }
+    };
 
     private static _base_dir: string;
 }

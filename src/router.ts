@@ -4,7 +4,7 @@ import SeverHealthRoutes from './api/health';
 import Logger from './helper/logger';
 
 export default class Router {
-    public static async loadRoutes(server: Hapi.Server): Promise<any> {
+    public static loadRoutes =  async (server: Hapi.Server): Promise<any> => {
         try {
             Logger.info('Router - Start adding routes.');
             await SeverHealthRoutes.register(server);
@@ -14,5 +14,5 @@ export default class Router {
             Logger.error(`Error in loading routers: ${error}`);
             throw error;
         }
-    }
+    };
 }

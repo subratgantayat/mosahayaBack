@@ -22,7 +22,8 @@
     "object-literal-sort-keys": false,
     "variable-name": false,
     "only-arrow-functions": false,
-    "space-before-function-paren": false
+    "space-before-function-paren": false,
+    "semicolon": [true, "always", "strict-bound-class-methods"]
   },
   "rulesDirectory": [
     "tslint-consistent-codestyle"

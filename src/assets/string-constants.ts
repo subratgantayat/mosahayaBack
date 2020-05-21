@@ -15,6 +15,7 @@ const stringConstants: any = {
     registration:{
         CREATE:'Method to register',
         KEYVALUE:'Method to get all key value pairs for dropdown',
+        MESSAGING:'Method for messaging for google pub/sub',
         INVALID_ID_DOB: 'Invalid enrollment id or date of birth',
         VIEW_FORM: 'Method to get registered data by enrollment id and date of birth'
     }

@@ -6,7 +6,7 @@ import Validate from './validate';
 const STRING = EXTERNALIZED_STRING.registration;
 
 export default class Routes {
-    public static async register(server: Hapi.Server): Promise<any> {
+    public static register =  async (server: Hapi.Server): Promise<any> => {
         try {
             Logger.info('RegistrationRoutes - Start adding registration routes.');
             server.route([
@@ -14,8 +14,17 @@ export default class Routes {
                     method: 'GET',
                     path: '/api/v1/registration/keyvalue',
                     options: {
-                        handler: Handler.keyvalue,
+                        handler: Handler.keyValue,
                         description: STRING.KEYVALUE,
+                        tags: ['api', 'registration']
+                    }
+                },
+                {
+                    method: 'POST',
+                    path: '/api/v1/messaging',
+                    options: {
+                        handler: Handler.messaging,
+                        description: STRING.MESSAGING,
                         tags: ['api', 'registration']
                     }
                 },
@@ -47,5 +56,5 @@ export default class Routes {
             Logger.error(`Error in loading RegistrationRoutes: ${error}`);
             throw error;
         }
-    }
+    };
 }

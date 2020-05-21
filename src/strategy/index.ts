@@ -4,7 +4,7 @@ import Config from '../config/config';
 import Logger from '../helper/logger';
 
 export default class Strategies {
-    public static async registerAll(server: Hapi.Server): Promise<Error | any> {
+    public static registerAll = async (server: Hapi.Server): Promise<Error | any> => {
         // tslint:disable-next-line:no-empty
         try {
 
@@ -12,5 +12,5 @@ export default class Strategies {
             Logger.error(`Error in registering strategies: ${error}`);
             throw error;
         }
-    }
+    };
 }

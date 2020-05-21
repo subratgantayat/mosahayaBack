@@ -31,7 +31,7 @@ const schema: Schema = new Schema(
                 type: Date,
                 required: true,
                 max() {
-                    return new Date()
+                    return new Date();
                 }
             },
             gender:{
@@ -253,10 +253,10 @@ const schema: Schema = new Schema(
                         type: Date,
                         required: true,
                         min() {
-                            return new Date(this.startDate)
+                            return new Date(this.startDate);
                         },
                         max() {
-                            return new Date()
+                            return new Date();
                         }
                     },
                     profile:{
@@ -398,10 +398,10 @@ const schema: Schema = new Schema(
                         type: Date,
                         required: true,
                         min() {
-                            return new Date(this.travelStartDate)
+                            return new Date(this.travelStartDate);
                         },
                         max() {
-                            return new Date()
+                            return new Date();
                         }
                     },
                     modeOfTravel:{

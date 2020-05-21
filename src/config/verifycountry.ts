@@ -4055,6 +4055,27 @@ const verifyCountry = (): any => {
     return 'check console';
 };
 
+const verifyUniqueDistrict = (): any => {
+    const d:any[] =[];
+    const e:any[] =[];
+    for (const a of item.country) {
+        for (const b of a.states) {
+            for (const c of b.districts) {
+                if(d.includes(c.value)){
+                    console.log(c);
+                }
+                if(e.includes(c.name)){
+                    console.log('name');
+                    console.log(c);
+                }
+              d.push(c.value);
+            }
+        }
+    }
+    return 'check console';
+};
+
 export default {
-    verifyCountry
+    verifyCountry,
+    verifyUniqueDistrict
 };

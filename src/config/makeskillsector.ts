@@ -24,7 +24,7 @@ const getSector = (): any => {
                 value: p
             };
             ret.push(item);
-            reti18[camel] = p.charAt(0).toUpperCase() + p.slice(1)
+            reti18[camel] = p.charAt(0).toUpperCase() + p.slice(1);
         }
     }
     return {sector: ret, sectori18: reti18};
@@ -42,7 +42,7 @@ const getSkill = (): any => {
                 value: p
             };
             ret.push(item);
-            reti18[camel] = p.charAt(0).toUpperCase() + p.slice(1)
+            reti18[camel] = p.charAt(0).toUpperCase() + p.slice(1);
         }
     }
     return {skill: ret, skilli18: reti18};

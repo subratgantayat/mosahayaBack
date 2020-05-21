@@ -11,7 +11,7 @@ import Strategy from './strategy';
 const PORT = Utils.getEnvVariable('PORT', true);
 
 export default class Server {
-    public static async start(): Promise<Hapi.Server> {
+    public static start = async (): Promise<Hapi.Server> =>{
         try {
             Logger.info(`Hapi base URL: ${__dirname}`);
             Server._instance = new Hapi.Server({
@@ -51,25 +51,25 @@ export default class Server {
             Logger.error(`Server - There was something wrong: ${error}`);
             process.exit(1);
         }
-    }
+    };
 
-    public static stop(): Promise<Error | void> {
+    public static stop = (): Promise<Error | void> =>{
         Logger.info(`Server - Stopping!`);
         return Server._instance.stop();
-    }
+    };
 
-    public static async recycle(): Promise<Hapi.Server> {
+    public static recycle = async (): Promise<Hapi.Server> =>{
         await Server.stop();
         return await Server.start();
-    }
+    };
 
     public static instance(): Hapi.Server {
         return Server._instance;
     }
 
-    public static async inject(options: string | Hapi.ServerInjectOptions): Promise<Hapi.ServerInjectResponse> {
+    public static inject = async (options: string | Hapi.ServerInjectOptions): Promise<Hapi.ServerInjectResponse> => {
         return await Server._instance.inject(options);
-    }
+    };
 
     private static _instance: Hapi.Server;
 }

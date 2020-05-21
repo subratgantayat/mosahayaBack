@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/logging-winston": "^3.0.6",
+    "@google-cloud/pubsub": "^1.7.3",
     "@hapi/boom": "^9.1.0",
     "@hapi/hapi": "^19.1.1",
     "@hapi/inert": "^6.0.1",

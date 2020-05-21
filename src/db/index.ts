@@ -7,7 +7,7 @@ import Utils from '../helper/utils';
 const NODE_ENV = Utils.getEnvVariable('NODE_ENV', false);
 
 export default class Db {
-    public static async connect() {
+    public static  connect = async (): Promise<void> => {
         try {
             connection.setMaxListeners(0);
             connection.on('error', (err) => {
@@ -51,4 +51,4 @@ export default class Db {
     };
 
     public static models: any = {};
-};
+}

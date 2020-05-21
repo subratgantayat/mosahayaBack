@@ -4,7 +4,7 @@ import Logger from '../helper/logger';
 const STRING = EXTERNALIZED_STRING.health;
 
 export default class Routes {
-    public static async register(server: Hapi.Server): Promise<any> {
+    public static  register = async (server: Hapi.Server): Promise<any> =>{
         try {
             Logger.info('Server health - Start adding server health route.');
             server.route([
@@ -28,5 +28,5 @@ export default class Routes {
             Logger.error(`Error in loading server health route: ${error}`);
             throw error;
         }
-    }
+    };
 }

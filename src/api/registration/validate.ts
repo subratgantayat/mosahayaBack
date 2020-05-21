@@ -17,11 +17,11 @@ export default {
                 presentAddress:Joi.object().keys({
                     country:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('country')),
                     state: Joi.string().required().valid((Joi.in('country', {
-                        adjust: (value) => { return KeyvalueConfig.getStateArray(value)}
+                        adjust: (value) => { return KeyvalueConfig.getStateArray(value);}
                     }))),
                     district: Joi.string().required().valid(Joi.in('..', {
                         adjust: (value) => {
-                            return KeyvalueConfig.getDistrictArray(value.country, value.state)}
+                            return KeyvalueConfig.getDistrictArray(value.country, value.state);}
                     })),
                     postalCode:Joi.string().required().trim().length(6).pattern(/^([1-9])([0-9]){5}$/),
                     locality:Joi.string().required().trim().min(1).max(100000)
@@ -29,11 +29,11 @@ export default {
                 permanentAddress:Joi.object().keys({
                     country:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('country')),
                     state: Joi.string().required().valid((Joi.in('country', {
-                        adjust: (value) => { return KeyvalueConfig.getStateArray(value)}
+                        adjust: (value) => { return KeyvalueConfig.getStateArray(value);}
                     }))),
                     district: Joi.string().required().valid(Joi.in('..', {
                         adjust: (value) => {
-                            return KeyvalueConfig.getDistrictArray(value.country, value.state)}
+                            return KeyvalueConfig.getDistrictArray(value.country, value.state);}
                     })),
                     postalCode:Joi.string().required().trim().length(6).pattern(/^([1-9])([0-9]){5}$/),
                     locality:Joi.string().required().trim().min(1).max(100000)
