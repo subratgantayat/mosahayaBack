@@ -20,7 +20,7 @@ export default {
                 sectorsOther:Joi.string().trim().min(1).max(10000),
                 experience: Joi.number().integer().min(0).max(150),
                 education:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('education')),
-                preferredLocation:Joi.array().required().min(0).max(10).items(Joi.string())
+                preferredLocation:Joi.string().required().trim().min(1).max(100000)
             }).required(),
             healthData:Joi.object().keys({
                 currentCondition:Joi.array().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('currentCondition'))),

@@ -84,7 +84,7 @@ const schema: Schema = new Schema(
                 enum: KeyvalueConfig.getValueArray('education')
             },
             preferredLocation:{
-                type: [String],
+                type: String,
                 required: true
             }
         },
