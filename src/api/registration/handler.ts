@@ -33,19 +33,26 @@ export default class Handler {
         }
     };
 
-    public static  messaging = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public static messaging = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
+            Logger.info('messaging request start');
             if (request.query.token !== PUBSUB_VERIFICATION_TOKEN) {
+                Logger.info('messaging request end with error1');
                 return Boom.badData('Invalid request');
             }
+            Logger.info('hello2');
+            Logger.info(`${JSON.stringify(request.payload)}`);
+            Logger.info(`${JSON.stringify(request.headers)}`);
             try {
-                const bearer = request.headers.Authorization;
+                const bearer = request.headers.authorization;
                 const [, token] = bearer.match(/Bearer (.*)/);
                 const ticket = await authClient.verifyIdToken({
                     idToken: token,
-                    audience: 'example.com'
+                    audience: 'mosahaya.com'
                 });
             } catch (e) {
+                Logger.info('messaging request end with error2');
+                Logger.error(`${e}`);
                 return Boom.badData('Invalid token');
             }
             const payload: any = request.payload;
@@ -55,6 +62,7 @@ export default class Handler {
 
             return 'ok';
         } catch (error) {
+            Logger.info('messaging request end with error3');
             Logger.error(`${error}`);
             return Boom.badImplementation(error);
         }

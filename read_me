@@ -8,5 +8,5 @@
 
 
 to deploy
-gcloud app deploy
+gcloud app deploy --stop-previous-version
 gcloud app logs read

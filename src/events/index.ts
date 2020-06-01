@@ -3,7 +3,6 @@ import Logger from '../helper/logger';
 import Utils from '../helper/utils';
 
 const TOPIC_NAME: string = Utils.getEnvVariable('TOPIC_NAME', true);
-const PROJECT_ID:string = Utils.getEnvVariable('PROJECT_ID', true);
 const pubSub: PubSub=  new PubSub();
 
 export default class Index {

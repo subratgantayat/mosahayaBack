@@ -18,6 +18,11 @@ const stringConstants: any = {
         MESSAGING:'Method for messaging for google pub/sub',
         INVALID_ID_DOB: 'Invalid enrollment id or date of birth',
         VIEW_FORM: 'Method to get registered data by enrollment id and date of birth'
+    },
+    enrollment:{
+        CREATE:'Method to create enrollment',
+        INVALID_ID: 'Invalid enrollment id',
+        VIEW_FORM: 'Method to get enrollment data by enrollment id'
     }
 };
 

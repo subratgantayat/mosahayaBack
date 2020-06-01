@@ -2,6 +2,7 @@ import Config from '../config/config';
 import Logger from '../helper/logger';
 import {connection, connect, ConnectionOptions} from 'mongoose';
 import registration from '../model/registration';
+import enrollment from '../model/enrollment';
 import Utils from '../helper/utils';
 
 const NODE_ENV = Utils.getEnvVariable('NODE_ENV', false);
@@ -48,6 +49,7 @@ export default class Db {
 
     public static addModals = (): void => {
         Db.models.registration = registration;
+        Db.models.enrollment = enrollment;
     };
 
     public static models: any = {};

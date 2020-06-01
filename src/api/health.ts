@@ -16,7 +16,7 @@ export default class Routes {
                             Logger.silly('***** Health check start *****');
                             Logger.silly(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.pathname + ' --> ' + 200 + ' OK');
                             Logger.silly('***** Health check end *****');
-                            return 'OK';
+                            return 'OK1';
                         },
                         description: STRING.HEALTH_CHECK,
                         tags: ['api', 'health']

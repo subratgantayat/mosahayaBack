@@ -144,7 +144,7 @@ const keyvalue: any = {
         }, {name: 'Config.Skills.chemicalPlantOperator', value: 'chemical plant operator'}, {
             name: 'Config.Skills.draughtsman(mechanical)',
             value: 'draughtsman (mechanical)'
-        }, {name: 'Config.Skills.electrician', value: 'electrician'}, {
+        },{
             name: 'Config.Skills.electroplater',
             value: 'electroplater'
         }, {name: 'Config.Skills.fitter', value: 'fitter'}, {
