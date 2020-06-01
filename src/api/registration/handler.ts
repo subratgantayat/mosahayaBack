@@ -73,7 +73,7 @@ export default class Handler {
             const modal: Model<any> = connection.model('registration');
             const payload: any = request.payload;
             payload.generalData.dob = new Date(payload.generalData.dob).setHours(0, 0, 0, 0);
-            const newModal: any = new modal(request.payload);
+            const newModal: any = new modal(payload);
             const data: any = await newModal.save();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_CRAETING);

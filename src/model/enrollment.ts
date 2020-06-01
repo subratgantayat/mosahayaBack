@@ -3,6 +3,15 @@ import KeyvalueConfig from '../config/keyvalueConfig';
 
 const schema: Schema = new Schema(
     {
+        enrollmentId:{
+            type: String,
+            unique: true,
+            index: true,
+            required: true,
+            minlength:16,
+            maxlength:16,
+            match:/^[0-9]{16}$/
+        },
         generalData: {
             registerBy:{
                 type: String,

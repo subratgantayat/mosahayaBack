@@ -21,8 +21,8 @@ const stringConstants: any = {
     },
     enrollment:{
         CREATE:'Method to create enrollment',
-        INVALID_ID: 'Invalid enrollment id',
-        VIEW_FORM: 'Method to get enrollment data by enrollment id'
+        INVALID_ID: 'Invalid enrollment ID',
+        VIEW_FORM: 'Method to get enrollment data by enrollment ID'
     }
 };
 

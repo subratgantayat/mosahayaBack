@@ -29,7 +29,8 @@
     "hapi-good-winston": "^3.0.0",
     "hapi-swagger": "^13.0.0",
     "joi-objectid": "^3.0.1",
-    "mongoose": "^5.9.11"
+    "mongoose": "^5.9.11",
+    "randomatic": "^3.1.1"
   },
   "devDependencies": {
     "@types/hapi__hapi": "^19.0.3",

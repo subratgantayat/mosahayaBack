@@ -33,7 +33,7 @@ export default {
     },
     viewForm: {
         params: Joi.object({
-            id: Joi.string().required().trim().min(1).max(100)
+            id: Joi.string().required().trim().length(16)
         }).required()
     }
 };
