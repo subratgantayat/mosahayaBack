@@ -50,7 +50,7 @@ export default {
                 sectorsOther:Joi.string().trim().min(1).max(10000),
                 experience: Joi.object().keys({
                     expYear:Joi.number().integer().min(0).max(100),
-                    expMonth:Joi.number().integer().min(0).max(110)
+                    expMonth:Joi.number().integer().min(0).max(11)
                 }),
                 education:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('education')),
                 educationSpec:Joi.string().trim().min(1).max(1000000),

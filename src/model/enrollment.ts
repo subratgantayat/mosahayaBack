@@ -1,6 +1,6 @@
 import {model, Schema} from 'mongoose';
 import KeyvalueConfig from '../config/keyvalueConfig';
-
+import CityConfig from '../config/cityConfig';
 const schema: Schema = new Schema(
     {
         enrollmentId:{
@@ -83,18 +83,32 @@ const schema: Schema = new Schema(
                 maxlength:10000
             },
             experience: {
-                type: Number,
-                min:0,
-                max:150
+                expYear: {
+                    type: Number,
+                    min:0,
+                    max:150
+                },
+                expMonth: {
+                    type: Number,
+                    min:0,
+                    max:11
+                }
             },
             education:{
                 type: String,
                 required: true,
                 enum: KeyvalueConfig.getValueArray('education')
             },
-            preferredLocation:{
+            preferredLocations:{
+                type: [String],
+                required: true,
+                enum: CityConfig.getCityArray()
+            },
+            preferredLocationsOther:{
                 type: String,
-                required: true
+                trim: true,
+                minlength:1,
+                maxlength:10000
             }
         },
         healthData:{

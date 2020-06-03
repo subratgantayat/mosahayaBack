@@ -1,5 +1,6 @@
 import * as Joi from '@hapi/joi';
 import KeyvalueConfig from '../../config/keyvalueConfig';
+import CityConfig from '../../config/cityConfig';
 
 export default {
     create: {
@@ -18,9 +19,13 @@ export default {
                 skillsOther:Joi.string().trim().min(1).max(10000),
                 sectors:Joi.array().required().min(0).max(1000).items(Joi.string().valid( ...KeyvalueConfig.getValueArray('sectors'))),
                 sectorsOther:Joi.string().trim().min(1).max(10000),
-                experience: Joi.number().integer().min(0).max(150),
+                experience: Joi.object().keys({
+                    expYear:Joi.number().integer().min(0).max(150),
+                    expMonth:Joi.number().integer().min(0).max(11)
+                }),
                 education:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('education')),
-                preferredLocation:Joi.string().required().trim().min(1).max(100000)
+                preferredLocations:Joi.array().required().min(0).max(1000).items(Joi.string().valid( ...CityConfig.getCityArray())),
+                preferredLocationsOther:Joi.string().trim().min(1).max(10000)
             }).required(),
             healthData:Joi.object().keys({
                 currentCondition:Joi.array().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('currentCondition'))),

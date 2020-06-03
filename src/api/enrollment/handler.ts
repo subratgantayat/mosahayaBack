@@ -21,7 +21,6 @@ export default class Handler {
 
     public static viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            console.log('aa');
             const modal: Model<any> = connection.model('enrollment');
             const data: any = await modal.findOne({enrollmentId: request.params.id}).exec();
             if (!data) {

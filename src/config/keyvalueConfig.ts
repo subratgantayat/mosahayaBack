@@ -4037,6 +4037,16 @@ const getValueArray = (name: string): string[] => {
     return returnValue;
 };
 
+const getCityArray = (): string[] => {
+    const returnValue: string[] = [];
+    if (keyvalue.city) {
+        for (const a of keyvalue.city) {
+            returnValue.push(a.City);
+        }
+    }
+    return returnValue;
+};
+
 const getStateArray = (country: string): string[] => {
     const returnValue: string[] = [];
     for (const a of keyvalue.country) {
@@ -4073,10 +4083,7 @@ const getDistrictArray = (country: string, state: string): string[] => {
 export default {
     keyvalue,
     getValueArray,
+    getCityArray,
     getStateArray,
     getDistrictArray
 };
-
-
-
-
