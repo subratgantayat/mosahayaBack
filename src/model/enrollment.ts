@@ -109,6 +109,12 @@ const schema: Schema = new Schema(
                 trim: true,
                 minlength:1,
                 maxlength:10000
+            },
+            otherInfo:{
+                type: String,
+                trim: true,
+                minlength:1,
+                maxlength:100000
             }
         },
         healthData:{
@@ -131,12 +137,6 @@ const schema: Schema = new Schema(
                 trim: true,
                 minlength:1,
                 maxlength:10000
-            },
-            otherInfo:{
-                type: String,
-                trim: true,
-                minlength:1,
-                maxlength:100000
             }
         }
     },

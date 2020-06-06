@@ -3,9 +3,10 @@ import * as Hapi from '@hapi/hapi';
 import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
 import KeyValueConfig from '../../config/keyvalueConfig';
-import {OAuth2Client} from 'google-auth-library';
 
-/*import Makeskillsector from '../../config/makeskillsector';
+import {OAuth2Client} from 'google-auth-library';
+/*import CityConfig from '../../config/cityConfig';
+import Makeskillsector from '../../config/makeskillsector';
 import Verifycountry from '../../config/verifycountry';
 import Verifyenjson from '../../config/verifyenjson';*/
 
@@ -21,8 +22,8 @@ export default class Handler {
 
     public static keyValue = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            await Event.publish('hi');
-            return KeyValueConfig.keyvalue;
+             return KeyValueConfig.keyvalue;
+           // return CityConfig.getCityArray1();
             // return Makeskillsector.getSector();
             //  return Makeskillsector.getSkill();
             //  return Verifycountry.verifyUniqueDistrict();

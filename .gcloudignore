@@ -3,6 +3,7 @@ node_modules/
 pm2logs/
 .env
 .gcloudignore
+.gitignore
 app.json
 read_me
 to_do
