@@ -142,6 +142,5 @@ const schema: Schema = new Schema(
     },
     {timestamps: true}
 );
-
-// registration.index({active: 1, start: 1});
+schema.index({createdAt: 1});
 export default model('enrollment', schema);

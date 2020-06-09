@@ -3,6 +3,7 @@ import Logger from '../helper/logger';
 import {connection, connect, ConnectionOptions} from 'mongoose';
 import registration from '../model/registration';
 import enrollment from '../model/enrollment';
+import admin from '../model/admin';
 import Utils from '../helper/utils';
 
 const NODE_ENV = Utils.getEnvVariable('NODE_ENV', false);
@@ -35,7 +36,7 @@ export default class Db {
                     Config.databaseOptions as ConnectionOptions
                 );
             } else {
-                await connect('mongodb://' + Config.database.username + ':' + Config.database.password + '@' + Config.database.host + ':' + Config.database.port + '/' + Config.database.name,
+                await connect('mongodb+srv://' + Config.database.username + ':' + encodeURIComponent(Config.database.password) + '@' + Config.database.host + '/' + Config.database.name+ '?retryWrites=true&w=majority',
                     Config.databaseOptions as ConnectionOptions
                 );
             }
@@ -50,6 +51,7 @@ export default class Db {
     public static addModals = (): void => {
         Db.models.registration = registration;
         Db.models.enrollment = enrollment;
+        Db.models.admin = admin;
     };
 
     public static models: any = {};

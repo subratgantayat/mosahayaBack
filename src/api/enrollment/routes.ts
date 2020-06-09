@@ -23,7 +23,7 @@ export default class Routes {
                 },
                 {
                     method: 'GET',
-                    path: '/api/v1/enrollment/{id}',
+                    path: '/api/v1/enrollment/{id}/{grecaptcharesponse}',
                     options: {
                         handler: Handler.viewForm,
                         validate: Validate.viewForm,

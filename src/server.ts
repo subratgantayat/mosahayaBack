@@ -18,9 +18,8 @@ export default class Server {
                 port: PORT,
                 routes: {
                     cors: {
-                        origin: ['*'],
-                        additionalHeaders: ['x-atmosphere-token'],
-                        credentials: true
+                        origin: ['https://mosahay.org'],
+                        additionalHeaders: ['x-atmosphere-token']
                     },
                     files: {
                         relativeTo: Path.join(__dirname, 'client')

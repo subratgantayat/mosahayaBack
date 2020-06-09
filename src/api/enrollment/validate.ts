@@ -5,6 +5,7 @@ import CityConfig from '../../config/cityConfig';
 export default {
     create: {
         payload: Joi.object().keys({
+            'g-recaptcha-response':Joi.string().required().trim().min(1).max(10000),
             generalData:Joi.object().keys({
                 registerBy:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('registerBy')),
                 name:Joi.string().required().trim().min(1).max(1000),
@@ -38,7 +39,8 @@ export default {
     },
     viewForm: {
         params: Joi.object({
-            id: Joi.string().required().trim().length(16)
+            id: Joi.string().required().trim().length(16),
+            grecaptcharesponse:Joi.string().required().trim().min(1).max(10000)
         }).required()
     }
 };

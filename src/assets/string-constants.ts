@@ -22,7 +22,15 @@ const stringConstants: any = {
     enrollment:{
         CREATE:'Method to create enrollment',
         INVALID_ID: 'Invalid enrollment ID',
-        VIEW_FORM: 'Method to get enrollment data by enrollment ID'
+        VIEW_FORM: 'Method to get enrollment data by enrollment ID',
+        INVALID_CAPTCHA: 'Invalid captcha'
+    },
+    admin:{
+        CREATE:'Method to signup admin',
+        SIGNIN:'Method to signin admin',
+        PHONE_NUMBER_EXIST: 'Phone number already exist',
+        SIGNIN_SUCCESSFULLY: 'Sign in successfully',
+        INVALID_LOGIN: 'Invalid phone number or password'
     }
 };
 

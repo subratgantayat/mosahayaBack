@@ -1,13 +1,14 @@
 runtime: nodejs12
 env_variables:
   NODE_ENV: "prod"
-  LOG_LEVEL: "info"
-  DB_HOST: "ds337718.mlab.com"
-  DB_PORT: "37718"
-  DB_DATABASE: "mosohaya"
-  DB_USERNAME: "thitapp"
-  DB_PASSWORD: "thitapp080"
+  LOG_LEVEL: "debug"
+  DB_HOST: "mosohay-pbzwt.gcp.mongodb.net"
+  DB_DATABASE: "mosahay"
+  DB_USERNAME: "mosahay"
+  DB_PASSWORD: "migrant@mosahay@80"
   GOOGLE_APPLICATION_CREDENTIALS: "./mosahaya-276614-263a0ec3bf0c.json"
   TOPIC_NAME: "mosahaya"
   PUBSUB_VERIFICATION_TOKEN: "mosahaya077messaging"
+  JWT_PRIVATE_KEY: "migrant@mosahay@80"
+  CAPTCHA_SECRET_KEY: "6LdOVQEVAAAAADgJdL4fdx13itFGwnTnCY9tE4Hd"
 

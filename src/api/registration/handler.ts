@@ -41,7 +41,6 @@ export default class Handler {
                 Logger.info('messaging request end with error1');
                 return Boom.badData('Invalid request');
             }
-            Logger.info('hello2');
             Logger.info(`${JSON.stringify(request.payload)}`);
             Logger.info(`${JSON.stringify(request.headers)}`);
             try {

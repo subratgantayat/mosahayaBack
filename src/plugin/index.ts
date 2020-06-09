@@ -4,7 +4,7 @@ import Config from '../config/config';
 import Logger from '../helper/logger';
 import Utils from '../helper/utils';
 
-// const NODE_ENV = Utils.getEnvVariable('NODE_ENV', true);
+const NODE_ENV = Utils.getEnvVariable('NODE_ENV', true);
 const LOG_LEVEL = Utils.getEnvVariable('LOG_LEVEL', false);
 
 export default class Plugins {
@@ -12,18 +12,26 @@ export default class Plugins {
     public static registerAll = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             await Plugins.inert(server);
-           // if (NODE_ENV === 'development') {
+            await Plugins.hapiGeoLocate(server);
+            await Plugins.hapiRateLimit(server);
+            if (NODE_ENV === 'development') {
                 await Plugins.vision(server);
                 await Plugins.swagger(server);
                 Logger.info(`Visit: ${server.info.uri}/documentation for Swagger docs`);
-           // }
+           }
             await Plugins.good(server);
-            if (LOG_LEVEL === 'debug') {
+           // if (LOG_LEVEL === 'debug') {
                 server.ext({
                     type: 'onRequest',
                     method (request: Hapi.Request, h: Hapi.ResponseToolkit) {
                         if (request.url.pathname.substring(1, 10) === 'swaggerui' || request.url.pathname === '/documentation' || request.url.pathname === '/health' || request.url.pathname === '/swagger.json') {
                             return h.continue;
+                        }
+                        if (request.headers['x-forwarded-for']) {
+                            request.info.remoteAddress = request.headers['x-forwarded-for'].split(',')[0].trim();
+                        }
+                        if (request.headers['x-forwarded-port']) {
+                            request.info.remotePort = request.headers['x-forwarded-port'];
                         }
                         Logger.debug('***** Request start *****');
                         Logger.debug(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.pathname);
@@ -45,12 +53,39 @@ export default class Plugins {
                     Logger.debug('Response payload:', (request.response && request.response.source) ? request.response.source : '');
                     Logger.debug('***** Response end *****');
                 });
-            }
+           // }
         } catch (error) {
             Logger.error(`Error in registering plugins: ${error}`);
             throw error;
         }
 
+    };
+    private static hapiGeoLocate = async (server: Hapi.Server): Promise<Error | any> => {
+        try {
+            Logger.info('Plugins - Registering hapiGeoLocate');
+            await Plugins.register(server, [
+                require('hapi-geo-locate')
+            ]);
+        } catch (error) {
+            Logger.error(`Plugins - Ups, something went wrong when registering hapiGeoLocate plugin: ${error}`);
+            throw error;
+        }
+    };
+    private static hapiRateLimit = async (server: Hapi.Server): Promise<Error | any> => {
+        try {
+            Logger.info('Plugins - Registering hapiRateLimit');
+            await Plugins.register(server, [
+                {
+                    options: {
+                        userLimit:30
+                    },
+                    plugin: require('hapi-rate-limit')
+                }
+            ]);
+        } catch (error) {
+            Logger.error(`Plugins - Ups, something went wrong when registering hapiRateLimit plugin: ${error}`);
+            throw error;
+        }
     };
     private static vision = async (server: Hapi.Server): Promise<Error | any> => {
         try {

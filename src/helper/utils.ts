@@ -1,4 +1,5 @@
 import * as Hapi from '@hapi/hapi';
+import {hashSync, compareSync} from 'bcrypt';
 import Logger from './logger';
 
 export default class Utils {
@@ -31,6 +32,14 @@ export default class Utils {
 
     public static getBaseURL = (): string =>{
         return Utils._base_dir;
+    };
+
+    public static encrypt = (password: string): string =>{
+        return hashSync(password,10);
+    };
+
+    public static comparePassword = (password: string, passwordRef: string): boolean =>{
+        return compareSync(password,passwordRef);
     };
 
     private static _base_dir: string;

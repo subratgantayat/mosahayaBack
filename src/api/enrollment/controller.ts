@@ -29,7 +29,7 @@ export default class Controller {
             }
             Logger.error(`${error}`);
             if (error.name === 'mosahaya') {
-                throw Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_CRAETING);
+                throw Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_CRAETING + ' enrollment data');
             }
             if (error.name === 'ValidationError') {
                 throw Boom.badData(error.message);
