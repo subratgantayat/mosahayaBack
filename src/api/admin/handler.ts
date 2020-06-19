@@ -45,7 +45,7 @@ export default class Handler {
         try {
             const modal: Model<any> = connection.model('admin');
             const payload: any =  request.payload;
-            const data: any =  await modal.findOne({phoneNumber:payload.phoneNumber}).select('password name phoneNumber');
+            const data: any =  await modal.findOne({phoneNumber:payload.phoneNumber}).select('password name phoneNumber scope password_changed_at');
             if(!(data &&  Utils.comparePassword(payload.password, data.password))){
                 return Boom.badData(STRING.INVALID_LOGIN);
             }

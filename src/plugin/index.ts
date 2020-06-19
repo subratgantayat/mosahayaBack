@@ -14,6 +14,7 @@ export default class Plugins {
             await Plugins.inert(server);
             await Plugins.hapiGeoLocate(server);
             await Plugins.hapiRateLimit(server);
+            await Plugins.hapiAuthJwt2(server);
             if (NODE_ENV === 'development') {
                 await Plugins.vision(server);
                 await Plugins.swagger(server);
@@ -27,12 +28,12 @@ export default class Plugins {
                         if (request.url.pathname.substring(1, 10) === 'swaggerui' || request.url.pathname === '/documentation' || request.url.pathname === '/health' || request.url.pathname === '/swagger.json') {
                             return h.continue;
                         }
-                        if (request.headers['x-forwarded-for']) {
+                    /*    if (request.headers['x-forwarded-for']) {
                             request.info.remoteAddress = request.headers['x-forwarded-for'].split(',')[0].trim();
                         }
                         if (request.headers['x-forwarded-port']) {
                             request.info.remotePort = request.headers['x-forwarded-port'];
-                        }
+                        }*/
                         Logger.debug('***** Request start *****');
                         Logger.debug(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.pathname);
                         Logger.debug('Request header:', request.headers);
@@ -71,6 +72,19 @@ export default class Plugins {
             throw error;
         }
     };
+
+    private static hapiAuthJwt2 = async (server: Hapi.Server): Promise<Error | any> => {
+        try {
+            Logger.info('Plugins - Registering hapiAuthJwt2');
+            await Plugins.register(server, [
+                require('hapi-auth-jwt2')
+            ]);
+        } catch (error) {
+            Logger.error(`Plugins - Ups, something went wrong when registering hapiAuthJwt2 plugin: ${error}`);
+            throw error;
+        }
+    };
+
     private static hapiRateLimit = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             Logger.info('Plugins - Registering hapiRateLimit');

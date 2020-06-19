@@ -9,7 +9,8 @@ import Db from './db';
 import Strategy from './strategy';
 
 const PORT = Utils.getEnvVariable('PORT', true);
-
+let CORS: any = Utils.getEnvVariable('CORS', true);
+CORS = JSON.parse(CORS);
 export default class Server {
     public static start = async (): Promise<Hapi.Server> =>{
         try {
@@ -18,7 +19,7 @@ export default class Server {
                 port: PORT,
                 routes: {
                     cors: {
-                        origin: ['https://mosahay.org'],
+                        origin: CORS,
                         additionalHeaders: ['x-atmosphere-token']
                     },
                     files: {

@@ -10,5 +10,6 @@ env_variables:
   TOPIC_NAME: "mosahaya"
   PUBSUB_VERIFICATION_TOKEN: "mosahaya077messaging"
   JWT_PRIVATE_KEY: "migrant@mosahay@80"
-  CAPTCHA_SECRET_KEY: "6LdOVQEVAAAAADgJdL4fdx13itFGwnTnCY9tE4Hd"
+  CAPTCHA_SECRET_KEY: "6LciJqQZAAAAAKUYKWgSuZl3yMOWQzdSz_t2S2of"
+  CORS: '["https://mosahay.org","https://mosahay-admin.web.app"]'
 

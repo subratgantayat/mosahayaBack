@@ -1,13 +1,36 @@
-import * as Boom from '@hapi/boom';
 import * as Hapi from '@hapi/hapi';
-import Config from '../config/config';
 import Logger from '../helper/logger';
+import Utils from '../helper/utils';
+import {connection, Model} from 'mongoose';
+const JWT_PRIVATE_KEY = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
 
 export default class Strategies {
-    public static registerAll = async (server: Hapi.Server): Promise<Error | any> => {
-        // tslint:disable-next-line:no-empty
-        try {
+    private static validate = async (decoded, request, h) => {
+        try{
+            const modal: Model<any> = connection.model('admin');
+            const user: any  = await modal.findOne({
+                _id: decoded.id,
+                phoneNumber: decoded.phoneNumber,
+                active: true
+            }).select( 'password_changed_at');
+            if (!user || !(decoded.password_changed_at === (user.password_changed_at).toISOString())) {
+                return { isValid: false };
+            }
+            return { isValid: true };
+        }
+        catch(error){
+            Logger.error(`${error}`);
+            return { isValid: false };
+        }
+    };
 
+    public static registerAll = async (server: Hapi.Server): Promise<Error | any> => {
+        try {
+            await server.auth.strategy('admintoken', 'jwt',
+                { key: JWT_PRIVATE_KEY,
+                    validate:Strategies.validate,
+                    verifyOptions: { algorithms: [ 'HS256' ]}
+                });
         } catch (error) {
             Logger.error(`Error in registering strategies: ${error}`);
             throw error;

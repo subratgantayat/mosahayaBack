@@ -23,6 +23,21 @@ export default class Routes {
                 },
                 {
                     method: 'GET',
+                    path: '/api/v1/enrollment',
+                    options: {
+                        auth: {
+                            strategy: 'admintoken',
+                            scope: ['admin']
+                        },
+                        handler: Handler.findall,
+                        validate: Validate.findall,
+                        description: STRING.FINDALL,
+                        tags: ['api', 'enrollment']
+                        //  response: Validate.findResponse
+                    }
+                },
+                {
+                    method: 'GET',
                     path: '/api/v1/enrollment/{id}/{grecaptcharesponse}',
                     options: {
                         handler: Handler.viewForm,
