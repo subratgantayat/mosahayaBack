@@ -7,11 +7,14 @@
   },
   "scripts": {
     "start": "node dist/index.js",
+    "startlocal": "npm run build && node -r dotenv/config dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev -r dotenv/config --respawn --transpileOnly ./src/index.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "build": "tsc && npm run lint",
-    "deploy": "npm run build && gcloud app deploy --stop-previous-version"
+    "build": "tsc && npm run lint && npm run delete && npm run copy",
+    "deploy": "npm run build && gcloud app deploy --stop-previous-version",
+    "copy": "copyfiles -u 1 \"src/public/**/*\" dist",
+    "delete": "del-cli \"dist/public/**/*\""
   },
   "author": "subrat kumar gantayat",
   "license": "ISC",
@@ -24,6 +27,7 @@
     "@hapi/joi": "^17.1.1",
     "@hapi/vision": "^6.0.0",
     "bcrypt": "^4.0.1",
+    "csv-parser": "^2.3.3",
     "good": "^8.1.2",
     "good-console": "^8.0.0",
     "good-squeeze": "^5.1.0",
@@ -41,6 +45,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
+    "copyfiles": "^2.3.0",
     "@types/request-promise": "^4.1.46",
     "@types/hapi__hapi": "^19.0.3",
     "@types/jsonwebtoken": "^8.5.0",

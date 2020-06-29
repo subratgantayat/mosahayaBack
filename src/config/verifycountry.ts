@@ -39,7 +39,6 @@ const i18: any = {
             'uttarakhand': 'Uttarakhand',
             'uttar': 'Uttar Pradesh',
             'west': 'West Bengal'
-
         },
         'District': {
             'anantapur': 'Anantapur',

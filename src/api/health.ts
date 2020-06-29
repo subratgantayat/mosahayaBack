@@ -4,9 +4,9 @@ import Logger from '../helper/logger';
 const STRING = EXTERNALIZED_STRING.health;
 
 export default class Routes {
-    public static  register = async (server: Hapi.Server): Promise<any> =>{
+    public static register = async (server: Hapi.Server): Promise<any> =>{
         try {
-            Logger.info('Server health - Start adding server health route.');
+            Logger.info('SeverHealthRoutes - Start adding server health route.');
             server.route([
                 {
                     method: 'GET',
@@ -16,14 +16,14 @@ export default class Routes {
                             Logger.silly('***** Health check start *****');
                             Logger.silly(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.pathname + ' --> ' + 200 + ' OK');
                             Logger.silly('***** Health check end *****');
-                            return 'OK1';
+                            return 'OK';
                         },
                         description: STRING.HEALTH_CHECK,
                         tags: ['api', 'health']
                     }
                 }
             ]);
-            Logger.info('Server health - Finish adding server health route.');
+            Logger.info('SeverHealthRoutes - Finish adding server health route.');
         } catch (error) {
             Logger.error(`Error in loading server health route: ${error}`);
             throw error;

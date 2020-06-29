@@ -5,13 +5,13 @@ import {connection, Model} from 'mongoose';
 import KeyValueConfig from '../../config/keyvalueConfig';
 
 import {OAuth2Client} from 'google-auth-library';
+import UploadData from '../../config/uploadData';
 /*import CityConfig from '../../config/cityConfig';
 import Makeskillsector from '../../config/makeskillsector';
 import Verifycountry from '../../config/verifycountry';
 import Verifyenjson from '../../config/verifyenjson';*/
 
 import EXTERNALIZED_STRING from '../../assets/string-constants';
-import Event from '../../events';
 import Utils from '../../helper/utils';
 
 const PUBSUB_VERIFICATION_TOKEN = Utils.getEnvVariable('PUBSUB_VERIFICATION_TOKEN', true);
@@ -28,6 +28,19 @@ export default class Handler {
             //  return Makeskillsector.getSkill();
             //  return Verifycountry.verifyUniqueDistrict();
             //  return Verifyenjson.verifyEn('hi');
+        } catch (error) {
+            Logger.error(`${error}`);
+            return Boom.badImplementation(error);
+        }
+    };
+
+    public static addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+        try {
+         /*   await UploadData.verifySkill();
+            return 'ok';*/
+          /*  const res: any = await UploadData.verifyEmployee();*/
+            const res: any = await UploadData.makeEmployee();
+            return res;
         } catch (error) {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);

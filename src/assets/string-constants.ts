@@ -12,6 +12,9 @@ const stringConstants: any = {
     health: {
         HEALTH_CHECK: 'Method that returns server\'s health'
     },
+    file: {
+        FILE: 'Method that returns static files'
+    },
     registration:{
         CREATE:'Method to register',
         KEYVALUE:'Method to get all key value pairs for dropdown',
@@ -32,6 +35,21 @@ const stringConstants: any = {
         PHONE_NUMBER_EXIST: 'Phone number already exist',
         SIGNIN_SUCCESSFULLY: 'Sign in successfully',
         INVALID_LOGIN: 'Invalid phone number or password'
+    },
+    employer:{
+        CREATE:'Method to signup employer',
+        SIGNIN:'Method to signin employer',
+        PHONE_NUMBER_EXIST: 'Phone number already exist',
+        SIGNIN_SUCCESSFULLY: 'Sign in successfully',
+        INVALID_LOGIN: 'Invalid phone number or password',
+        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry'
+    },
+    employee:{
+        SEARCH:'Method to search employee',
+        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry'
+    },
+    skill:{
+        FINDALL:'Method to get all skills'
     }
 };
 

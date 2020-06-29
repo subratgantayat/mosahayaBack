@@ -23,7 +23,7 @@ export default class Server {
                         additionalHeaders: ['x-atmosphere-token']
                     },
                     files: {
-                        relativeTo: Path.join(__dirname, 'client')
+                        relativeTo: Path.join(__dirname, 'public')
                     },
                     validate: {
                         failAction: async (request: Hapi.Request, h: Hapi.ResponseToolkit, error: Error) => {

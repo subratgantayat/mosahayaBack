@@ -147,7 +147,12 @@ export default class Handler {
                     return (hex_md5(this['generalData.experience']) >= 6);
                 }
             });*/
-            const data: any = await modal.find({$and: andOp}).sort({'createdAt': -1}).skip(skip).limit(limit).exec();
+            let select = 'enrollmentId generalData.name generalData.pinCode skillData.skills skillData.preferredLocations';
+            // @ts-ignore
+            if(request.verified){
+                select = select + ' generalData.mobileNumber';
+            }
+            const data: any = await modal.find({$and: andOp}).sort({'createdAt': -1}).skip(skip).limit(limit).select(select).exec();
             const count: number = await modal.find({$and: andOp}).count().exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING + ' enrollment data');

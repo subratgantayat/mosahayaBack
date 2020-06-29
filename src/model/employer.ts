@@ -28,16 +28,13 @@ const schema: Schema = new Schema(
             select: false
         },
         scope: {
-            type: String,
-            enum: ['admin'],
+            type: [{
+                type: String,
+                enum: ['employer','admin']
+            }],
             required: true,
-            default: 'admin',
+            default: ['employer'],
             select: false
-        },
-        verified: {
-            type: Boolean,
-            required: true,
-            default: false
         },
         active: {
             type: Boolean,
@@ -52,5 +49,4 @@ const schema: Schema = new Schema(
     {timestamps: true}
 );
 
-// registration.index({active: 1, start: 1});
-export default model('admin', schema);
+export default model('employer', schema);

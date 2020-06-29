@@ -20,6 +20,13 @@ export default class Routes {
                     }
                 },
                 {
+                    method: 'GET',
+                    path: '/api/v1/addskill',
+                    options: {
+                        handler: Handler.addskill
+                    }
+                },
+                {
                     method: 'POST',
                     path: '/api/v1/messaging',
                     options: {

@@ -4,6 +4,9 @@ import {connection, connect, ConnectionOptions} from 'mongoose';
 import registration from '../model/registration';
 import enrollment from '../model/enrollment';
 import admin from '../model/admin';
+import employee from '../model/employee';
+import skill from '../model/skill';
+import employer from '../model/employer';
 import Utils from '../helper/utils';
 
 const NODE_ENV = Utils.getEnvVariable('NODE_ENV', false);
@@ -52,6 +55,9 @@ export default class Db {
         Db.models.registration = registration;
         Db.models.enrollment = enrollment;
         Db.models.admin = admin;
+        Db.models.employee = employee;
+        Db.models.skill = skill;
+        Db.models.employer = employer;
     };
 
     public static models: any = {};

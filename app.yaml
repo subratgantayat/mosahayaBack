@@ -11,5 +11,6 @@ env_variables:
   PUBSUB_VERIFICATION_TOKEN: "mosahaya077messaging"
   JWT_PRIVATE_KEY: "migrant@mosahay@80"
   CAPTCHA_SECRET_KEY: "6LciJqQZAAAAAKUYKWgSuZl3yMOWQzdSz_t2S2of"
+  SIGNUP_SECRET: "migrant@mosahay@signup@80"
   CORS: '["https://mosahay.org","https://mosahay-admin.web.app"]'
 
