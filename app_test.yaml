@@ -1,0 +1,16 @@
+runtime: nodejs12
+env_variables:
+  NODE_ENV: "prod"
+  LOG_LEVEL: "debug"
+  DB_HOST: ""
+  DB_DATABASE: ""
+  DB_USERNAME: ""
+  DB_PASSWORD: ""
+  GOOGLE_APPLICATION_CREDENTIALS: ""
+  TOPIC_NAME: ""
+  PUBSUB_VERIFICATION_TOKEN: ""
+  JWT_PRIVATE_KEY: ""
+  CAPTCHA_SECRET_KEY: ""
+  SIGNUP_SECRET: ""
+  CORS: ''
+
