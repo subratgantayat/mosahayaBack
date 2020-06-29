@@ -10,7 +10,7 @@ export default class Routes {
         try {
             Logger.info('RegistrationRoutes - Start adding registration routes.');
             server.route([
-                {
+               /* {
                     method: 'GET',
                     path: '/api/v1/registration/keyvalue',
                     options: {
@@ -18,14 +18,14 @@ export default class Routes {
                         description: STRING.KEYVALUE,
                         tags: ['api', 'registration']
                     }
-                },
-                {
+                },*/
+             /*   {
                     method: 'GET',
                     path: '/api/v1/addskill',
                     options: {
                         handler: Handler.addskill
                     }
-                },
+                },*/
                 {
                     method: 'POST',
                     path: '/api/v1/messaging',

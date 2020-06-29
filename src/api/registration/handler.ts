@@ -36,7 +36,7 @@ export default class Handler {
 
     public static addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-         /*   await UploadData.verifySkill();
+            /*await UploadData.verifySkill();
             return 'ok';*/
           /*  const res: any = await UploadData.verifyEmployee();*/
             const res: any = await UploadData.makeEmployee();
