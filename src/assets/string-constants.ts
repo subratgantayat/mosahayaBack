@@ -46,10 +46,13 @@ const stringConstants: any = {
     },
     employee:{
         SEARCH:'Method to search employee',
-        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry'
+        FIND_LIMIT:'Method to search limited employee for download',
+        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry',
+        INVALID_QUERY_PARAM: 'Invalid query param'
     },
     skill:{
-        FINDALL:'Method to get all skills'
+        FINDALL:'Method to get all skills',
+        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry'
     }
 };
 

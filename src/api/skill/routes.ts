@@ -19,6 +19,7 @@ export default class Routes {
                             scope: ['employer']
                         },
                         handler: Handler.findall,
+                        validate: Validate.findall,
                         description: STRING.FINDALL,
                         tags: ['api', 'skill']
                     }

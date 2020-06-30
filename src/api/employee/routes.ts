@@ -12,7 +12,7 @@ export default class Routes {
             server.route([
                 {
                     method: 'GET',
-                    path: '/api/v1/employee/search/{grecaptcharesponse}',
+                    path: '/api/v1/employee/search',
                     options: {
                         auth: {
                             strategy: 'employertoken',
@@ -21,6 +21,20 @@ export default class Routes {
                         handler: Handler.search,
                         validate: Validate.search,
                         description: STRING.SEARCH,
+                        tags: ['api', 'employee']
+                    }
+                },
+                {
+                    method: 'GET',
+                    path: '/api/v1/employee/findlimit',
+                    options: {
+                        auth: {
+                            strategy: 'employertoken',
+                            scope: ['employer']
+                        },
+                        handler: Handler.findlimit,
+                        validate: Validate.findlimit,
+                        description: STRING.FIND_LIMIT,
                         tags: ['api', 'employee']
                     }
                 }

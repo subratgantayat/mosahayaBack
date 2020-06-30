@@ -76,7 +76,8 @@ export default class Handler {
             return {message: STRING.SIGNIN_SUCCESSFULLY, token: sign(tokenData, JWT_PRIVATE_KEY),
                 user: {
                     phoneNumber: data.phoneNumber,
-                    name: data.name
+                    name: data.name,
+                    isAdmin: data.scope.includes('admin')
                 }};
         } catch (error) {
             Logger.error(`${error}`);
