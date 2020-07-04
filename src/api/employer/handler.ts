@@ -33,7 +33,7 @@ export default class Handler {
                 id: data._id,
                 password_changed_at: data.password_changed_at
             };
-            return {message: 'Sign up data ' + EXTERNALIZED_STRING.global.CREATED_SUCCESSFULLY, token: sign(tokenData, JWT_PRIVATE_KEY),
+            return {message: 'Sign up data ' + EXTERNALIZED_STRING.global.CREATED_SUCCESSFULLY, token: sign(tokenData, JWT_PRIVATE_KEY, { algorithm: 'RS256'}),
                 user: {
                     phoneNumber: data.phoneNumber,
                     name: data.name
@@ -73,7 +73,7 @@ export default class Handler {
                 id: data._id,
                 password_changed_at: data.password_changed_at
             };
-            return {message: STRING.SIGNIN_SUCCESSFULLY, token: sign(tokenData, JWT_PRIVATE_KEY),
+            return {message: STRING.SIGNIN_SUCCESSFULLY, token: sign(tokenData, JWT_PRIVATE_KEY, { algorithm: 'RS256'}),
                 user: {
                     phoneNumber: data.phoneNumber,
                     name: data.name,
