@@ -50,12 +50,12 @@ export default class Strategies {
             await server.auth.strategy('admintoken', 'jwt',
                 { key: JWT_PRIVATE_KEY,
                     validate:Strategies.validate,
-                    verifyOptions: { algorithms: [ 'HS256' ]}
+                    verifyOptions: { algorithms: [ 'RS256' ]}
                 });
             await server.auth.strategy('employertoken', 'jwt',
                 { key: JWT_PRIVATE_KEY,
                     validate:Strategies.validateEmployer,
-                    verifyOptions: { algorithms: [ 'HS256' ]}
+                    verifyOptions: { algorithms: [ 'RS256' ]}
                 });
         } catch (error) {
             Logger.error(`Error in registering strategies: ${error}`);
