@@ -8,6 +8,10 @@ import Utils from '../../helper/utils';
 import * as RP from 'request-promise';
 const STRING = EXTERNALIZED_STRING.employer;
 const JWT_PRIVATE_KEY = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
+const ISS = Utils.getEnvVariable('ISS', true);
+const AUD = Utils.getEnvVariable('AUD', true);
+const SUB = Utils.getEnvVariable('SUB', true);
+const EXP = Utils.getEnvVariable('EXP', true);
 const SIGNUP_SECRET = Utils.getEnvVariable('SIGNUP_SECRET', true);
 const CAPTCHA_SECRET_KEY = Utils.getEnvVariable('CAPTCHA_SECRET_KEY', true);
 
@@ -27,11 +31,17 @@ export default class Handler {
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_CRAETING + ' sign up data');
             }
+            const timeOfCreation = Date.now();
             const tokenData: any = {
                 phoneNumber: data.phoneNumber,
                 scope: data.scope,
                 id: data._id,
-                password_changed_at: data.password_changed_at
+                password_changed_at: data.password_changed_at,
+                iat: timeOfCreation,
+                exp: timeOfCreation + EXP,
+                iss: ISS,
+                aud: AUD,
+                sub: SUB
             };
             return {message: 'Sign up data ' + EXTERNALIZED_STRING.global.CREATED_SUCCESSFULLY, token: sign(tokenData, JWT_PRIVATE_KEY, { algorithm: 'RS256'}),
                 user: {
@@ -67,11 +77,17 @@ export default class Handler {
             if(!(data &&  Utils.comparePassword(payload.password, data.password))){
                 return Boom.badData(STRING.INVALID_LOGIN);
             }
+            const timeOfCreation = Date.now();
             const tokenData: any = {
                 phoneNumber: data.phoneNumber,
                 scope: data.scope,
                 id: data._id,
-                password_changed_at: data.password_changed_at
+                password_changed_at: data.password_changed_at,
+                iat: timeOfCreation,
+                exp: timeOfCreation + EXP,
+                iss: ISS,
+                aud: AUD,
+                sub: SUB
             };
             return {message: STRING.SIGNIN_SUCCESSFULLY, token: sign(tokenData, JWT_PRIVATE_KEY, { algorithm: 'RS256'}),
                 user: {
