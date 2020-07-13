@@ -2,6 +2,10 @@ src/
 node_modules/
 pm2logs/
 .env
+.env_test
+app_test.yaml
+city list
+db config to copy
 .gcloudignore
 .gitignore
 app.json

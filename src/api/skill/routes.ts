@@ -3,7 +3,8 @@ import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Logger from '../../helper/logger';
 import Handler from './handler';
 import Validate from './validate';
-const STRING = EXTERNALIZED_STRING.skill;
+import PublicHandler from '../../helper/publicHandler';
+const STRING: any = EXTERNALIZED_STRING.skill;
 
 export default class Routes {
     public static register =  async (server: Hapi.Server): Promise<any> => {
@@ -18,6 +19,9 @@ export default class Routes {
                             strategy: 'employertoken',
                             scope: ['employer']
                         },
+                        pre:[
+                            { method: PublicHandler.validateCaptchaQuery, assign: 'captcha' }
+                        ],
                         handler: Handler.findall,
                         validate: Validate.findall,
                         description: STRING.FINDALL,

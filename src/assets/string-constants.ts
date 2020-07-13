@@ -7,7 +7,8 @@ const stringConstants: any = {
         UPDATED_SUCCESSFULLY: 'updated successfully',
         ERROR_IN_UPDATING: 'Error in updating',
         DELETED_SUCCESSFULLY: 'deleted successfully',
-        NO_RECORD_TO_DELETE: 'No record found to delete'
+        NO_RECORD_TO_DELETE: 'No record found to delete',
+        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry'
     },
     health: {
         HEALTH_CHECK: 'Method that returns server\'s health'
@@ -26,8 +27,7 @@ const stringConstants: any = {
         CREATE:'Method to create enrollment',
         FINDALL:'Method to search enrollment',
         INVALID_ID: 'Invalid enrollment ID',
-        VIEW_FORM: 'Method to get enrollment data by enrollment ID',
-        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry'
+        VIEW_FORM: 'Method to get enrollment data by enrollment ID'
     },
     admin:{
         CREATE:'Method to signup admin',
@@ -41,18 +41,15 @@ const stringConstants: any = {
         SIGNIN:'Method to signin employer',
         PHONE_NUMBER_EXIST: 'Phone number already exist',
         SIGNIN_SUCCESSFULLY: 'Sign in successfully',
-        INVALID_LOGIN: 'Invalid phone number or password',
-        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry'
+        INVALID_LOGIN: 'Invalid phone number or password'
     },
     employee:{
         SEARCH:'Method to search employee',
         FIND_LIMIT:'Method to search limited employee for download',
-        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry',
         INVALID_QUERY_PARAM: 'Invalid query param'
     },
     skill:{
-        FINDALL:'Method to get all skills',
-        INVALID_CAPTCHA: 'Invalid captcha or please clear your browser cache and retry'
+        FINDALL:'Method to get all skills'
     }
 };
 

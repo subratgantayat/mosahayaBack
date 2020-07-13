@@ -15,21 +15,11 @@ export default class Handler {
 
     public static create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            // @ts-ignore
-            Logger.debug('User location', request.location);
-            const payload: any = request.payload;
-            const verificationURL = 'https://www.google.com/recaptcha/api/siteverify?secret=' + CAPTCHA_SECRET_KEY + '&response=' + payload['g-recaptcha-response'] + '&remoteip=' + request.info.remoteAddress;
-            try {
-                let body: any = await RP(verificationURL);
-                body = JSON.parse(body);
-                if (!(body && body.success && body.action === 'register' && body.score >= 0.4)) {
-                    return Boom.badData(STRING.INVALID_CAPTCHA);
-                }
-            } catch (error) {
-                Logger.error('google recaptcha error');
-                Logger.error(`${error}`);
-                return Boom.badData(STRING.INVALID_CAPTCHA);
+            const captchaResponse: any = request.pre.captcha;
+            if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
+                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
             }
+            const payload: any = request.payload;
             const data: any = await Controller.create(payload, 7);
             return {message: 'Enrollment ' + EXTERNALIZED_STRING.global.CREATED_SUCCESSFULLY, data};
         } catch (error) {
@@ -40,19 +30,9 @@ export default class Handler {
 
     public static viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            // @ts-ignore
-            Logger.debug('User location', request.location);
-            const verificationURL = 'https://www.google.com/recaptcha/api/siteverify?secret=' + CAPTCHA_SECRET_KEY + '&response=' + request.params.grecaptcharesponse + '&remoteip=' + request.info.remoteAddress;
-            try {
-                let body: any = await RP(verificationURL);
-                body = JSON.parse(body);
-                if (!(body && body.success && body.action === 'register' && body.score >= 0.4)) {
-                    return Boom.badData(STRING.INVALID_CAPTCHA);
-                }
-            } catch (error) {
-                Logger.error('google recaptcha error');
-                Logger.error(`${error}`);
-                return Boom.badData(STRING.INVALID_CAPTCHA);
+            const captchaResponse: any = request.pre.captcha;
+            if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
+                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
             }
             const modal: Model<any> = connection.model('enrollment');
             const data: any = await modal.findOne({enrollmentId: request.params.id}).exec();
@@ -71,8 +51,10 @@ export default class Handler {
 
     public static findall = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            // @ts-ignore
-            Logger.debug('User location', request.location);
+           /* const captchaResponse: any = request.pre.captcha;
+            if (!(captchaResponse.action === 'enrollment_search' && captchaResponse.score >= 0)) {
+                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
+            }*/
             if (request.query.expFrom && request.query.expTo && (request.query.expFrom > request.query.expTo)) {
                 return Boom.badData('Experience from can not be more than experience to');
             }
@@ -147,7 +129,7 @@ export default class Handler {
                     return (hex_md5(this['generalData.experience']) >= 6);
                 }
             });*/
-            let select = 'enrollmentId generalData.name generalData.pinCode skillData.skills skillData.preferredLocations';
+            let select: string = 'enrollmentId generalData.name generalData.pinCode skillData.skills skillData.preferredLocations';
             // @ts-ignore
             if(request.verified){
                 select = select + ' generalData.mobileNumber';

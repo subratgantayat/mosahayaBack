@@ -5,11 +5,9 @@ import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
 import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Utils from '../../helper/utils';
-import * as RP from 'request-promise';
 const STRING = EXTERNALIZED_STRING.employer;
 const JWT_PRIVATE_KEY = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
 const SIGNUP_SECRET = Utils.getEnvVariable('SIGNUP_SECRET', true);
-const CAPTCHA_SECRET_KEY = Utils.getEnvVariable('CAPTCHA_SECRET_KEY', true);
 
 export default class Handler {
 
@@ -49,19 +47,11 @@ export default class Handler {
 
     public static signin = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            const payload: any = request.payload;
-            const verificationURL = 'https://www.google.com/recaptcha/api/siteverify?secret=' + CAPTCHA_SECRET_KEY + '&response=' + payload['g-recaptcha-response'] + '&remoteip=' + request.info.remoteAddress;
-            try {
-                let body: any = await RP(verificationURL);
-                body = JSON.parse(body);
-                if (!(body && body.success && body.action === 'employee_signin' && body.score >= 0.4)) {
-                    return Boom.badData(STRING.INVALID_CAPTCHA);
-                }
-            } catch (error) {
-                Logger.error('google recaptcha error');
-                Logger.error(`${error}`);
-                return Boom.badData(STRING.INVALID_CAPTCHA);
+            const captchaResponse: any = request.pre.captcha;
+            if (!(captchaResponse.action === 'employee_signin' && captchaResponse.score >= 0.4)) {
+                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
             }
+            const payload: any = request.payload;
             const modal: Model<any> = connection.model('employer');
             const data: any =  await modal.findOne({phoneNumber:payload.phoneNumber}).select('password name phoneNumber scope password_changed_at');
             if(!(data &&  Utils.comparePassword(payload.password, data.password))){

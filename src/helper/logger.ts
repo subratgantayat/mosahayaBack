@@ -1,10 +1,11 @@
 import * as Winston from 'winston';
 import {LoggingWinston}  from '@google-cloud/logging-winston';
+import {ConsoleTransportInstance} from 'winston/lib/winston/transports';
 
 export class ApiLogger {
     public static newInstance = (): Winston.Logger =>{
-        const loggingWinston = new LoggingWinston();
-        const consoleTransport = new Winston.transports.Console({
+        const loggingWinston: LoggingWinston = new LoggingWinston();
+        const consoleTransport: ConsoleTransportInstance = new Winston.transports.Console({
             format: Winston.format.combine(
                 Winston.format.colorize(),
                 Winston.format.timestamp(),

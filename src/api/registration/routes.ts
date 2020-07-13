@@ -3,7 +3,7 @@ import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Logger from '../../helper/logger';
 import Handler from './handler';
 import Validate from './validate';
-const STRING = EXTERNALIZED_STRING.registration;
+const STRING: any = EXTERNALIZED_STRING.registration;
 
 export default class Routes {
     public static register =  async (server: Hapi.Server): Promise<any> => {

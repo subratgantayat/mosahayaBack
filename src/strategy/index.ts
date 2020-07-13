@@ -2,10 +2,10 @@ import * as Hapi from '@hapi/hapi';
 import Logger from '../helper/logger';
 import Utils from '../helper/utils';
 import {connection, Model} from 'mongoose';
-const JWT_PRIVATE_KEY = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
+const JWT_PRIVATE_KEY:string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
 
 export default class Strategies {
-    private static validate = async (decoded, request, h) => {
+    private static validateCompany = async (decoded, request, h) => {
         try{
             const modal: Model<any> = connection.model('admin');
             const user: any  = await modal.findOne({
@@ -49,7 +49,7 @@ export default class Strategies {
         try {
             await server.auth.strategy('admintoken', 'jwt',
                 { key: JWT_PRIVATE_KEY,
-                    validate:Strategies.validate,
+                    validate:Strategies.validateCompany,
                     verifyOptions: { algorithms: [ 'HS256' ]}
                 });
             await server.auth.strategy('employertoken', 'jwt',

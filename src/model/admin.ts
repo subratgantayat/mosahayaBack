@@ -1,6 +1,4 @@
 import {model, Schema} from 'mongoose';
-import KeyvalueConfig from '../config/keyvalueConfig';
-import CityConfig from '../config/cityConfig';
 const schema: Schema = new Schema(
     {
         name:{
@@ -34,15 +32,24 @@ const schema: Schema = new Schema(
             default: 'admin',
             select: false
         },
-        verified: {
-            type: Boolean,
+     /*   scope: {
+            type: [{
+                type: String,
+                enum: ['company','admin']
+            }],
             required: true,
-            default: false
-        },
+            default: ['company'],
+            select: false
+        },*/
         active: {
             type: Boolean,
             required: true,
             default: true
+        },
+        verified: {
+            type: Boolean,
+            required: true,
+            default: false
         },
         password_changed_at: {
             type: Date,
@@ -51,6 +58,4 @@ const schema: Schema = new Schema(
     },
     {timestamps: true}
 );
-
-// registration.index({active: 1, start: 1});
 export default model('admin', schema);

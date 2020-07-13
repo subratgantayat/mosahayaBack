@@ -3,7 +3,8 @@ import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Logger from '../../helper/logger';
 import Handler from './handler';
 import Validate from './validate';
-const STRING = EXTERNALIZED_STRING.employer;
+import PublicHandler from '../../helper/publicHandler';
+const STRING: any = EXTERNALIZED_STRING.employer;
 
 export default class Routes {
     public static register =  async (server: Hapi.Server): Promise<any> => {
@@ -24,6 +25,9 @@ export default class Routes {
                     method: 'POST',
                     path: '/api/v1/employer/signin',
                     options: {
+                        pre:[
+                            { method: PublicHandler.validateCaptchaPayload, assign: 'captcha' }
+                        ],
                         handler: Handler.signin,
                         validate: Validate.signin,
                         description: STRING.SIGNIN,

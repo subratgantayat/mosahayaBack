@@ -5,15 +5,19 @@ import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
 import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Utils from '../../helper/utils';
-const STRING = EXTERNALIZED_STRING.admin;
-const JWT_PRIVATE_KEY = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
+const STRING: any = EXTERNALIZED_STRING.admin;
+const JWT_PRIVATE_KEY: string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
+const SIGNUP_SECRET: string = Utils.getEnvVariable('SIGNUP_SECRET', true);
 
 export default class Handler {
 
     public static create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            const modal: Model<any> = connection.model('admin');
             const payload: any =  request.payload;
+            if(payload.secret !== SIGNUP_SECRET){
+                return Boom.badData('Invalid secret');
+            }
+            const modal: Model<any> = connection.model('admin');
             payload.password = Utils.encrypt(payload.password);
             payload.password_changed_at = new Date();
             const newModal: any = new modal(payload);
@@ -23,7 +27,7 @@ export default class Handler {
             }
             const tokenData: any = {
                 phoneNumber: data.phoneNumber,
-                scope: [data.scope],
+                scope: data.scope,
                 id: data._id,
                 password_changed_at: data.password_changed_at
             };
@@ -43,8 +47,12 @@ export default class Handler {
 
     public static signin = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
+          /*  const captchaResponse: any = request.pre.captcha;
+            if (!(captchaResponse.action === 'admin_signin' && captchaResponse.score >= 0.4)) {
+                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
+            }*/
+            const payload: any = request.payload;
             const modal: Model<any> = connection.model('admin');
-            const payload: any =  request.payload;
             const data: any =  await modal.findOne({phoneNumber:payload.phoneNumber}).select('password name phoneNumber scope password_changed_at');
             if(!(data &&  Utils.comparePassword(payload.password, data.password))){
                 return Boom.badData(STRING.INVALID_LOGIN);

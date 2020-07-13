@@ -1,9 +1,10 @@
 import * as Hapi from '@hapi/hapi';
 import EXTERNALIZED_STRING from '../assets/string-constants';
 import Logger from '../helper/logger';
-const STRING = EXTERNALIZED_STRING.health;
+const STRING: any = EXTERNALIZED_STRING.health;
 
 export default class Routes {
+
     public static register = async (server: Hapi.Server): Promise<any> =>{
         try {
             Logger.info('SeverHealthRoutes - Start adding server health route.');

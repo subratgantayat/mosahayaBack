@@ -1,7 +1,7 @@
 import * as Joi from '@hapi/joi';
 import * as JoiObjectId from 'joi-objectid';
 import KeyvalueConfig from '../../config/keyvalueConfig';
- const JoiObjectIdInstance = JoiObjectId(Joi);
+const JoiObjectIdInstance: any = JoiObjectId(Joi);
 
 export default {
     search: {

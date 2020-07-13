@@ -1,6 +1,4 @@
 import {model, Schema} from 'mongoose';
-import KeyvalueConfig from '../config/keyvalueConfig';
-import CityConfig from '../config/cityConfig';
 const schema: Schema = new Schema(
     {
         name:{

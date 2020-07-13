@@ -3,26 +3,15 @@ import * as Hapi from '@hapi/hapi';
 import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
 import EXTERNALIZED_STRING from '../../assets/string-constants';
-import * as RP from 'request-promise';
-import Utils from '../../helper/utils';
-const STRING = EXTERNALIZED_STRING.employee;
-const CAPTCHA_SECRET_KEY = Utils.getEnvVariable('CAPTCHA_SECRET_KEY', true);
+const STRING: any = EXTERNALIZED_STRING.employee;
 
 export default class Handler {
 
     public static search = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            const verificationURL = 'https://www.google.com/recaptcha/api/siteverify?secret=' + CAPTCHA_SECRET_KEY + '&response=' + request.query['g-recaptcha-response'] + '&remoteip=' + request.info.remoteAddress;
-            try {
-                let body: any = await RP(verificationURL);
-                body = JSON.parse(body);
-                if (!(body && body.success && body.action === 'employee_search' && body.score >= 0)) {
-                    return Boom.badData(STRING.INVALID_CAPTCHA);
-                }
-            } catch (error) {
-                Logger.error('google recaptcha error');
-                Logger.error(`${error}`);
-                return Boom.badData(STRING.INVALID_CAPTCHA);
+            const captchaResponse: any = request.pre.captcha;
+            if (!(captchaResponse.action === 'employee_search' && captchaResponse.score >= 0)) {
+                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
             }
             const admin: boolean = request.auth.credentials && request.auth.credentials.scope && request.auth.credentials.scope.includes('admin');
             for(const prop of ['contactNo','city','district'])
@@ -41,7 +30,7 @@ export default class Handler {
                 s.state = {$in: request.query.state};
                 andOp.push(s);
             }
-            let select = 'name state city district address skills';
+            let select:string = 'name state city district address skills';
             if(admin){
                 select = select + ' contactNo';
                 for (const prop of ['contactNo']) {
@@ -63,7 +52,6 @@ export default class Handler {
                     }
                 }
             }
-            console.log(JSON.stringify(andOp));
             const data: any = await modal.find({$and: andOp}).sort({'createdAt': -1}).skip(skip).limit(limit).select(select).exec();
             const count: number = await modal.find({$and: andOp}).count().exec();
             if (!data) {
@@ -78,21 +66,13 @@ export default class Handler {
 
     public static findlimit = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            const verificationURL = 'https://www.google.com/recaptcha/api/siteverify?secret=' + CAPTCHA_SECRET_KEY + '&response=' + request.query['g-recaptcha-response'] + '&remoteip=' + request.info.remoteAddress;
-            try {
-                let body: any = await RP(verificationURL);
-                body = JSON.parse(body);
-                if (!(body && body.success && body.action === 'employee_download' && body.score >= 0)) {
-                    return Boom.badData(STRING.INVALID_CAPTCHA);
-                }
-            } catch (error) {
-                Logger.error('google recaptcha error');
-                Logger.error(`${error}`);
-                return Boom.badData(STRING.INVALID_CAPTCHA);
+            const captchaResponse: any = request.pre.captcha;
+            if (!(captchaResponse.action === 'employee_search' && captchaResponse.score >= 0)) {
+                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
             }
             const modal: Model<any> = connection.model('employee');
             const limit: number = 1000;
-            let select = 'name state city district address skills';
+            let select: string = 'name state city district address skills';
             if(request.auth.credentials && request.auth.credentials.scope && request.auth.credentials.scope.includes('admin')){
                 select = select + ' contactNo';
             }

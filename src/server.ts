@@ -8,7 +8,7 @@ import Router from './router';
 import Db from './db';
 import Strategy from './strategy';
 
-const PORT = Utils.getEnvVariable('PORT', true);
+const PORT: string = Utils.getEnvVariable('PORT', true);
 let CORS: any = Utils.getEnvVariable('CORS', true);
 CORS = JSON.parse(CORS);
 export default class Server {

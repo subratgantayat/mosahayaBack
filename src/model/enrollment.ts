@@ -23,7 +23,8 @@ const schema: Schema = new Schema(
                 required: true,
                 trim: true,
                 minlength:1,
-                maxlength:1000
+                maxlength:1000,
+                match:/^[a-zA-Z ,&.'-]+$/
             },
             gender:{
                 type: String,
@@ -56,7 +57,8 @@ const schema: Schema = new Schema(
                 type: String,
                 trim: true,
                 minlength:1,
-                maxlength:100000
+                maxlength:100000,
+                match:/^[\x20-\x7E\x0D\x0A]+$/
             }
         },
         skillData:{
@@ -69,7 +71,8 @@ const schema: Schema = new Schema(
                 type: String,
                 trim: true,
                 minlength:1,
-                maxlength:10000
+                maxlength:10000,
+                match:/^[a-zA-Z0-9 ,.'-]+$/
             },
             sectors:{
                 type: [String],
@@ -80,7 +83,8 @@ const schema: Schema = new Schema(
                 type: String,
                 trim: true,
                 minlength:1,
-                maxlength:10000
+                maxlength:10000,
+                match:/^[\x20-\x7E]+$/
             },
             experience: {
                 expYear: {

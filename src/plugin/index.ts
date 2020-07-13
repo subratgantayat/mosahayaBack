@@ -4,8 +4,8 @@ import Config from '../config/config';
 import Logger from '../helper/logger';
 import Utils from '../helper/utils';
 
-const NODE_ENV = Utils.getEnvVariable('NODE_ENV', true);
-const LOG_LEVEL = Utils.getEnvVariable('LOG_LEVEL', false);
+const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
+const LOG_LEVEL: string = Utils.getEnvVariable('LOG_LEVEL', false);
 
 export default class Plugins {
 
