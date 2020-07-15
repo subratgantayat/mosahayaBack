@@ -24,7 +24,7 @@ const schema: Schema = new Schema(
                 trim: true,
                 minlength:1,
                 maxlength:1000,
-                match:/^[a-zA-Z ,&.'-]+$/
+                match:/^\b(?!.*?\s{2})[A-Za-z ]{1,50}\b$/
             },
             gender:{
                 type: String,
