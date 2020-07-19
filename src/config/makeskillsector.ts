@@ -48,7 +48,59 @@ const getSkill = (): any => {
     return {skill: ret, skilli18: reti18};
 };
 
+const getSkillSector = (): any => {
+    const sectors: any[] = [];
+    const seci18: any = {};
+    const skilli18: any = {};
+    let j= 0;
+    let item: any;
+    for (const i of value) {
+        if (i.includes('@@@')) {
+            if(j>0){
+                sectors.push(item);
+                j++;
+            }
+            const p: string = i.replace('@@@', '').trim().toLowerCase();
+            const camel: string =  toCamelCase(p);
+            item = {
+                name: 'Config.Sectors.' + camel,
+                value: p,
+                skills:[]
+            };
+            sectors.push(item);
+            seci18[camel] = p.charAt(0).toUpperCase() + p.slice(1);
+        }
+        else {
+            const p: string = i.trim().toLowerCase();
+            const camel: string =  toCamelCase(p);
+            const itemSkill: any = {
+                name: 'Config.Skills.' + camel,
+                value: p
+            };
+            item.skills.push(itemSkill);
+            skilli18[camel] = p.charAt(0).toUpperCase() + p.slice(1);
+        }
+    }
+    const skillItem = {
+        name: 'Config.Skills.others',
+        value:'others'
+    };
+    item = {
+        name: 'Config.Sectors.others',
+        value: 'others',
+        skills:[skillItem]
+    };
+    for (const i of sectors) {
+        i.skills.push(skillItem);
+    }
+    sectors.push(item);
+    seci18.others = 'others';
+    skilli18.others = 'others';
+    return {sectors, seci18, skilli18};
+};
+
 export default {
     getSector,
-    getSkill
+    getSkill,
+    getSkillSector
 };

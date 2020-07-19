@@ -26,15 +26,15 @@ export default class Routes {
                 },
                 {
                     method: 'GET',
-                    path: '/api/v1/enrollment',
+                    path: '/api/v1/enrollment/search',
                     options: {
                         auth: {
                             strategy: 'admintoken',
-                            scope: ['admin']
+                            scope: ['company']
                         },
-                       /* pre:[
+                        pre:[
                             { method: PublicHandler.validateCaptchaQuery, assign: 'captcha' }
-                        ],*/
+                        ],
                         handler: Handler.findall,
                         validate: Validate.findall,
                         description: STRING.FINDALL,

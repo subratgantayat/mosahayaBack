@@ -6,10 +6,10 @@ import KeyValueConfig from '../../config/keyvalueConfig';
 
 import {OAuth2Client} from 'google-auth-library';
 import UploadData from '../../config/uploadData';
-/*import CityConfig from '../../config/cityConfig';
+import CityConfig from '../../config/cityConfig';
 import Makeskillsector from '../../config/makeskillsector';
 import Verifycountry from '../../config/verifycountry';
-import Verifyenjson from '../../config/verifyenjson';*/
+import Verifyenjson from '../../config/verifyenjson';
 
 import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Utils from '../../helper/utils';
@@ -22,9 +22,10 @@ export default class Handler {
 
     public static keyValue = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-             return KeyValueConfig.keyvalue;
+             // return KeyValueConfig.keyvalue;
            // return CityConfig.getCityArray1();
             // return Makeskillsector.getSector();
+            return Makeskillsector.getSkillSector();
             //  return Makeskillsector.getSkill();
             //  return Verifycountry.verifyUniqueDistrict();
             //  return Verifyenjson.verifyEn('hi');

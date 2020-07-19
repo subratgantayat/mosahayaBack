@@ -16,6 +16,15 @@ export default class Controller {
             const modal: Model<any> = connection.model('enrollment');
             const newModal: any = new modal(payload);
             newModal.enrollmentId =  Randomize('0', 16);
+            newModal.experienceInMonth = 0;
+            if(payload.experience){
+                if(payload.experience.expYear) {
+                    newModal.experienceInMonth = 12*payload.experience.expYear;
+                }
+                if(payload.experience.expMonth){
+                    newModal.experienceInMonth = newModal.experienceInMonth + payload.experience.expMonth;
+                }
+            }
             const data: any = await newModal.save();
             if (!data) {
                 const e = new Error(EXTERNALIZED_STRING.global.ERROR_IN_CRAETING);

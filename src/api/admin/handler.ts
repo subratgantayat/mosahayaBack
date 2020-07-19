@@ -47,10 +47,10 @@ export default class Handler {
 
     public static signin = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-          /*  const captchaResponse: any = request.pre.captcha;
+            const captchaResponse: any = request.pre.captcha;
             if (!(captchaResponse.action === 'admin_signin' && captchaResponse.score >= 0.4)) {
                 return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
-            }*/
+            }
             const payload: any = request.payload;
             const modal: Model<any> = connection.model('admin');
             const data: any =  await modal.findOne({phoneNumber:payload.phoneNumber}).select('password name phoneNumber scope password_changed_at');
@@ -59,14 +59,15 @@ export default class Handler {
             }
             const tokenData: any = {
                 phoneNumber: data.phoneNumber,
-                scope: [data.scope],
+                scope: data.scope,
                 id: data._id,
                 password_changed_at: data.password_changed_at
             };
             return {message: STRING.SIGNIN_SUCCESSFULLY, token: sign(tokenData, JWT_PRIVATE_KEY),
                 user: {
                     phoneNumber: data.phoneNumber,
-                    name: data.name
+                    name: data.name,
+                    isAdmin: data.scope.includes('admin')
                 }};
         } catch (error) {
             Logger.error(`${error}`);

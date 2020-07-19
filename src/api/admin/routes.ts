@@ -25,9 +25,9 @@ export default class Routes {
                     method: 'POST',
                     path: '/api/v1/admin/signin',
                     options: {
-                      /*  pre:[
+                        pre:[
                             { method: PublicHandler.validateCaptchaPayload, assign: 'captcha' }
-                        ],*/
+                        ],
                         handler: Handler.signin,
                         validate: Validate.signin,
                         description: STRING.SIGNIN,

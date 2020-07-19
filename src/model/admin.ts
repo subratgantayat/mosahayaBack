@@ -26,13 +26,6 @@ const schema: Schema = new Schema(
             select: false
         },
         scope: {
-            type: String,
-            enum: ['admin'],
-            required: true,
-            default: 'admin',
-            select: false
-        },
-     /*   scope: {
             type: [{
                 type: String,
                 enum: ['company','admin']
@@ -40,16 +33,11 @@ const schema: Schema = new Schema(
             required: true,
             default: ['company'],
             select: false
-        },*/
+        },
         active: {
             type: Boolean,
             required: true,
             default: true
-        },
-        verified: {
-            type: Boolean,
-            required: true,
-            default: false
         },
         password_changed_at: {
             type: Date,

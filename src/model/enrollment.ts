@@ -24,7 +24,7 @@ const schema: Schema = new Schema(
                 trim: true,
                 minlength:1,
                 maxlength:1000,
-                match:/^[a-zA-Z ,&.'-]+$/
+                match:/^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i
             },
             gender:{
                 type: String,
@@ -58,39 +58,61 @@ const schema: Schema = new Schema(
                 trim: true,
                 minlength:1,
                 maxlength:100000,
-                match:/^[\x20-\x7E\x0D\x0A]+$/
+                match:/^[\x20-\x7E\s]+$/
             }
         },
         skillData:{
-            skills:{
-                type: [String],
-                required: true,
-                enum: KeyvalueConfig.getValueArray('skills')
-            },
-            skillsOther:{
-                type: String,
-                trim: true,
-                minlength:1,
-                maxlength:10000,
-                match:/^[a-zA-Z0-9 ,.'-]+$/
-            },
             sectors:{
-                type: [String],
-                required: true,
-                enum: KeyvalueConfig.getValueArray('sectors')
+                type: [
+                    {
+                        type: String,
+                        required: true,
+                        enum: KeyvalueConfig.getValueArray('skillsBySector')
+                    }
+                ],
+                required: true
             },
             sectorsOther:{
-                type: String,
-                trim: true,
-                minlength:1,
-                maxlength:10000,
-                match:/^[\x20-\x7E]+$/
+                type: [
+                    {
+                        type: String,
+                        required: true,
+                        trim: true,
+                        minlength:1,
+                        maxlength:10000,
+                        match:/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                    }
+                ]
+            },
+            skills:{
+                type: [
+                    {
+                        type: String,
+                        required: true,
+                        validate (v) {
+                            return KeyvalueConfig.getSkillArray(this.skillData.sectors).includes(v);
+                        }
+                    }
+                ],
+                required: true
+            },
+            skillsOther:{
+                type: [
+                    {
+                        type: String,
+                        required: true,
+                        trim: true,
+                        minlength:1,
+                        maxlength:10000,
+                        match:/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                    }
+                ]
             },
             experience: {
                 expYear: {
                     type: Number,
                     min:0,
-                    max:150
+                    max:149
                 },
                 expMonth: {
                     type: Number,
@@ -98,49 +120,88 @@ const schema: Schema = new Schema(
                     max:11
                 }
             },
+            experienceInMonth: {
+                type: Number,
+                min:0,
+                max:1800
+            },
             education:{
                 type: String,
                 required: true,
                 enum: KeyvalueConfig.getValueArray('education')
             },
             preferredLocations:{
-                type: [String],
-                required: true,
-                enum: CityConfig.getCityArray()
+                type: [
+                    {
+                        type: String,
+                        enum: CityConfig.getCityArray(),
+                        required: true
+                    }
+                ],
+                required: true
             },
             preferredLocationsOther:{
-                type: String,
-                trim: true,
-                minlength:1,
-                maxlength:10000
+                type: [
+                    {
+                        type: String,
+                        required: true,
+                        trim: true,
+                        minlength:1,
+                        maxlength:10000,
+                        match:/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                    }
+                ]
             },
             otherInfo:{
                 type: String,
                 trim: true,
                 minlength:1,
-                maxlength:100000
+                maxlength:100000,
+                match:/^[\x20-\x7E\s]+$/
             }
         },
         healthData:{
             currentCondition:{
-                type: [String],
-                enum: KeyvalueConfig.getValueArray('currentCondition')
+                type: [
+                    {
+                        type: String,
+                        required: true,
+                        enum: KeyvalueConfig.getValueArray('currentCondition')
+                    }
+                ]
             },
             currentConditionOther:{
-                type: String,
-                trim: true,
-                minlength:1,
-                maxlength:10000
+                type: [
+                    {
+                        type: String,
+                        required: true,
+                        trim: true,
+                        minlength:1,
+                        maxlength:10000,
+                        match:/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                    }
+                ]
             },
             symptoms:{
-                type: [String],
-                enum: KeyvalueConfig.getValueArray('symptoms')
+                type: [
+                    {
+                        type: String,
+                        required: true,
+                        enum: KeyvalueConfig.getValueArray('symptoms')
+                    }
+                ]
             },
             symptomsOther:{
-                type: String,
-                trim: true,
-                minlength:1,
-                maxlength:10000
+                type: [
+                    {
+                        type: String,
+                        required: true,
+                        trim: true,
+                        minlength:1,
+                        maxlength:10000,
+                        match:/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                    }
+                ]
             }
         }
     },

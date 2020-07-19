@@ -8,38 +8,40 @@ export default {
             'g-recaptcha-response':Joi.string().required().trim().min(1).max(10000),
             generalData:Joi.object().keys({
                 registerBy:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('registerBy')),
-                name:Joi.string().required().trim().min(1).max(1000).pattern(/^[\x20-\x7E]+$/),
+                name:Joi.string().required().trim().min(1).max(1000).pattern(/^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i),
                 age:Joi.number().required().integer().min(1).max(150),
                 gender:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('gender')),
                 mobileNumber:Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/),
                 pinCode:Joi.string().required().trim().length(6).pattern(/^([1-9])([0-9]){5}$/),
-                address:Joi.string().trim().min(1).max(100000).pattern(/^[\x20-\x7E\x0D\x0A]+$/)
+                address:Joi.string().trim().min(1).max(100000).pattern(/^[\x20-\x7E\s]+$/)
             }).required(),
             skillData:Joi.object().keys({
-                skills:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('skills'))),
-                skillsOther:Joi.string().trim().min(1).max(10000).pattern(/^[\x20-\x7E]+$/),
-                sectors:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('sectors'))),
-                sectorsOther:Joi.string().trim().min(1).max(10000).pattern(/^[\x20-\x7E]+$/),
+                sectors:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('skillsBySector'))),
+                sectorsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
+                skills:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid((Joi.in('...', {
+                    adjust: (value) => {return KeyvalueConfig.getSkillArray(value.sectors);}
+                })))),
+                skillsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
                 experience: Joi.object().keys({
                     expYear:Joi.number().integer().min(0).max(150),
                     expMonth:Joi.number().integer().min(0).max(11)
                 }),
                 education:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('education')),
                 preferredLocations:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...CityConfig.getCityArray())),
-                preferredLocationsOther:Joi.string().trim().min(1).max(10000).pattern(/^[\x20-\x7E]+$/),
-                otherInfo:Joi.string().trim().min(1).max(100000).pattern(/^[\x20-\x7E\x0D\x0A]+$/)
+                preferredLocationsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
+                otherInfo:Joi.string().trim().min(1).max(100000).pattern(/^[\x20-\x7E\s]+$/)
             }).required(),
             healthData:Joi.object().keys({
                 currentCondition:Joi.array().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('currentCondition'))),
-                currentConditionOther:Joi.string().trim().min(1).max(10000).pattern(/^[\x20-\x7E]+$/),
+                currentConditionOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
                 symptoms:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('symptoms'))),
-                symptomsOther:Joi.string().trim().min(1).max(10000).pattern(/^[\x20-\x7E]+$/)
+                symptomsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i))
             })
         }).required()
     },
     findall: {
         query: Joi.object().keys({
-           /* 'g-recaptcha-response':Joi.string().required().trim().min(1).max(10000),*/
+            'g-recaptcha-response':Joi.string().required().trim().min(1).max(10000),
             page: Joi.number().integer().min(0).max(500000).required(),
             limit: Joi.number().integer().positive().min(1).max(1000).required(),
             skills:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('skills'))).single(),

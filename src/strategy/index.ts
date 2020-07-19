@@ -11,12 +11,12 @@ export default class Strategies {
             const user: any  = await modal.findOne({
                 _id: decoded.id,
                 phoneNumber: decoded.phoneNumber,
-                active: true
-            }).select( 'password_changed_at verified');
+                active: true,
+                scope:decoded.scope
+            }).select( 'password_changed_at');
             if (!user || !(decoded.password_changed_at === (user.password_changed_at).toISOString())) {
                 return { isValid: false };
             }
-            request.verified = user.verified;
             return { isValid: true };
         }
         catch(error){
