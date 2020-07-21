@@ -3,21 +3,22 @@ import * as Hapi from '@hapi/hapi';
 import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
 import Controller from './controller';
-import * as RP from 'request-promise';
 import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Utils from '../../helper/utils';
+const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 
 const STRING = EXTERNALIZED_STRING.enrollment;
-const CAPTCHA_SECRET_KEY = Utils.getEnvVariable('CAPTCHA_SECRET_KEY', true);
 
 
 export default class Handler {
 
     public static create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            const captchaResponse: any = request.pre.captcha;
-            if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
-                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
+            if (NODE_ENV === 'development') {
+                const captchaResponse: any = request.pre.captcha;
+                if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
+                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
+                }
             }
             const payload: any = request.payload;
             const data: any = await Controller.create(payload, 7);
@@ -30,9 +31,11 @@ export default class Handler {
 
     public static viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            const captchaResponse: any = request.pre.captcha;
-            if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
-                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
+            if (NODE_ENV === 'development') {
+                const captchaResponse: any = request.pre.captcha;
+                if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
+                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
+                }
             }
             const modal: Model<any> = connection.model('enrollment');
             const data: any = await modal.findOne({enrollmentId: request.params.id}).exec();

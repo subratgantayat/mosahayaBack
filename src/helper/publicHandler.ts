@@ -4,12 +4,19 @@ import * as RP from 'request-promise';
 import * as Boom from '@hapi/boom';
 import Utils from './utils';
 import EXTERNALIZED_STRING from '../assets/string-constants';
+const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 const CAPTCHA_SECRET_KEY: string = Utils.getEnvVariable('CAPTCHA_SECRET_KEY', true);
 const captchaUrl: string = 'https://www.google.com/recaptcha/api/siteverify?secret=' + CAPTCHA_SECRET_KEY;
 
 const validateCaptcha = async (captcha: string, remoteAddress: string): Promise<any> =>{
     const verificationURL = captchaUrl + '&response=' + captcha + '&remoteip=' + remoteAddress;
     try {
+        if (NODE_ENV === 'development') {
+            return {
+                action:'demo',
+                score: 0.9
+            };
+        }
         let body: any = await RP(verificationURL);
         body = JSON.parse(body);
         if (!(body && body.success)) {

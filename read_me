@@ -1,3 +1,37 @@
+How to run the project
+1. install node js and run 'npm install'
+2. create a .env file in project root folder and copy .env_test content to this.  /  or rename .env_test to .env
+3. install mongodb and fill DB_USERNAME and DB_PASSWORD in .env file
+// if your local version of mongodb do not require username and password leave the DB_USERNAME and DB_PASSWORD part empty in .env file
+// check the connection string for mondodb in path src/db/index.ts line no 38
+           if (NODE_ENV === 'development') {
+                await connect('mongodb://' + Config.database.username + ':' + Config.database.password + '@' + Config.database.host + ':' + Config.database.port + '/' + Config.database.name + '?authSource=admin',
+                    Config.databaseOptions as ConnectionOptions
+                );
+            }
+// if your connection donot require username and password, it should be
+           if (NODE_ENV === 'development') {
+                await connect('mongodb://' + Config.database.host + ':' + Config.database.port + '/' + Config.database.name,
+                    Config.databaseOptions as ConnectionOptions
+                );
+            }
+// if you username and password to connect with mongodb and auth source is not admin db, it should be
+
+                       if (NODE_ENV === 'development') {
+                             await connect('mongodb://' + Config.database.username + ':' + Config.database.password + '@' + Config.database.host + ':' + Config.database.port + '/' + Config.database.name,
+                                              Config.databaseOptions as ConnectionOptions
+                                          );
+                       }
+
+4. run 'npm run dev'
+
+
+
+
+
+
+
+/***** OTHERS********/
 406  for validation notAcceptable
 
 422 for mongoose validation  badData

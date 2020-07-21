@@ -2,14 +2,14 @@ import * as Boom from '@hapi/boom';
 import * as Hapi from '@hapi/hapi';
 import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
-import KeyValueConfig from '../../config/keyvalueConfig';
-
 import {OAuth2Client} from 'google-auth-library';
+import KeyValueConfig from '../../config/keyvalueConfig';
+/*import MakeskillsectorNew from '../../config/makeskillsectorNew';
 import UploadData from '../../config/uploadData';
 import CityConfig from '../../config/cityConfig';
 import Makeskillsector from '../../config/makeskillsector';
 import Verifycountry from '../../config/verifycountry';
-import Verifyenjson from '../../config/verifyenjson';
+import Verifyenjson from '../../config/verifyenjson';*/
 
 import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Utils from '../../helper/utils';
@@ -22,31 +22,32 @@ export default class Handler {
 
     public static keyValue = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-             // return KeyValueConfig.keyvalue;
+            return KeyValueConfig.keyvalue;
            // return CityConfig.getCityArray1();
             // return Makeskillsector.getSector();
-            return Makeskillsector.getSkillSector();
+           // return Makeskillsector.getSkillSector();
             //  return Makeskillsector.getSkill();
             //  return Verifycountry.verifyUniqueDistrict();
             //  return Verifyenjson.verifyEn('hi');
+           // return MakeskillsectorNew.makeSkillSector();
         } catch (error) {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);
         }
     };
 
-    public static addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+ /*   public static addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            /*await UploadData.verifySkill();
-            return 'ok';*/
-          /*  const res: any = await UploadData.verifyEmployee();*/
+            /!*await UploadData.verifySkill();
+            return 'ok';*!/
+          /!*  const res: any = await UploadData.verifyEmployee();*!/
             const res: any = await UploadData.makeEmployee();
             return res;
         } catch (error) {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);
         }
-    };
+    };*/
 
     public static messaging = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
@@ -104,6 +105,7 @@ export default class Handler {
 
     public static viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
+            console.log('a2');
             const modal: Model<any> = connection.model('registration');
             const query: any = request.query;
             query.dob = new Date(query.dob).setHours(0, 0, 0, 0);

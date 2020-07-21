@@ -1,7 +1,6 @@
 import {PubSub} from '@google-cloud/pubsub';
 import Logger from '../helper/logger';
 import Utils from '../helper/utils';
-
 const TOPIC_NAME: string = Utils.getEnvVariable('TOPIC_NAME', true);
 const pubSub: PubSub=  new PubSub();
 
