@@ -8,13 +8,17 @@ import employee from '../model/employee';
 import skill from '../model/skill';
 import employer from '../model/employer';
 import Utils from '../helper/utils';
+import * as Mongoose from 'mongoose';
+import * as Bluebird from 'bluebird';
 
 const NODE_ENV = Utils.getEnvVariable('NODE_ENV', false);
 
 export default class Db {
     public static  connect = async (): Promise<void> => {
         try {
+            (Mongoose as any).Promise = Bluebird;
             connection.setMaxListeners(0);
+
             connection.on('error', (err) => {
                 Logger.error('MongoDB event error: ${error}');
             });

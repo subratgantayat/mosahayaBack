@@ -13,7 +13,7 @@ export default class Strategies {
                 phoneNumber: decoded.phoneNumber,
                 active: true,
                 scope:decoded.scope
-            }).select( 'password_changed_at');
+            }).select( 'password_changed_at').exec();
             if (!user || !(decoded.password_changed_at === (user.password_changed_at).toISOString())) {
                 return { isValid: false };
             }
@@ -33,7 +33,7 @@ export default class Strategies {
                 phoneNumber: decoded.phoneNumber,
                 active: true,
                 scope:decoded.scope
-            }).select( 'password_changed_at');
+            }).select( 'password_changed_at').exec();
             if (!user || !(decoded.password_changed_at === (user.password_changed_at).toISOString())) {
                 return { isValid: false };
             }

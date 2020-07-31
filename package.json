@@ -27,6 +27,7 @@
     "@hapi/joi": "^17.1.1",
     "@hapi/vision": "^6.0.0",
     "bcrypt": "^4.0.1",
+    "bluebird": "^3.7.2",
     "csv-parser": "^2.3.3",
     "good": "^8.1.2",
     "good-console": "^8.0.0",

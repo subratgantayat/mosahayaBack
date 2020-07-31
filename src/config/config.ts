@@ -40,5 +40,9 @@ export default {
         keepAlive: true,
         keepAliveInitialDelay: 300000,
         connectTimeoutMS: 120000
+    },
+    appVersion:{
+        softWorker:'1.0.1',
+        hardWorker:'1.0.1'
     }
 };

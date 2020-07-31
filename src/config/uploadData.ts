@@ -1,6 +1,7 @@
 import {createReadStream} from 'fs';
 import * as Csv from 'csv-parser';
 import {connection, Model} from 'mongoose';
+import KeyvalueConfig from '../config/keyvalueConfig';
 
 const verifySkill = async (): Promise<void> => {
     return new Promise((resolve, reject) => {
@@ -38,42 +39,41 @@ const makeEmployee = async (): Promise<any> => {
             createReadStream('./dataupload/agra1.csv')
                 .pipe(Csv())
                 .on('data', async (row) => {
-                        try {
-                            const newModal: any = new employeeModal({name: row.name.toLowerCase()});
-                            newModal.state= 'uttar pradesh';
-                            if(row.city){
-                                newModal.city = row.city.toLowerCase();
-                            }
-                            if(row.district){
-                                newModal.district = row.district.toLowerCase();
-                            }
-                            if(row.adress){
-                                newModal.address = row.adress;
-                            }
-                            newModal.contactNo = row.contactNo;
-                            newModal.uploadRef = 'upload1';
-                            const skills: any[] =[];
-                            try {
-                                row.skills = JSON.parse(row.skills);
-                               for(const skill of row.skills)
-                               {
-                                   const s= await modal.findOne({name: skill.toLowerCase()}).exec();
-                                   skills.push({
-                                       name: skill.toLowerCase(),
-                                       link: s._id
-                                   });
-                               }
-                            } catch (e) {
-                                console.log('skills parse error');
-                                console.log(`Error in upper: ${JSON.stringify(row)}`);
-                                console.error(e);
-                            }
-                            newModal.skills = skills;
-                            await newModal.save();
-                        } catch (err) {
-                            console.log(`Error in: ${JSON.stringify(row)}`);
-                            console.error(err);
+                    try {
+                        const newModal: any = new employeeModal({name: row.name.toLowerCase()});
+                        newModal.state = 'uttar pradesh';
+                        if (row.city) {
+                            newModal.city = row.city.toLowerCase();
                         }
+                        if (row.district) {
+                            newModal.district = row.district.toLowerCase();
+                        }
+                        if (row.adress) {
+                            newModal.address = row.adress;
+                        }
+                        newModal.contactNo = row.contactNo;
+                        newModal.uploadRef = 'upload1';
+                        const skills: any[] = [];
+                        try {
+                            row.skills = JSON.parse(row.skills);
+                            for (const skill of row.skills) {
+                                const s = await modal.findOne({name: skill.toLowerCase()}).exec();
+                                skills.push({
+                                    name: skill.toLowerCase(),
+                                    link: s._id
+                                });
+                            }
+                        } catch (e) {
+                            console.log('skills parse error');
+                            console.log(`Error in upper: ${JSON.stringify(row)}`);
+                            console.error(e);
+                        }
+                        newModal.skills = skills;
+                        await newModal.save();
+                    } catch (err) {
+                        console.log(`Error in: ${JSON.stringify(row)}`);
+                        console.error(err);
+                    }
                 })
                 .on('end', () => {
                     resolve('ok');
@@ -112,12 +112,10 @@ const verifyEmployee = async (): Promise<any> => {
                     } else if (row.address && !(row.address.length > 0 && row.address.length < 100000)) {
                         console.log('address error');
                         clean = false;
-                    }
-                      else if(! (row.contactNo && row.contactNo.length===10 && /^[6-9]+[0-9]+$/.test(row.contactNo) )){
-                             console.log('contactNo error');
-                          clean = false;
-                      }
-                    else if (!row.skills) {
+                    } else if (!(row.contactNo && row.contactNo.length === 10 && /^[6-9]+[0-9]+$/.test(row.contactNo))) {
+                        console.log('contactNo error');
+                        clean = false;
+                    } else if (!row.skills) {
                         console.log('skills error');
                         clean = false;
                     } else {
@@ -132,12 +130,12 @@ const verifyEmployee = async (): Promise<any> => {
                             clean = false;
                         }
                     }
-                    if(clean){
+                    if (clean) {
                         for (const skill of row.skills) {
                             try {
                                 const res: any = await modal.findOne({name: skill.toLowerCase()}).exec();
                                 if (!res) {
-                                    console.log('skill not found '+ skill );
+                                    console.log('skill not found ' + skill);
                                     clean = false;
                                 }
                             } catch (err) {
@@ -167,8 +165,139 @@ const verifyEmployee = async (): Promise<any> => {
     });
 };
 
+const changeSector = async (): Promise<any> => {
+    return new Promise(async (resolve, reject): Promise<any> => {
+        try {
+            const modal: any = connection.model('enrollment');
+            const result: any = await modal.find(
+                {
+                    $or: [
+                        {'skillData.sectors': 'auto sales, service & operations'},
+                        {'skillData.sectors': 'domestic help'}
+                    ]
+                }
+            ).exec();
+            for (const item of result) {
+                let f = false;
+                const index = item.skillData.sectors.indexOf('auto sales, service & operations');
+                if (index !== -1) {
+                    item.skillData.sectors[index] = 'automobile';
+                    f = true;
+                }
+                const index1 = item.skillData.sectors.indexOf('domestic help');
+                if (index1 !== -1) {
+                    item.skillData.sectors[index1] = 'home services';
+                    f = true;
+                }
+                if (f) {
+                    // console.log(item.skillData.sectors);
+                    item.markModified('skillData.sectors');
+                    await item.save();
+                }
+            }
+            return resolve('done');
+        } catch (error) {
+            console.error(error);
+            return reject();
+        }
+    });
+};
+const changeAdmin = async (): Promise<any> => {
+    return new Promise(async (resolve, reject): Promise<any> => {
+        try {
+            const modal: any = connection.model('admin');
+            const result: any = await modal.find(
+            ).exec();
+            for (const item of result) {
+                item.scope = ['company'];
+                if (item.verified) {
+                    item.scope.push('admin');
+                }
+                item.verified = undefined;
+              //  item.markModified('verified');
+                console.log(item);
+                await item.save();
+            }
+            return resolve('done');
+        } catch (error) {
+            console.error(error);
+            return reject();
+        }
+    });
+};
+const verifyOthers = async (): Promise<any> => {
+    return new Promise(async (resolve, reject): Promise<any> => {
+        try {
+            const modal: any = connection.model('enrollment');
+            const result: any = await modal.find(
+                {
+                    $or: [
+                        {'skillData.sectorsOther': {$exists: 1}},
+                        {'skillData.skillsOther': {$exists: 1}},
+                        {'skillData.preferredLocationsOther': {$exists: 1}},
+                        {'healthData.symptomsOther': {$exists: 1}},
+                        {'healthData.currentConditionOther': {$exists: 1}}
+                    ]
+                }
+            ).exec();
+            /*       const allSectors: any[] = KeyvalueConfig.getValueArray('skillsBySector');
+                   const allSkills: any[] = KeyvalueConfig.getSkillArray();*/
+            const r = [];
+            const s = [];
+            for (const item of result) {
+                /* for (const sec of item.skillData.sectors) {
+                     if (!allSectors.includes(sec)) {
+                         if (!r.includes(sec)) {
+                             r.push(sec);
+                         }
+                     }
+                 }
+                 for (const ski of item.skillData.skills) {
+                     if (!allSkills.includes(ski)) {
+                         if (!s.includes(ski)) {
+                             s.push(ski);
+                         }
+                     }
+                 }*/
+                for (const i of ['skillData.sectorsOther', 'skillData.skillsOther', 'skillData.preferredLocationsOther', 'healthData.symptomsOther', 'healthData.currentConditionOther']) {
+                    if (item[i.split('.')[0]] && item[i.split('.')[0]][i.split('.')[1]]) {
+                        let work = item[i.split('.')[0]][i.split('.')[1]];
+                        work = work.split(',');
+                        work = work.filter(function (el) {
+                            return el !== '';
+                        });
+                        work = work.map(function (el) {
+                            return el.trim();
+                        });
+                        item[i.split('.')[0]][i.split('.')[1]] = work;
+                        /* {
+                             for (const p of work) {
+                                 if (!(p && /^[a-z0-9]+([\sa-z0-9@&%:'./()_-])*$/i.test(p))) {
+                                     console.log(p);
+                                 }
+                             }
+
+                         }*/
+                    }
+                }
+                // console.log(item);
+                await item.save();
+            }
+            console.log(r);
+            console.log(s);
+            return resolve('done');
+        } catch (error) {
+            console.error(error);
+            return reject();
+        }
+    });
+};
+
 export default {
     verifySkill,
     makeEmployee,
-    verifyEmployee
+    verifyEmployee,
+    verifyOthers,
+    changeSector,
+    changeAdmin
 };

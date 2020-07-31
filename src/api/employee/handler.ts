@@ -11,7 +11,7 @@ export default class Handler {
 
     public static search = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            if (NODE_ENV === 'development') {
+            if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
                 if (!(captchaResponse.action === 'employee_search' && captchaResponse.score >= 0)) {
                     return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
@@ -70,7 +70,7 @@ export default class Handler {
 
     public static findlimit = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            if (NODE_ENV === 'development') {
+            if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
                 if (!(captchaResponse.action === 'employee_download' && captchaResponse.score >= 0)) {
                     return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);

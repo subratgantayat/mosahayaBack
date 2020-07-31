@@ -36,12 +36,12 @@ export default class Handler {
         }
     };
 
- /*   public static addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+  /*  public static addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             /!*await UploadData.verifySkill();
             return 'ok';*!/
           /!*  const res: any = await UploadData.verifyEmployee();*!/
-            const res: any = await UploadData.makeEmployee();
+            const res: any = await UploadData.changeAdmin();
             return res;
         } catch (error) {
             Logger.error(`${error}`);
@@ -105,7 +105,6 @@ export default class Handler {
 
     public static viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            console.log('a2');
             const modal: Model<any> = connection.model('registration');
             const query: any = request.query;
             query.dob = new Date(query.dob).setHours(0, 0, 0, 0);

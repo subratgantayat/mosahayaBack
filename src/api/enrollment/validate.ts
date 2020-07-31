@@ -18,9 +18,7 @@ export default {
             skillData:Joi.object().keys({
                 sectors:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('skillsBySector'))),
                 sectorsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
-                skills:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid((Joi.in('...', {
-                    adjust: (value) => {return KeyvalueConfig.getSkillArray(value.sectors);}
-                })))),
+                skills:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getSkillArray())),
                 skillsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
                 experience: Joi.object().keys({
                     expYear:Joi.number().integer().min(0).max(150),
@@ -44,9 +42,9 @@ export default {
             'g-recaptcha-response':Joi.string().required().trim().min(1).max(10000),
             page: Joi.number().integer().min(0).max(500000).required(),
             limit: Joi.number().integer().positive().min(1).max(1000).required(),
-            skills:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('skills'))).single(),
+            skills:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getSkillArray())).single(),
             skillsOther:Joi.array().min(0).max(1000).items(Joi.string().required()).single(),
-            sectors:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('sectors'))).single(),
+            sectors:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('skillsBySector'))).single(),
             sectorsOther:Joi.array().min(0).max(1000).items(Joi.string().required()).single(),
             preferredLocations:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...CityConfig.getCityArray())).single(),
             preferredLocationsOther:Joi.array().min(0).max(1000).items(Joi.string().required()).single(),

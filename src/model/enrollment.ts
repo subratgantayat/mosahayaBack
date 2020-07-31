@@ -89,9 +89,7 @@ const schema: Schema = new Schema(
                     {
                         type: String,
                         required: true,
-                        validate (v) {
-                            return KeyvalueConfig.getSkillArray(this.skillData.sectors).includes(v);
-                        }
+                        enum: KeyvalueConfig.getSkillArray()
                     }
                 ],
                 required: true

@@ -48,7 +48,7 @@ export default class Handler {
 
     public static signin = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            if (NODE_ENV === 'development') {
+            if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
                 if (!(captchaResponse.action === 'employee_signin' && captchaResponse.score >= 0.4)) {
                     return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
@@ -56,7 +56,7 @@ export default class Handler {
             }
             const payload: any = request.payload;
             const modal: Model<any> = connection.model('employer');
-            const data: any =  await modal.findOne({phoneNumber:payload.phoneNumber}).select('password name phoneNumber scope password_changed_at');
+            const data: any =  await modal.findOne({phoneNumber:payload.phoneNumber}).select('password name phoneNumber scope password_changed_at').exec();
             if(!(data &&  Utils.comparePassword(payload.password, data.password))){
                 return Boom.badData(STRING.INVALID_LOGIN);
             }

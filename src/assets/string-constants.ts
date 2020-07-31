@@ -14,7 +14,8 @@ const stringConstants: any = {
         HEALTH_CHECK: 'Method that returns server\'s health'
     },
     file: {
-        FILE: 'Method that returns static files'
+        FILE: 'Method that returns static files',
+        APP_VERSION:'App version'
     },
     registration:{
         CREATE:'Method to register',

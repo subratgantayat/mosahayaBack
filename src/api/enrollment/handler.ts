@@ -14,7 +14,7 @@ export default class Handler {
 
     public static create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            if (NODE_ENV === 'development') {
+            if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
                 if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
                     return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
@@ -31,7 +31,7 @@ export default class Handler {
 
     public static viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            if (NODE_ENV === 'development') {
+            if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
                 if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
                     return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
@@ -54,10 +54,12 @@ export default class Handler {
 
     public static findall = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-           /* const captchaResponse: any = request.pre.captcha;
-            if (!(captchaResponse.action === 'enrollment_search' && captchaResponse.score >= 0)) {
-                return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
-            }*/
+            if (NODE_ENV !== 'development') {
+                const captchaResponse: any = request.pre.captcha;
+                if (!(captchaResponse.action === 'enrollment_search' && captchaResponse.score >= 0)) {
+                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
+                }
+            }
             if (request.query.expFrom && request.query.expTo && (request.query.expFrom > request.query.expTo)) {
                 return Boom.badData('Experience from can not be more than experience to');
             }
@@ -68,6 +70,7 @@ export default class Handler {
             if (request.query.createdAtFrom && request.query.createdAtTo && (new Date(request.query.createdAtFrom.toString()).getTime() > new Date(request.query.createdAtTo.toString()).getTime())) {
                 return Boom.badData('Created at from can not be more than Created at to');
             }
+            const admin: boolean = request.auth.credentials && request.auth.credentials.scope && request.auth.credentials.scope.includes('admin');
             const modal: Model<any> = connection.model('enrollment');
             const limit: number = parseInt(request.query.limit.toString(), 10);
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
@@ -133,8 +136,7 @@ export default class Handler {
                 }
             });*/
             let select: string = 'enrollmentId generalData.name generalData.pinCode skillData.skills skillData.preferredLocations';
-            // @ts-ignore
-            if(request.verified){
+            if(admin){
                 select = select + ' generalData.mobileNumber';
             }
             const data: any = await modal.find({$and: andOp}).sort({'createdAt': -1}).skip(skip).limit(limit).select(select).exec();
