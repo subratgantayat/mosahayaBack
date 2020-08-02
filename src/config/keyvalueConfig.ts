@@ -4031,94 +4031,6 @@ const keyvalue: any = {
             'value':'agriculture',
             'skills':[
                 {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
-                {
                     'name':'Config.Skills.agriculturalMachineryOperator',
                     'value':'agricultural machinery operator'
                 },
@@ -4181,10 +4093,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.tractorMechanic',
                     'value':'tractor mechanic'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -4192,94 +4100,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.automobile',
             'value':'automobile',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.automotiveSalesConsultant',
                     'value':'automotive sales consultant'
@@ -4319,10 +4139,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.mechanicAutoElectrical&Electronics',
                     'value':'mechanic auto electrical & electronics'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -4330,94 +4146,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.banking,FinancialServices&Insurance',
             'value':'banking, financial services & insurance',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.businessCorrespondent&Facilitator',
                     'value':'business correspondent & facilitator'
@@ -4465,10 +4193,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.mutualFundAgent',
                     'value':'mutual fund agent'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -4476,94 +4200,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.beautyAndWellness',
             'value':'beauty and wellness',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.barber',
                     'value':'barber'
@@ -4603,10 +4239,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.yogaInstructor',
                     'value':'yoga instructor'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -4614,94 +4246,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.chemicals&Petrochemicals',
             'value':'chemicals & petrochemicals',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.chemicalEngineer(design)',
                     'value':'chemical engineer (design)'
@@ -4725,10 +4269,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.maintenanceMechanic(chemicalPlant)',
                     'value':'maintenance mechanic (chemical plant)'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -4736,94 +4276,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.construction&RealEstate',
             'value':'construction & real estate',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.architect',
                     'value':'architect'
@@ -4899,10 +4351,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.shutteringCarpenter',
                     'value':'shuttering carpenter'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -4910,94 +4358,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.education&SkillDevelopment',
             'value':'education & skill development',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.educationalContentCreator',
                     'value':'educational content creator'
@@ -5033,10 +4393,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.teacher(vocational&Technical)',
                     'value':'teacher (vocational & technical)'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -5044,94 +4400,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.electronics&ItHardware',
             'value':'electronics & it hardware',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.circuitDesignEngineer',
                     'value':'circuit design engineer'
@@ -5203,10 +4471,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.vlsiDesignEngineer',
                     'value':'vlsi design engineer'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -5214,78 +4478,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.fmcg',
             'value':'fmcg',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.brandManager',
                     'value':'brand manager'
@@ -5313,10 +4505,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.salesManager',
                     'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -5324,94 +4512,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.foodProcessing',
             'value':'food processing',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.agricultureProduceBuyer',
                     'value':'agriculture produce buyer'
@@ -5455,10 +4555,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.pulseProcessingTechnican',
                     'value':'pulse processing technican'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -5466,94 +4562,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.furniture&Furnishing',
             'value':'furniture & furnishing',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.carpenter-WoodenFurniture',
                     'value':'carpenter - wooden furniture'
@@ -5577,10 +4585,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.salesExecutive-Furniture&Fittings',
                     'value':'sales executive - furniture & fittings'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -5588,94 +4592,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.gems&Jewellery',
             'value':'gems & jewellery',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.diamondProcessor',
                     'value':'diamond processor'
@@ -5699,10 +4615,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.jewelleryRetailer',
                     'value':'jewellery retailer'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -5710,94 +4622,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.handicraft',
             'value':'handicraft',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.agarbattiMaker(handicraft)',
                     'value':'agarbatti maker (handicraft)'
@@ -5837,105 +4661,13 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.woodwareMaker(handicraft)',
                     'value':'woodware maker (handicraft)'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
         {
             'name':'Config.Sectors.healthcare&Pharmaceuticals',
-            'value':'health care & pharmaceuticals',
+            'value':'healthcare & pharmaceuticals',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.arogyaMitra',
                     'value':'arogya mitra'
@@ -6019,10 +4751,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.telehealthServicesCoordinator',
                     'value':'telehealth services coordinator'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -6030,94 +4758,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.homeServices',
             'value':'home services',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.caregiver-Newborn&Mother',
                     'value':'caregiver - newborn & mother'
@@ -6181,10 +4821,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.plumber',
                     'value':'plumber'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -6192,94 +4828,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.it&Ites',
             'value':'it & ites',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.associateDataAnalyst',
                     'value':'associate data analyst'
@@ -6379,10 +4927,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.webDeveloper',
                     'value':'web developer'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -6390,94 +4934,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.leather&LeatherGoods',
             'value':'leather & leather goods',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.footwear&AlliedGoodsRepairer',
                     'value':'footwear & allied goods repairer'
@@ -6501,10 +4957,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.shoe&FootwearMaker',
                     'value':'shoe & footwear maker'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -6512,94 +4964,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.logistics&Warehousing',
             'value':'logistics & warehousing',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.cargoEquipmentHandler',
                     'value':'cargo equipment handler'
@@ -6627,10 +4991,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.warehouseAssociate',
                     'value':'warehouse associate'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -6638,94 +4998,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.manufacturing&HeavyEngineering',
             'value':'manufacturing & heavy engineering',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.autocadEngineer',
                     'value':'autocad engineer'
@@ -6877,10 +5149,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.helper(industrial)',
                     'value':'helper (industrial)'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -6888,94 +5156,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.media&Entertainment',
             'value':'media & entertainment',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.actor',
                     'value':'actor'
@@ -7095,10 +5275,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.voiceOverArtist',
                     'value':'voice over artist'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -7106,94 +5282,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.mining',
             'value':'mining',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.blaster',
                     'value':'blaster'
@@ -7249,10 +5337,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.undergroundMiningMachineryOperator(any)',
                     'value':'underground mining machinery operator (any)'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -7260,94 +5344,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.oil&Gas',
             'value':'oil & gas',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.drillingTechnician',
                     'value':'drilling technician'
@@ -7371,10 +5367,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.petroleumEngineer',
                     'value':'petroleum engineer'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -7382,94 +5374,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.power',
             'value':'power',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.electricityMeterTechnician',
                     'value':'electricity meter technician'
@@ -7485,10 +5389,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.electricalEngineer',
                     'value':'electrical engineer'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -7496,94 +5396,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.privateSecurity',
             'value':'private security',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.cctvSupervisor',
                     'value':'cctv supervisor'
@@ -7607,10 +5419,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.securitySupervisor',
                     'value':'security supervisor'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -7618,94 +5426,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.professional&OtherServices',
             'value':'professional & other services',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.astrologer',
                     'value':'astrologer'
@@ -7749,10 +5469,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.socialWorker',
                     'value':'social worker'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -7760,94 +5476,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.retail',
             'value':'retail',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.distributorSalesman',
                     'value':'distributor salesman'
@@ -7883,10 +5511,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.visualMerchandiser',
                     'value':'visual merchandiser'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -7894,94 +5518,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.telecommunication',
             'value':'telecommunication',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.broadbandTechnician',
                     'value':'broadband technician'
@@ -8049,10 +5585,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.wirelessTechnician',
                     'value':'wireless technician'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -8060,94 +5592,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.textile&Apparel',
             'value':'textile & apparel',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.handEmbroiderer',
                     'value':'hand embroiderer'
@@ -8187,10 +5631,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.weavingTechnician',
                     'value':'weaving technician'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -8198,94 +5638,6 @@ const keyvalue: any = {
             'name':'Config.Sectors.tourism,Hospitality&Travel',
             'value':'tourism, hospitality & travel',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
                 {
                     'name':'Config.Skills.bartender',
                     'value':'bartender'
@@ -8337,10 +5689,6 @@ const keyvalue: any = {
                 {
                     'name':'Config.Skills.travelConsultant',
                     'value':'travel consultant'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
                 }
             ]
         },
@@ -8348,99 +5696,102 @@ const keyvalue: any = {
             'name':'Config.Sectors.others',
             'value':'others',
             'skills':[
-                {
-                    'name':'Config.Skills.accountant',
-                    'value':'accountant'
-                },
-                {
-                    'name':'Config.Skills.administrationExecutive',
-                    'value':'administration executive'
-                },
-                {
-                    'name':'Config.Skills.behavioral/MotivationalTrainer',
-                    'value':'behavioral/ motivational trainer'
-                },
-                {
-                    'name':'Config.Skills.brandManager',
-                    'value':'brand manager'
-                },
-                {
-                    'name':'Config.Skills.businessAnalyst',
-                    'value':'business analyst'
-                },
-                {
-                    'name':'Config.Skills.businessDevelopmentManger',
-                    'value':'business development manger'
-                },
-                {
-                    'name':'Config.Skills.dataAnalyst',
-                    'value':'data analyst'
-                },
-                {
-                    'name':'Config.Skills.digitalMarketer',
-                    'value':'digital marketer'
-                },
-                {
-                    'name':'Config.Skills.hrExecutive',
-                    'value':'hr executive'
-                },
-                {
-                    'name':'Config.Skills.hrManager',
-                    'value':'hr manager'
-                },
-                {
-                    'name':'Config.Skills.legalComplianceExecutive',
-                    'value':'legal compliance executive'
-                },
-                {
-                    'name':'Config.Skills.marketingExecutive',
-                    'value':'marketing executive'
-                },
-                {
-                    'name':'Config.Skills.misExecutive',
-                    'value':'mis executive'
-                },
-                {
-                    'name':'Config.Skills.purchaseExecutive/Manager',
-                    'value':'purchase executive/ manager'
-                },
-                {
-                    'name':'Config.Skills.qualityController',
-                    'value':'quality controller'
-                },
-                {
-                    'name':'Config.Skills.receptionist',
-                    'value':'receptionist'
-                },
-                {
-                    'name':'Config.Skills.recruiter',
-                    'value':'recruiter'
-                },
-                {
-                    'name':'Config.Skills.safetyOfficer',
-                    'value':'safety officer'
-                },
-                {
-                    'name':'Config.Skills.salesExecutive',
-                    'value':'sales executive'
-                },
-                {
-                    'name':'Config.Skills.salesManager',
-                    'value':'sales manager'
-                },
-                {
-                    'name':'Config.Skills.strategy/PlanningManager',
-                    'value':'strategy/ planning manager'
-                },
-                {
-                    'name':'Config.Skills.supplyChainManager',
-                    'value':'supply chain manager'
-                },
-                {
-                    'name':'Config.Skills.others',
-                    'value':'others'
-                }
+
             ]
+        }
+    ],
+    commonSkill:[
+        {
+            'name':'Config.Skills.accountant',
+            'value':'accountant'
+        },
+        {
+            'name':'Config.Skills.administrationExecutive',
+            'value':'administration executive'
+        },
+        {
+            'name':'Config.Skills.behavioral/MotivationalTrainer',
+            'value':'behavioral/ motivational trainer'
+        },
+        {
+            'name':'Config.Skills.brandManager',
+            'value':'brand manager'
+        },
+        {
+            'name':'Config.Skills.businessAnalyst',
+            'value':'business analyst'
+        },
+        {
+            'name':'Config.Skills.businessDevelopmentManger',
+            'value':'business development manger'
+        },
+        {
+            'name':'Config.Skills.dataAnalyst',
+            'value':'data analyst'
+        },
+        {
+            'name':'Config.Skills.digitalMarketer',
+            'value':'digital marketer'
+        },
+        {
+            'name':'Config.Skills.hrExecutive',
+            'value':'hr executive'
+        },
+        {
+            'name':'Config.Skills.hrManager',
+            'value':'hr manager'
+        },
+        {
+            'name':'Config.Skills.legalComplianceExecutive',
+            'value':'legal compliance executive'
+        },
+        {
+            'name':'Config.Skills.marketingExecutive',
+            'value':'marketing executive'
+        },
+        {
+            'name':'Config.Skills.misExecutive',
+            'value':'mis executive'
+        },
+        {
+            'name':'Config.Skills.purchaseExecutive/Manager',
+            'value':'purchase executive/ manager'
+        },
+        {
+            'name':'Config.Skills.qualityController',
+            'value':'quality controller'
+        },
+        {
+            'name':'Config.Skills.receptionist',
+            'value':'receptionist'
+        },
+        {
+            'name':'Config.Skills.recruiter',
+            'value':'recruiter'
+        },
+        {
+            'name':'Config.Skills.safetyOfficer',
+            'value':'safety officer'
+        },
+        {
+            'name':'Config.Skills.salesExecutive',
+            'value':'sales executive'
+        },
+        {
+            'name':'Config.Skills.salesManager',
+            'value':'sales manager'
+        },
+        {
+            'name':'Config.Skills.strategy/PlanningManager',
+            'value':'strategy/ planning manager'
+        },
+        {
+            'name':'Config.Skills.supplyChainManager',
+            'value':'supply chain manager'
+        },
+        {
+            'name':'Config.Skills.others',
+            'value':'others'
         }
     ]
 };
@@ -8459,7 +5810,14 @@ const getSkillArray = (): string[] => {
     const returnValue: string[] = [];
     for (const sec of keyvalue.skillsBySector) {
         for (const skill of sec.skills) {
-            returnValue.push(skill.value);
+            if(!returnValue.some((s:any) => s.value === skill.value)){
+                returnValue.push(skill.value);
+            }
+        }
+    }
+    for (const sk of keyvalue.commonSkill) {
+        if(!returnValue.some((s:any) => s.value === sk.value)){
+            returnValue.push(sk.value);
         }
     }
     return returnValue;

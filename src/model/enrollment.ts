@@ -34,8 +34,8 @@ const schema: Schema = new Schema(
             age:{
                 type: Number,
                 required: true,
-                min:1,
-                max:150
+                min:14,
+                max:80
             },
             mobileNumber:{
                 type: String,

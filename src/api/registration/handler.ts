@@ -29,7 +29,7 @@ export default class Handler {
             //  return Makeskillsector.getSkill();
             //  return Verifycountry.verifyUniqueDistrict();
             //  return Verifyenjson.verifyEn('hi');
-           // return MakeskillsectorNew.makeSkillSector();
+            // return MakeskillsectorNew.makeSkillSector();
         } catch (error) {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);

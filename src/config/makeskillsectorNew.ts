@@ -31,7 +31,7 @@ const makeSkillSector = async (): Promise<any> => {
                             value: row.Skill
                         };
                         if (row.Sector === 'All sectors') {
-                            all.unshift(itemSkill);
+                            all.push(itemSkill);
                             return;
                         }
                         row.Sector = row.Sector.trim().toLowerCase();
@@ -76,11 +76,11 @@ const makeSkillSector = async (): Promise<any> => {
                             skills:[]
                         }
                     );
-                    for (const i of sectors) {
-                        i.skills.push({
-                            name: 'Config.Skills.others',
-                            value:'others'
-                        });
+                    all.push({
+                        name: 'Config.Skills.others',
+                        value:'others'
+                    });
+                 /*   for (const i of sectors) {
                         for (const d of all) {
                             let f: boolean = false;
                             for (const j of i.skills) {
@@ -90,13 +90,17 @@ const makeSkillSector = async (): Promise<any> => {
                                 }
                             }
                             if (!f) {
-                                i.skills.unshift(d);
+                                i.skills.push(d);
                             }
                         }
-                    }
+                        i.skills.push({
+                            name: 'Config.Skills.others',
+                            value:'others'
+                        });
+                    }*/
                     seci18.others = 'Others';
                     skilli18.others = 'Others';
-                    resolve({sectors, seci18, skilli18});
+                    resolve({sectors, seci18, skilli18,all});
                 })
                 .on('error', (err) => {
                     console.error(err);
