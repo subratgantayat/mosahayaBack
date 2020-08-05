@@ -10,11 +10,13 @@ import employer from '../model/employer';
 import Utils from '../helper/utils';
 import * as Mongoose from 'mongoose';
 import * as Bluebird from 'bluebird';
-
+import businessUser from '../model/business/businessUser';
+import project from '../model/business/project';
+import test1 from '../model/test1';
 const NODE_ENV = Utils.getEnvVariable('NODE_ENV', false);
 
-export default class Db {
-    public static  connect = async (): Promise<void> => {
+class Db {
+    public connect = async (): Promise<void> => {
         try {
             (Mongoose as any).Promise = Bluebird;
             connection.setMaxListeners(0);
@@ -49,20 +51,25 @@ export default class Db {
             }
 
         } catch (error) {
-            Logger.error(`Error in connecting database: ${error}`);
+            Logger.error('Error in connecting database: ', error);
             throw error;
         }
 
     };
 
-    public static addModals = (): void => {
-        Db.models.registration = registration;
-        Db.models.enrollment = enrollment;
-        Db.models.admin = admin;
-        Db.models.employee = employee;
-        Db.models.skill = skill;
-        Db.models.employer = employer;
+    public addModals = (): void => {
+        this.models.registration = registration;
+        this.models.enrollment = enrollment;
+        this.models.admin = admin;
+        this.models.employee = employee;
+        this.models.skill = skill;
+        this.models.employer = employer;
+        this.models.businessUser = businessUser;
+        this.models.project = project;
+        this.models.test1 = test1;
     };
 
-    public static models: any = {};
+    public models: any = {};
 }
+
+export default new Db();

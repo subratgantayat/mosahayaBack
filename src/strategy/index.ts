@@ -4,8 +4,8 @@ import Utils from '../helper/utils';
 import {connection, Model} from 'mongoose';
 const JWT_PRIVATE_KEY:string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
 
-export default class Strategies {
-    private static validateCompany = async (decoded, request, h) => {
+export class Strategies {
+    private validateCompany = async (decoded, request, h) => {
         try{
             const modal: Model<any> = connection.model('admin');
             const user: any  = await modal.findOne({
@@ -20,12 +20,12 @@ export default class Strategies {
             return { isValid: true };
         }
         catch(error){
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return { isValid: false };
         }
     };
 
-    private static validateEmployer = async (decoded, request, h) => {
+    private validateEmployer = async (decoded, request, h) => {
         try{
             const modal: Model<any> = connection.model('employer');
             const user: any  = await modal.findOne({
@@ -40,26 +40,54 @@ export default class Strategies {
             return { isValid: true };
         }
         catch(error){
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return { isValid: false };
         }
     };
 
-    public static registerAll = async (server: Hapi.Server): Promise<Error | any> => {
+    private validateBusiness = async (decoded, request, h) => {
+        try{
+            const modal: Model<any> = connection.model('businessuser');
+            const user: any  = await modal.findOne({
+                _id: decoded.id,
+                email: decoded.email,
+                active: true,
+                emailVerified: true,
+                scope:decoded.scope
+            }).select( 'password_changed_at profile.address').exec();
+            if (!user || !(decoded.password_changed_at === (user.password_changed_at).toISOString())) {
+                return { isValid: false };
+            }
+            return { isValid: true, credentials:{...decoded,...{profileFilled: (!!user.profile)}} };
+        }
+        catch(error){
+            Logger.error(`Error: `, error);
+            return { isValid: false };
+        }
+    };
+
+    public registerAll = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             await server.auth.strategy('admintoken', 'jwt',
                 { key: JWT_PRIVATE_KEY,
-                    validate:Strategies.validateCompany,
+                    validate:this.validateCompany,
                     verifyOptions: { algorithms: [ 'HS256' ]}
                 });
             await server.auth.strategy('employertoken', 'jwt',
                 { key: JWT_PRIVATE_KEY,
-                    validate:Strategies.validateEmployer,
+                    validate:this.validateEmployer,
+                    verifyOptions: { algorithms: [ 'HS256' ]}
+                });
+            await server.auth.strategy('businesstoken', 'jwt',
+                { key: JWT_PRIVATE_KEY,
+                    validate:this.validateBusiness,
                     verifyOptions: { algorithms: [ 'HS256' ]}
                 });
         } catch (error) {
-            Logger.error(`Error in registering strategies: ${error}`);
+            Logger.error('Error in registering strategies: ', error);
             throw error;
         }
     };
 }
+
+export default new Strategies();

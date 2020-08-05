@@ -10,9 +10,9 @@ const JWT_PRIVATE_KEY = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
 const SIGNUP_SECRET = Utils.getEnvVariable('SIGNUP_SECRET', true);
 const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 
-export default class Handler {
+class Handler {
 
-    public static create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const payload: any =  request.payload;
             if(payload.secret !== SIGNUP_SECRET){
@@ -24,7 +24,7 @@ export default class Handler {
             const newModal: any = new modal(payload);
             const data: any = await newModal.save();
             if (!data) {
-                return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_CRAETING + ' sign up data');
+                return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_CREATING + ' sign up data');
             }
             const tokenData: any = {
                 phoneNumber: data.phoneNumber,
@@ -41,12 +41,12 @@ export default class Handler {
             if (error.name === 'MongoError' && error.code === 11000) {
                 return Boom.badData(STRING.PHONE_NUMBER_EXIST);
             }
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 
-    public static signin = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public signin = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
@@ -73,8 +73,10 @@ export default class Handler {
                     isAdmin: data.scope.includes('admin')
                 }};
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 }
+
+export default new Handler();

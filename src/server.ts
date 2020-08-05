@@ -10,24 +10,25 @@ import Strategy from './strategy';
 
 const PORT: string = Utils.getEnvVariable('PORT', true);
 let CORS: any = Utils.getEnvVariable('CORS', true);
+
 CORS = JSON.parse(CORS);
-export default class Server {
-    public static start = async (): Promise<Hapi.Server> =>{
+class Server {
+    public start = async (): Promise<Hapi.Server> =>{
         try {
             Logger.info(`Hapi base URL: ${__dirname}`);
-            Server._instance = new Hapi.Server({
+            this._instance = new Hapi.Server({
                 port: PORT,
                 routes: {
                     cors: {
-                        origin: CORS,
-                        additionalHeaders: ['x-atmosphere-token']
+                        origin: CORS
+                     //   additionalHeaders: ['x-atmosphere-token']
                     },
                     files: {
                         relativeTo: Path.join(__dirname, 'public')
                     },
                     validate: {
                         failAction: async (request: Hapi.Request, h: Hapi.ResponseToolkit, error: Error) => {
-                            Logger.debug(`Server - request input error: ${error}`);
+                            Logger.debug('Server - request input error: ',error);
                           //  throw Boom.badRequest(`Invalid request payload input`);
                             throw Boom.badRequest(` ${error}`);
                         }
@@ -37,39 +38,40 @@ export default class Server {
             Utils.setBaseURL(__dirname);
             await Db.connect();
 
-            await Plugin.registerAll(Server._instance);
-            await Strategy.registerAll((Server._instance));
-            await Router.loadRoutes(Server._instance);
-            await Server._instance.start();
+            await Plugin.registerAll(this._instance);
+            await Strategy.registerAll((this._instance));
+            await Router.loadRoutes(this._instance);
+            await this._instance.start();
 
             Logger.info('Server - Up and running!');
-            if (process.env.IS_PM2) {
+         /*   if (process.env.IS_PM2) {
                 process.send('ready');
-            }
-            return Server._instance;
+            }*/
+            return this._instance;
         } catch (error) {
-            Logger.error(`Server - There was something wrong: ${error}`);
+            Logger.error('Server - There was something wrong: ', error);
             process.exit(1);
         }
     };
 
-    public static stop = (): Promise<Error | void> =>{
+    public stop = (): Promise<Error | void> =>{
         Logger.info(`Server - Stopping!`);
-        return Server._instance.stop();
+        return this._instance.stop();
     };
 
-    public static recycle = async (): Promise<Hapi.Server> =>{
-        await Server.stop();
-        return await Server.start();
+    public recycle = async (): Promise<Hapi.Server> =>{
+        await this.stop();
+        return await this.start();
     };
 
-    public static instance(): Hapi.Server {
-        return Server._instance;
+    public instance(): Hapi.Server {
+        return this._instance;
     }
 
-    public static inject = async (options: string | Hapi.ServerInjectOptions): Promise<Hapi.ServerInjectResponse> => {
-        return await Server._instance.inject(options);
+    public inject = async (options: string | Hapi.ServerInjectOptions): Promise<Hapi.ServerInjectResponse> => {
+        return await this._instance.inject(options);
     };
 
-    private static _instance: Hapi.Server;
+    private _instance: Hapi.Server;
 }
+export default new Server();

@@ -7,20 +7,20 @@ import Utils from '../helper/utils';
 const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 const LOG_LEVEL: string = Utils.getEnvVariable('LOG_LEVEL', false);
 
-export default class Plugins {
+class Plugins {
 
-    public static registerAll = async (server: Hapi.Server): Promise<Error | any> => {
+    public registerAll = async (server: Hapi.Server): Promise<Error | any> => {
         try {
-            await Plugins.inert(server);
-            await Plugins.hapiGeoLocate(server);
-            await Plugins.hapiRateLimit(server);
-            await Plugins.hapiAuthJwt2(server);
+            await this.inert(server);
+            await this.hapiGeoLocate(server);
+            await this.hapiRateLimit(server);
+            await this.hapiAuthJwt2(server);
             if (NODE_ENV === 'development') {
-                await Plugins.vision(server);
-                await Plugins.swagger(server);
+                await this.vision(server);
+                await this.swagger(server);
                 Logger.info(`Visit: ${server.info.uri}/documentation for Swagger docs`);
            }
-            await Plugins.good(server);
+            await this.good(server);
            // if (LOG_LEVEL === 'debug') {
                 server.ext({
                     type: 'onRequest',
@@ -56,39 +56,39 @@ export default class Plugins {
                 });
            // }
         } catch (error) {
-            Logger.error(`Error in registering plugins: ${error}`);
+            Logger.error('Error in registering plugins: ', error);
             throw error;
         }
 
     };
-    private static hapiGeoLocate = async (server: Hapi.Server): Promise<Error | any> => {
+    private hapiGeoLocate = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             Logger.info('Plugins - Registering hapiGeoLocate');
-            await Plugins.register(server, [
+            await this.register(server, [
                 require('hapi-geo-locate')
             ]);
         } catch (error) {
-            Logger.error(`Plugins - Ups, something went wrong when registering hapiGeoLocate plugin: ${error}`);
+            Logger.error('Plugins - Ups, something went wrong when registering hapiGeoLocate plugin: ', error);
             throw error;
         }
     };
 
-    private static hapiAuthJwt2 = async (server: Hapi.Server): Promise<Error | any> => {
+    private hapiAuthJwt2 = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             Logger.info('Plugins - Registering hapiAuthJwt2');
-            await Plugins.register(server, [
+            await this.register(server, [
                 require('hapi-auth-jwt2')
             ]);
         } catch (error) {
-            Logger.error(`Plugins - Ups, something went wrong when registering hapiAuthJwt2 plugin: ${error}`);
+            Logger.error('Plugins - Ups, something went wrong when registering hapiAuthJwt2 plugin: ', error);
             throw error;
         }
     };
 
-    private static hapiRateLimit = async (server: Hapi.Server): Promise<Error | any> => {
+    private hapiRateLimit = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             Logger.info('Plugins - Registering hapiRateLimit');
-            await Plugins.register(server, [
+            await this.register(server, [
                 {
                     options: {
                         userLimit:30
@@ -97,49 +97,49 @@ export default class Plugins {
                 }
             ]);
         } catch (error) {
-            Logger.error(`Plugins - Ups, something went wrong when registering hapiRateLimit plugin: ${error}`);
+            Logger.error('Plugins - Ups, something went wrong when registering hapiRateLimit plugin: ', error);
             throw error;
         }
     };
-    private static vision = async (server: Hapi.Server): Promise<Error | any> => {
+    private vision = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             Logger.info('Plugins - Registering vision');
-            await Plugins.register(server, [
+            await this.register(server, [
                 require('@hapi/vision')
             ]);
         } catch (error) {
-            Logger.error(`Plugins - Ups, something went wrong when registering vision plugin: ${error}`);
+            Logger.error('Plugins - Ups, something went wrong when registering vision plugin: ', error);
             throw error;
         }
     };
-    private static inert =  async (server: Hapi.Server): Promise<Error | any> =>{
+    private inert =  async (server: Hapi.Server): Promise<Error | any> =>{
         try {
             Logger.info('Plugins - Registering inert');
-            await Plugins.register(server, [
+            await this.register(server, [
                 require('@hapi/inert')
             ]);
         } catch (error) {
-            Logger.error(`Plugins - Ups, something went wrong when registering inert plugin: ${error}`);
+            Logger.error('Plugins - Ups, something went wrong when registering inert plugin: ', error);
             throw error;
         }
     };
 
-    private static swagger =  async (server: Hapi.Server): Promise<Error | any> =>{
+    private swagger =  async (server: Hapi.Server): Promise<Error | any> =>{
         try {
             Logger.info('Plugins - Registering hapi-swagger');
-            await Plugins.register(server, [
+            await this.register(server, [
                 {
                     options: Config.swagger.options,
                     plugin: require('hapi-swagger')
                 }
             ]);
         } catch (error) {
-            Logger.error(`Plugins - Ups, something went wrong when registering hapi-swagger plugin: ${error}`);
+            Logger.error('Plugins - Ups, something went wrong when registering hapi-swagger plugin: ', error);
             throw error;
         }
     };
 
-    private static good = async (server: Hapi.Server): Promise<Error | any> =>{
+    private good = async (server: Hapi.Server): Promise<Error | any> =>{
         try {
             Logger.info('Plugins - Registering good');
 
@@ -175,17 +175,17 @@ export default class Plugins {
                     ]
                 }
             };
-            await Plugins.register(server, [{
+            await this.register(server, [{
                 plugin: require('good'),
                 options
             }]);
         } catch (error) {
-            Logger.error(`Plugins - Ups, something went wrong when registering good: ${error}`);
+            Logger.error('Plugins - Ups, something went wrong when registering good: ', error);
             throw error;
         }
     };
 
-    private static register =  async (server: Hapi.Server, plugin: any): Promise<Error | any> =>{
+    private register =  async (server: Hapi.Server, plugin: any): Promise<Error | any> =>{
         return new Promise(async (resolve, reject) => {
             try {
                 await server.register(plugin);
@@ -196,3 +196,5 @@ export default class Plugins {
         });
     };
 }
+
+export default new Plugins();

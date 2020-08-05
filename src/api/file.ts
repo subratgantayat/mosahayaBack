@@ -5,9 +5,8 @@ import * as Boom from '@hapi/boom';
 import Config from '../config/config';
 const STRING: any = EXTERNALIZED_STRING.file;
 
-
-export default class Routes {
-    public static register = async (server: Hapi.Server): Promise<any> =>{
+class Routes {
+    public register = async (server: Hapi.Server): Promise<any> =>{
         try {
             Logger.info('SeverFileRoutes - Start adding file route.');
             server.route([
@@ -19,7 +18,7 @@ export default class Routes {
                             try {
                              return Config.appVersion;
                             } catch (error) {
-                                Logger.error(`${error}`);
+                                Logger.error('File appversion error: ', error);
                                 return Boom.badImplementation(error);
                             }
                         },
@@ -44,8 +43,10 @@ export default class Routes {
             ]);
             Logger.info('SeverFileRoutes - Finish adding server file route.');
         } catch (error) {
-            Logger.error(`Error in loading server file route: ${error}`);
+            Logger.error('Error in loading server file route: ', error);
             throw error;
         }
     };
 }
+
+export default new Routes();

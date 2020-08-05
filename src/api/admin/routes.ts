@@ -6,8 +6,8 @@ import Handler from './handler';
 import Validate from './validate';
 const STRING: any = EXTERNALIZED_STRING.admin;
 
-export default class Routes {
-    public static register =  async (server: Hapi.Server): Promise<any> => {
+class Routes {
+    public register =  async (server: Hapi.Server): Promise<any> => {
         try {
             Logger.info('AdminRoutes - Start adding enrollment routes.');
             server.route([
@@ -37,8 +37,10 @@ export default class Routes {
             ]);
             Logger.info('AdminRoutes - Finish adding enrollment routes.');
         } catch (error) {
-            Logger.error(`Error in loading AdminRoutes: ${error}`);
+            Logger.error('Error in loading AdminRoutes: ', error);
             throw error;
         }
     };
 }
+
+export default new Routes();

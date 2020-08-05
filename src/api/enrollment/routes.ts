@@ -6,8 +6,8 @@ import Validate from './validate';
 import PublicHandler from '../../helper/publicHandler';
 const STRING: any = EXTERNALIZED_STRING.enrollment;
 
-export default class Routes {
-    public static register =  async (server: Hapi.Server): Promise<any> => {
+class Routes {
+public register =  async (server: Hapi.Server): Promise<any> => {
         try {
             Logger.info('EnrollmentRoutes - Start adding enrollment routes.');
             server.route([
@@ -57,8 +57,10 @@ export default class Routes {
             ]);
             Logger.info('EnrollmentRoutes - Finish adding enrollment routes.');
         } catch (error) {
-            Logger.error(`Error in loading EnrollmentRoutes: ${error}`);
+            Logger.error('Error in loading EnrollmentRoutes: ', error);
             throw error;
         }
     };
 }
+
+export default new Routes();

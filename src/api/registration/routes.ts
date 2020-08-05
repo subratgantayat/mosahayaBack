@@ -5,12 +5,12 @@ import Handler from './handler';
 import Validate from './validate';
 const STRING: any = EXTERNALIZED_STRING.registration;
 
-export default class Routes {
-    public static register =  async (server: Hapi.Server): Promise<any> => {
+class Routes {
+    public register =  async (server: Hapi.Server): Promise<any> => {
         try {
             Logger.info('RegistrationRoutes - Start adding registration routes.');
             server.route([
-             /*   {
+                {
                     method: 'GET',
                     path: '/api/v1/registration/keyvalue',
                     options: {
@@ -18,7 +18,7 @@ export default class Routes {
                         description: STRING.KEYVALUE,
                         tags: ['api', 'registration']
                     }
-                },*/
+                },
              /*   {
                     method: 'GET',
                     path: '/api/v1/addskill',
@@ -60,8 +60,10 @@ export default class Routes {
             ]);
             Logger.info('RegistrationRoutes - Finish adding extension routes.');
         } catch (error) {
-            Logger.error(`Error in loading RegistrationRoutes: ${error}`);
+            Logger.error('Error in loading RegistrationRoutes: ', error);
             throw error;
         }
     };
 }
+
+export default new Routes();

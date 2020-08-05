@@ -18,11 +18,11 @@ const PUBSUB_VERIFICATION_TOKEN = Utils.getEnvVariable('PUBSUB_VERIFICATION_TOKE
 const STRING = EXTERNALIZED_STRING.registration;
 const authClient = new OAuth2Client();
 
-export default class Handler {
+class Handler {
 
-    public static keyValue = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+    public keyValue = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            return KeyValueConfig.keyvalue;
+             return KeyValueConfig.keyvalue;
            // return CityConfig.getCityArray1();
             // return Makeskillsector.getSector();
            // return Makeskillsector.getSkillSector();
@@ -30,13 +30,15 @@ export default class Handler {
             //  return Verifycountry.verifyUniqueDistrict();
             //  return Verifyenjson.verifyEn('hi');
             // return MakeskillsectorNew.makeSkillSector();
+            // await UploadData.test();
+          //  return 'a';
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 
-  /*  public static addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+  /*  public addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             /!*await UploadData.verifySkill();
             return 'ok';*!/
@@ -49,7 +51,7 @@ export default class Handler {
         }
     };*/
 
-    public static messaging = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public messaging = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             Logger.info('messaging request start');
             if (request.query.token !== PUBSUB_VERIFICATION_TOKEN) {
@@ -78,12 +80,12 @@ export default class Handler {
             return 'ok';
         } catch (error) {
             Logger.info('messaging request end with error3');
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 
-    public static create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const modal: Model<any> = connection.model('registration');
             const payload: any = request.payload;
@@ -91,19 +93,19 @@ export default class Handler {
             const newModal: any = new modal(payload);
             const data: any = await newModal.save();
             if (!data) {
-                return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_CRAETING);
+                return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_CREATING);
             }
             return {message: EXTERNALIZED_STRING.global.CREATED_SUCCESSFULLY, data};
         } catch (error) {
             if (error.name === 'ValidationError') {
                 return Boom.badData(error.message);
             }
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 
-    public static viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+    public viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             const modal: Model<any> = connection.model('registration');
             const query: any = request.query;
@@ -117,8 +119,11 @@ export default class Handler {
             if (error.name === 'CastError') {
                 return Boom.badData(STRING.INVALID_ID_DOB);
             }
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 }
+
+export default new Handler();
+

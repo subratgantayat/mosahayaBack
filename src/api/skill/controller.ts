@@ -1,3 +1,4 @@
-export default class Controller {
+class Controller {
 
 }
+export default new Controller();

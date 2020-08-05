@@ -9,6 +9,7 @@
     "start": "node dist/index.js",
     "startlocal": "npm run build && node -r dotenv/config dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon --watch src --exec ts-node -r dotenv/config ./src/index.ts",
     "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only ./src/index.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "build": "tsc && npm run lint && npm run delete && npm run copy",
@@ -19,6 +20,7 @@
   "author": "subrat kumar gantayat",
   "license": "ISC",
   "dependencies": {
+    "@efstajas/validate-env": "^0.3.3",
     "@google-cloud/logging-winston": "^3.0.6",
     "@google-cloud/pubsub": "^2.2.0",
     "@hapi/boom": "^9.1.0",
@@ -40,9 +42,11 @@
     "joi-objectid": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.11",
+    "nodemon": "^2.0.4",
     "randomatic": "^3.1.1",
     "request": "^2.88.2",
-    "request-promise": "^4.2.5"
+    "request-promise": "^4.2.5",
+    "ts-node": "^8.10.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",

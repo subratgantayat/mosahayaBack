@@ -6,9 +6,9 @@ import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Utils from '../../helper/utils';
 const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 
-export default class Handler {
+class Handler {
 
-    public static findall = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public findall = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
@@ -20,8 +20,10 @@ export default class Handler {
             const data: any[] = await modal.find().select('name').exec();
             return {message: 'Skill ' + EXTERNALIZED_STRING.global.READ_SUCCESSFULLY, data};
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 }
+
+export default new Handler();

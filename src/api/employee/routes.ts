@@ -6,8 +6,8 @@ import Validate from './validate';
 import PublicHandler from '../../helper/publicHandler';
 const STRING: any = EXTERNALIZED_STRING.employee;
 
-export default class Routes {
-    public static register =  async (server: Hapi.Server): Promise<any> => {
+class Routes {
+    public register =  async (server: Hapi.Server): Promise<any> => {
         try {
             Logger.info('EmployeeRoutes - Start adding employee routes.');
             server.route([
@@ -48,8 +48,10 @@ export default class Routes {
             ]);
             Logger.info('EmployeeRoutes - Finish adding employee routes.');
         } catch (error) {
-            Logger.error(`Error in loading EmployeeRoutes: ${error}`);
+            Logger.error('Error in loading EmployeeRoutes: ', error);
             throw error;
         }
     };
 }
+
+export default new Routes();

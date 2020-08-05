@@ -15,7 +15,7 @@ export default {
                 jwt: {
                     type: 'apiKey',
                     description: 'JWT Token',
-                    name: 'X-Atmosphere-Token',
+                    name: 'authorization',
                     in: 'header'
                 }
             },
@@ -44,5 +44,7 @@ export default {
     appVersion:{
         softWorker:'1.0.1',
         hardWorker:'1.0.1'
-    }
+    },
+    sortOrder:['asc','desc'],
+    defaultSortOrder:['asc']
 };

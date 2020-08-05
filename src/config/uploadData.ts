@@ -1,7 +1,46 @@
 import {createReadStream} from 'fs';
 import * as Csv from 'csv-parser';
+import * as Joi from '@hapi/joi';
 import {connection, Model} from 'mongoose';
-import KeyvalueConfig from '../config/keyvalueConfig';
+import BusinessKeyValue from './businessKeyValue';
+
+const test = async (): Promise<void> => {
+    try {
+       /* const modal: Model<any> = connection.model('test1');
+        const a =  new modal({
+            a:'asa1',
+            c:7,
+            b:10
+        });
+        await a.save();*/
+   /*    const schema =  Joi.object().keys({
+               employmentType:Joi.string().required().valid( ...BusinessKeyValue.getValueArray('employmentType')),
+               durationInDays:Joi.number().when('employmentType', { is: 'contract', then: Joi.number().required().integer().min(1).max(3650), otherwise: Joi.forbidden() })
+       }).required();
+        const {error, value} = schema.validate({
+            employmentType:'permanent',
+            durationInDays:1
+        });*/
+
+        const schema =   Joi.object().keys({
+            version: Joi.number().required().integer().valid(...[1]),
+            path: Joi.string().required().trim().min(1).max(10000),
+            intercomRegion:Joi.string().trim().min(1).max(10000).allow(''),
+            baseURL: Joi.string().when('intercomRegion', { is: Joi.string().required() , then: Joi.optional(), otherwise: Joi.string().required().uri().trim().min(1).max(10000).allow('') })
+        });
+        const {error, value} = schema.validate({
+            version:'1',
+            path:'ss',
+            baseURL:''
+
+        });
+        if (error) {
+           console.log(error);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 const verifySkill = async (): Promise<void> => {
     return new Promise((resolve, reject) => {
@@ -299,5 +338,6 @@ export default {
     verifyEmployee,
     verifyOthers,
     changeSector,
-    changeAdmin
+    changeAdmin,
+    test
 };

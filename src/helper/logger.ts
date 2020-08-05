@@ -5,7 +5,7 @@ import Utils from './utils';
 const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 
 export class ApiLogger {
-    public static newInstance = (): Winston.Logger =>{
+    public newInstance = (): Winston.Logger =>{
         const consoleTransport: ConsoleTransportInstance = new Winston.transports.Console({
             format: Winston.format.combine(
                 Winston.format.colorize(),
@@ -35,4 +35,4 @@ export class ApiLogger {
     };
 }
 
-export default ApiLogger.newInstance();
+export default new ApiLogger().newInstance();

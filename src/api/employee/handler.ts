@@ -7,9 +7,8 @@ import Utils from '../../helper/utils';
 const STRING: any = EXTERNALIZED_STRING.employee;
 const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 
-export default class Handler {
-
-    public static search = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+class Handler {
+    public search = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
@@ -63,12 +62,12 @@ export default class Handler {
             }
             return {message: 'Employee ' + EXTERNALIZED_STRING.global.READ_SUCCESSFULLY, data, count};
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 
-    public static findlimit = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+    public findlimit = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
@@ -88,8 +87,10 @@ export default class Handler {
             }
             return {message: 'Employee ' + EXTERNALIZED_STRING.global.READ_SUCCESSFULLY, data};
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 }
+
+export default new Handler();

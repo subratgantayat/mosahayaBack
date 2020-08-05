@@ -9,10 +9,9 @@ const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 
 const STRING = EXTERNALIZED_STRING.enrollment;
 
+class Handler {
 
-export default class Handler {
-
-    public static create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+    public create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
@@ -24,12 +23,12 @@ export default class Handler {
             const data: any = await Controller.create(payload, 7);
             return {message: 'Enrollment ' + EXTERNALIZED_STRING.global.CREATED_SUCCESSFULLY, data};
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return error;
         }
     };
 
-    public static viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+    public viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
@@ -47,12 +46,12 @@ export default class Handler {
             if (error.name === 'CastError') {
                 return Boom.badData(STRING.INVALID_ID);
             }
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 
-    public static findall = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+    public findall = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             if (NODE_ENV !== 'development') {
                 const captchaResponse: any = request.pre.captcha;
@@ -146,8 +145,10 @@ export default class Handler {
             }
             return {message: 'Enrollment ' + EXTERNALIZED_STRING.global.READ_SUCCESSFULLY, data, count};
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
 }
+
+export default new Handler();
