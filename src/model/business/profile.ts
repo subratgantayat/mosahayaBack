@@ -134,7 +134,7 @@ const schema: Schema = new Schema(
             type: String,
             trim: true,
             match: /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
-            minlength: 1,
+            minlength: 5,
             maxlength: 10000
         },
         compliance:{

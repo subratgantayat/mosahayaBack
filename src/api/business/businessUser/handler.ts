@@ -156,6 +156,23 @@ class Handler {
             return Boom.badImplementation(error);
         }
     };
+    public profileEdit = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+        try {
+            return 'ok';
+        } catch (error) {
+            Logger.error(`${error}`);
+            return Boom.badImplementation(error);
+        }
+    };
+
+    public profile = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+        try {
+            return 'ok';
+        } catch (error) {
+            Logger.error(`${error}`);
+            return Boom.badImplementation(error);
+        }
+    };
 }
 
 export default new Handler();

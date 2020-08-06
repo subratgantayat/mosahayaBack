@@ -76,6 +76,33 @@ class Routes {
                         description: STRING.CHANGE_PASSWORD,
                         tags: ['api', 'businessUser']
                     }
+                },
+                {
+                    method: 'PUT',
+                    path: '/api/v1/business/user/self/profile',
+                    options: {
+                        auth: {
+                            strategy: 'businesstoken',
+                            scope: ['business']
+                        },
+                        handler: Handler.profileEdit,
+                        validate: Validate.profileEdit,
+                        description: STRING.PROFILE_EDIT,
+                        tags: ['api', 'businessUser']
+                    }
+                },
+                {
+                    method: 'GET',
+                    path: '/api/v1/business/user/self/profile',
+                    options: {
+                        auth: {
+                            strategy: 'businesstoken',
+                            scope: ['business']
+                        },
+                        handler: Handler.profile,
+                        description: STRING.PROFILE_GET,
+                        tags: ['api', 'businessUser']
+                    }
                 }
             ]);
             Logger.info('BusinessUserRoutes - Finish adding businessUser routes.');

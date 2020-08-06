@@ -58,6 +58,8 @@ const stringConstants: any = {
             SIGNUP:'Method to signup business user',
             SIGNIN:'Method to signin business user',
             CHANGE_PASSWORD:'Method to change password for business user',
+            PROFILE_EDIT:'Method to edit own profile for business user',
+            PROFILE_GET:'Method to get own profile for business user',
             VERIFY_TOKEN:'Method to verify access token',
             success:{
                 SIGNUP_SUCCESSFUL: 'Sign up successful',

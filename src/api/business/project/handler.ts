@@ -44,7 +44,6 @@ class Handler {
 
     public find = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            console.log(request.query.filter);
             return 'ok';
         } catch (error) {
             Logger.error(`${error}`);
