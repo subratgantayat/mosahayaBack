@@ -4,6 +4,7 @@ import Logger from '../../helper/logger';
 import PublicHandler from '../../helper/publicHandler';
 import Handler from './handler';
 import Validate from './validate';
+import Config from '../../config/config';
 const STRING: any = EXTERNALIZED_STRING.admin;
 
 class Routes {
@@ -25,8 +26,13 @@ class Routes {
                     method: 'POST',
                     path: '/api/v1/admin/signin',
                     options: {
+                        app:{
+                            captchaAction: 'admin_signin',
+                            captchaScore: Config.captchaScore,
+                            captchaIn: 'payload'
+                        },
                         pre:[
-                            { method: PublicHandler.validateCaptchaPayload, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.signin,
                         validate: Validate.signin,

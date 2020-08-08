@@ -41,9 +41,16 @@ class Db {
                 Logger.info('Connection with database succeeded');
             });
             if (NODE_ENV === 'development') {
-                await connect('mongodb://' + Config.database.username + ':' + Config.database.password + '@' + Config.database.host + ':' + Config.database.port + '/' + Config.database.name + '?authSource=admin',
-                    Config.databaseOptions as ConnectionOptions
-                );
+                if(process.env.DEVELOPER === 'subrat'){
+                    await connect('mongodb://' + Config.database.username + ':' + Config.database.password + '@' + Config.database.host + ':' + Config.database.port + '/' + Config.database.name + '?authSource=admin',
+                        Config.databaseOptions as ConnectionOptions
+                    );
+                }
+                else{
+                    await connect('mongodb://' + Config.database.host + ':' + Config.database.port + '/' + Config.database.name,
+                        Config.databaseOptions as ConnectionOptions
+                    );
+                }
             } else {
                 await connect('mongodb+srv://' + Config.database.username + ':' + encodeURIComponent(Config.database.password) + '@' + Config.database.host + '/' + Config.database.name+ '?retryWrites=true&w=majority',
                     Config.databaseOptions as ConnectionOptions

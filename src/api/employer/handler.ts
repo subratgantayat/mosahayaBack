@@ -8,7 +8,6 @@ import Utils from '../../helper/utils';
 const STRING = EXTERNALIZED_STRING.employer;
 const JWT_PRIVATE_KEY = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
 const SIGNUP_SECRET = Utils.getEnvVariable('SIGNUP_SECRET', true);
-const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 
 class Handler {
 
@@ -48,12 +47,6 @@ class Handler {
 
     public signin = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            if (NODE_ENV !== 'development') {
-                const captchaResponse: any = request.pre.captcha;
-                if (!(captchaResponse.action === 'employee_signin' && captchaResponse.score >= 0.4)) {
-                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
-                }
-            }
             const payload: any = request.payload;
             const modal: Model<any> = connection.model('employer');
             const data: any =  await modal.findOne({phoneNumber:payload.phoneNumber}).select('password name phoneNumber scope password_changed_at').exec();

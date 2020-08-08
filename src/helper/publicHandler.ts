@@ -9,33 +9,26 @@ const CAPTCHA_SECRET_KEY: string = Utils.getEnvVariable('CAPTCHA_SECRET_KEY', tr
 const captchaUrl: string = 'https://www.google.com/recaptcha/api/siteverify?secret=' + CAPTCHA_SECRET_KEY;
 
 class PublicHandler {
-    private validateCaptcha = async (captcha: string, remoteAddress: string): Promise<any> =>{
+    public validateCaptchaInput: any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            const verificationURL = captchaUrl + '&response=' + captcha + '&remoteip=' + remoteAddress;
             if (NODE_ENV === 'development') {
                 return {
                     action:'demo',
                     score: 0.9
                 };
             }
+            const {captchaIn, captchaAction, captchaScore}: any = request.route.settings.app;
+            const verificationURL = captchaUrl + '&response=' + request[captchaIn]['g-recaptcha-response'].toString() + '&remoteip=' + request.info.remoteAddress;
             let body: any = await RP(verificationURL);
             body = JSON.parse(body);
-            if (!(body && body.success)) {
+            if (!(body && body.success && body.action === captchaAction && body.score >= captchaScore)) {
                 return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
             }
             return body;
         } catch (error) {
-            Logger.error('google recaptcha error');
-            Logger.error(`Error: `, error);
+            Logger.error('google recaptcha error', error);
             return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
         }
-    };
-    public validateCaptchaPayload = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
-        return await this.validateCaptcha(request.payload['g-recaptcha-response'], request.info.remoteAddress);
-    };
-
-    public validateCaptchaQuery = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
-        return await this.validateCaptcha(request.query['g-recaptcha-response'].toString(), request.info.remoteAddress);
     };
 
 }

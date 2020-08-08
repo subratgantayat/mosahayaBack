@@ -64,7 +64,8 @@ const stringConstants: any = {
             success:{
                 SIGNUP_SUCCESSFUL: 'Sign up successful',
                 SIGNIN_SUCCESSFUL: 'Sign in successful',
-                PASSWORD_CHANGE_SUCCESSFUL:'Password change successful'
+                PASSWORD_CHANGE_SUCCESSFUL:'Password change successful',
+                PROFILE_EDIT_SUCCESSFUL:'Profile edit successful'
             },
             error:{
                 EMAIL_ALREADY_TAKEN: 'Email already taken',
@@ -72,7 +73,8 @@ const stringConstants: any = {
                 EMAIL_NOT_VERIFIED: 'Email not verified',
                 INACTIVE_USER: 'Account is not active',
                 PASSWORD_NOT_MATCHED: 'Current password is incorrect',
-                SAME_PASSWORD: 'No difference between current password and new password'
+                SAME_PASSWORD: 'No difference between current password and new password',
+                INVALID_USER: 'Invalid user'
             }
         },
         project:{

@@ -4,21 +4,12 @@ import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
 import Controller from './controller';
 import EXTERNALIZED_STRING from '../../assets/string-constants';
-import Utils from '../../helper/utils';
-const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
-
 const STRING = EXTERNALIZED_STRING.enrollment;
 
 class Handler {
 
     public create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            if (NODE_ENV !== 'development') {
-                const captchaResponse: any = request.pre.captcha;
-                if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
-                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
-                }
-            }
             const payload: any = request.payload;
             const data: any = await Controller.create(payload, 7);
             return {message: 'Enrollment ' + EXTERNALIZED_STRING.global.CREATED_SUCCESSFULLY, data};
@@ -30,12 +21,6 @@ class Handler {
 
     public viewForm = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            if (NODE_ENV !== 'development') {
-                const captchaResponse: any = request.pre.captcha;
-                if (!(captchaResponse.action === 'register' && captchaResponse.score >= 0.4)) {
-                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
-                }
-            }
             const modal: Model<any> = connection.model('enrollment');
             const data: any = await modal.findOne({enrollmentId: request.params.id}).exec();
             if (!data) {
@@ -53,12 +38,6 @@ class Handler {
 
     public findall = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            if (NODE_ENV !== 'development') {
-                const captchaResponse: any = request.pre.captcha;
-                if (!(captchaResponse.action === 'enrollment_search' && captchaResponse.score >= 0)) {
-                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
-                }
-            }
             if (request.query.expFrom && request.query.expTo && (request.query.expFrom > request.query.expTo)) {
                 return Boom.badData('Experience from can not be more than experience to');
             }

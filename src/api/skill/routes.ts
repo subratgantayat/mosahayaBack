@@ -19,8 +19,13 @@ class Routes {
                             strategy: 'employertoken',
                             scope: ['employer']
                         },
+                        app:{
+                            captchaAction: 'skill_findall',
+                            captchaScore: 0,
+                            captchaIn: 'query'
+                        },
                         pre:[
-                            { method: PublicHandler.validateCaptchaQuery, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.findall,
                         validate: Validate.findall,

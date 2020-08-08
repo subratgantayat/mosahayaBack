@@ -4,6 +4,7 @@ import Logger from '../../../helper/logger';
 import Handler from './handler';
 import Validate from './validate';
 import PublicHandler from '../../../helper/publicHandler';
+import Config from '../../../config/config';
 const STRING: any = EXTERNALIZED_STRING.business.businessUser;
 
 class Routes {
@@ -13,13 +14,19 @@ class Routes {
             server.route([
                 {
                     method: 'GET',
-                    path: '/api/v1/business/user/checkemailexist',
+                    path: '/api/v1/business/user/check-email-exist',
                     options: {
+                        app:{
+                           captchaAction: 'business_email_exist',
+                            captchaScore: Config.captchaScore,
+                            captchaIn: 'query'
+                        },
                         pre:[
-                            { method: PublicHandler.validateCaptchaQuery, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.checkEmailExist,
-                        validate: Validate.checkEmailExist,
+                        validate: Validate.checkEmailExist.input,
+                        response: Validate.checkEmailExist.output,
                         description: STRING.EMAIL_EXIST,
                         tags: ['api', 'businessUser']
                     }
@@ -28,11 +35,17 @@ class Routes {
                     method: 'POST',
                     path: '/api/v1/business/user/signup',
                     options: {
+                        app:{
+                            captchaAction: 'business_signup',
+                            captchaScore: Config.captchaScore,
+                            captchaIn: 'payload'
+                        },
                         pre:[
-                            { method: PublicHandler.validateCaptchaPayload, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.signup,
-                        validate: Validate.signup,
+                        validate: Validate.signup.input,
+                        response: Validate.signup.output,
                         description: STRING.SIGNUP,
                         tags: ['api', 'businessUser']
                     }
@@ -41,11 +54,17 @@ class Routes {
                     method: 'POST',
                     path: '/api/v1/business/user/signin',
                     options: {
+                        app:{
+                            captchaAction: 'business_signin',
+                            captchaScore: Config.captchaScore,
+                            captchaIn: 'payload'
+                        },
                         pre:[
-                            { method: PublicHandler.validateCaptchaPayload, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.signin,
-                        validate: Validate.signin,
+                        validate: Validate.signin.input,
+                        response: Validate.signin.output,
                         description: STRING.SIGNIN,
                         tags: ['api', 'businessUser']
                     }
@@ -59,6 +78,7 @@ class Routes {
                             scope: ['business']
                         },
                         handler: Handler.verifyToken,
+                        response: Validate.verifyToken.output,
                         description: STRING.VERIFY_TOKEN,
                         tags: ['api', 'businessUser']
                     }
@@ -72,7 +92,8 @@ class Routes {
                             scope: ['business']
                         },
                         handler: Handler.changePassword,
-                        validate: Validate.changePassword,
+                        validate: Validate.changePassword.input,
+                        response: Validate.changePassword.output,
                         description: STRING.CHANGE_PASSWORD,
                         tags: ['api', 'businessUser']
                     }
@@ -86,7 +107,8 @@ class Routes {
                             scope: ['business']
                         },
                         handler: Handler.profileEdit,
-                        validate: Validate.profileEdit,
+                        validate: Validate.profileEdit.input,
+                        response: Validate.profileEdit.output,
                         description: STRING.PROFILE_EDIT,
                         tags: ['api', 'businessUser']
                     }

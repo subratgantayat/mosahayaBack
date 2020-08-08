@@ -7,17 +7,10 @@ import EXTERNALIZED_STRING from '../../../assets/string-constants';
 import Utils from '../../../helper/utils';
 const STRING: any = EXTERNALIZED_STRING.business.businessUser;
 const JWT_PRIVATE_KEY: string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
-const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 
 class Handler {
-    public checkEmailExist = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public checkEmailExist:any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            if (NODE_ENV !== 'development') {
-                const captchaResponse: any = request.pre.captcha;
-                if (!(captchaResponse.action === 'business_signup' && captchaResponse.score >= 0.4)) {
-                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
-                }
-            }
             const {email}: any =  request.query;
             let emailExist: boolean = false;
             const modal: Model<any> = connection.model('businessuser');
@@ -35,14 +28,8 @@ class Handler {
         }
     };
 
-    public signup = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public signup: any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            if (NODE_ENV !== 'development') {
-                const captchaResponse: any = request.pre.captcha;
-                if (!(captchaResponse.action === 'business_signup' && captchaResponse.score >= 0.4)) {
-                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
-                }
-            }
             const payload: any =  request.payload;
             const modal: Model<any> = connection.model('businessuser');
             payload.password = Utils.encrypt(payload.password);
@@ -61,8 +48,9 @@ class Handler {
             };
             return {message: STRING.success.SIGNUP_SUCCESSFUL, token: sign(tokenData, JWT_PRIVATE_KEY),
                 user: {
-                    phoneNumber: data.phoneNumber,
-                    name: data.name
+                    email: data.email,
+                    name: data.name,
+                    isAdmin: data.scope.includes('admin')
                 }};
         } catch (error) {
             if (error.name === 'MongoError' && error.code === 11000) {
@@ -73,14 +61,8 @@ class Handler {
         }
     };
 
-    public signin = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public signin: any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            if (NODE_ENV !== 'development') {
-                const captchaResponse: any = request.pre.captcha;
-                if (!(captchaResponse.action === 'business_signin' && captchaResponse.score >= 0.4)) {
-                    return Boom.badData(EXTERNALIZED_STRING.global.INVALID_CAPTCHA);
-                }
-            }
             const payload: any = request.payload;
             const modal: Model<any> = connection.model('businessuser');
             const data: any =  await modal.findOne({email:payload.email}).select('password name email emailVerified active scope password_changed_at').exec();
@@ -111,7 +93,7 @@ class Handler {
         }
     };
 
-    public verifyToken = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public verifyToken: any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const credentials: any = request.auth.credentials;
             return { validToken:true, profileFilled: credentials.profileFilled};
@@ -158,7 +140,22 @@ class Handler {
     };
     public profileEdit = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            return 'ok';
+            const payload: any = request.payload;
+            const credentials: any = request.auth.credentials;
+            const modal: Model<any> = connection.model('businessuser');
+            const data: any =  await modal.findById(credentials.id).select('profile').exec();
+            if(!data){
+                return Boom.badData(STRING.error.PASSWORD_NOT_MATCHED);
+            }
+            data.profile = payload;
+            const result: any = await data.save();
+            if (!result) {
+                return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_UPDATING);
+            }
+            return {
+                message: STRING.success.PROFILE_EDIT_SUCCESSFUL,
+                profile: result
+            };
         } catch (error) {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);

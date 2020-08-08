@@ -4,6 +4,7 @@ import Logger from '../../helper/logger';
 import Handler from './handler';
 import Validate from './validate';
 import PublicHandler from '../../helper/publicHandler';
+import Config from '../../config/config';
 const STRING: any = EXTERNALIZED_STRING.enrollment;
 
 class Routes {
@@ -15,8 +16,13 @@ public register =  async (server: Hapi.Server): Promise<any> => {
                     method: 'POST',
                     path: '/api/v1/enrollment',
                     options: {
+                        app:{
+                            captchaAction: 'register',
+                            captchaScore: Config.captchaScore,
+                            captchaIn: 'payload'
+                        },
                         pre:[
-                            { method: PublicHandler.validateCaptchaPayload, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.create,
                         validate: Validate.create,
@@ -32,8 +38,13 @@ public register =  async (server: Hapi.Server): Promise<any> => {
                             strategy: 'admintoken',
                             scope: ['company']
                         },
+                        app:{
+                            captchaAction: 'enrollment_search',
+                            captchaScore: 0,
+                            captchaIn: 'query'
+                        },
                         pre:[
-                            { method: PublicHandler.validateCaptchaQuery, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.findall,
                         validate: Validate.findall,
@@ -45,8 +56,13 @@ public register =  async (server: Hapi.Server): Promise<any> => {
                     method: 'GET',
                     path: '/api/v1/enrollment/{id}',
                     options: {
+                        app:{
+                            captchaAction: 'register',
+                            captchaScore: Config.captchaScore,
+                            captchaIn: 'query'
+                        },
                         pre:[
-                            { method: PublicHandler.validateCaptchaQuery, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.viewForm,
                         validate: Validate.viewForm,

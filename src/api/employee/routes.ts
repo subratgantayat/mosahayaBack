@@ -19,8 +19,13 @@ class Routes {
                             strategy: 'employertoken',
                             scope: ['employer']
                         },
+                        app:{
+                            captchaAction: 'employee_search',
+                            captchaScore: 0,
+                            captchaIn: 'query'
+                        },
                         pre:[
-                            { method: PublicHandler.validateCaptchaQuery, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.search,
                         validate: Validate.search,
@@ -32,12 +37,13 @@ class Routes {
                     method: 'GET',
                     path: '/api/v1/employee/findlimit',
                     options: {
-                        auth: {
-                            strategy: 'employertoken',
-                            scope: ['employer']
+                        app:{
+                            captchaAction: 'employee_download',
+                            captchaScore: 0,
+                            captchaIn: 'query'
                         },
                         pre:[
-                            { method: PublicHandler.validateCaptchaQuery, assign: 'captcha' }
+                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
                         ],
                         handler: Handler.findlimit,
                         validate: Validate.findlimit,
