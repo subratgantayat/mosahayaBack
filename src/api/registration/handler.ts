@@ -58,8 +58,6 @@ class Handler {
                 Logger.info('messaging request end with error1');
                 return Boom.badData('Invalid request');
             }
-            Logger.info(`${JSON.stringify(request.payload)}`);
-            Logger.info(`${JSON.stringify(request.headers)}`);
             try {
                 const bearer = request.headers.authorization;
                 const [, token] = bearer.match(/Bearer (.*)/);

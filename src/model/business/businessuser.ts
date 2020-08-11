@@ -8,11 +8,13 @@ const schema: Schema = new Schema(
             trim: true,
             minlength:1,
             maxlength:1000,
+            lowercase: true,
             match:/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i
         },
         email: {
             type: String,
             required: true,
+            select: false,
             trim: true,
             unique: true,
             minlength: 5,
@@ -30,13 +32,6 @@ const schema: Schema = new Schema(
             minlength: 8,
             maxlength: 5000,
             select: false
-        },
-        phoneNumber:{
-            type: String,
-            trim: true,
-            minlength:10,
-            maxlength:10,
-            match:/^[6-9]+[0-9]+$/
         },
         scope: {
             type: [{

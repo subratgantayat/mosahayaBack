@@ -19,42 +19,49 @@ class Plugins {
                 await this.vision(server);
                 await this.swagger(server);
                 Logger.info(`Visit: ${server.info.uri}/documentation for Swagger docs`);
-           }
+            }
             await this.good(server);
-           // if (LOG_LEVEL === 'debug') {
-                server.ext({
-                    type: 'onRequest',
-                    method (request: Hapi.Request, h: Hapi.ResponseToolkit) {
-                        if (request.url.pathname.substring(1, 10) === 'swaggerui' || request.url.pathname === '/documentation' || request.url.pathname === '/health' || request.url.pathname === '/swagger.json') {
-                            return h.continue;
-                        }
+            // if (LOG_LEVEL === 'debug') {
+            server.ext({
+                type: 'onRequest',
+                method(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+                    if (request.url.pathname.substring(1, 10) === 'swaggerui' || request.url.pathname === '/documentation' || request.url.pathname === '/health' || request.url.pathname === '/swagger.json') {
+                        return h.continue;
+                    }
                     /*    if (request.headers['x-forwarded-for']) {
                             request.info.remoteAddress = request.headers['x-forwarded-for'].split(',')[0].trim();
                         }
                         if (request.headers['x-forwarded-port']) {
                             request.info.remotePort = request.headers['x-forwarded-port'];
                         }*/
-                        Logger.debug('***** Request start *****');
-                        Logger.debug(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.pathname);
-                        Logger.debug('Request header:', request.headers);
-                        Logger.debug('Request payload:', request.payload);
-                        Logger.debug('Request params:', request.params);
-                        Logger.debug('***** Request end *****');
-                        return h.continue;
-                    }
-                });
-                server.events.on('response', (request: Hapi.Request) => {
-                    if (request.url.pathname.substring(1, 10) === 'swaggerui' || request.url.pathname === '/documentation' || request.url.pathname === '/health' || request.url.pathname === '/swagger.json') {
-                        return;
-                    }
-                    Logger.debug('***** Response start *****');
+                    Logger.debug('***** Request start *****');
+                    Logger.debug(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.pathname);
+                    Logger.debug('Request header:', request.headers);
+                    Logger.debug('Request payload:', request.payload);
+                    Logger.debug('Request params:', request.params);
+                    Logger.debug('***** Request end *****');
+                    return h.continue;
+                }
+            });
+            server.events.on('response', (request: Hapi.Request) => {
+                if (request.url.pathname.substring(1, 10) === 'swaggerui' || request.url.pathname === '/documentation' || request.url.pathname === '/health' || request.url.pathname === '/swagger.json') {
+                    return;
+                }
+                Logger.debug('***** Response start *****');
+                // @ts-ignore
+                Logger.debug(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.pathname + ' --> ' + (request.response && request.response.statusCode ? request.response.statusCode : ''));
+                // @ts-ignore
+                Logger.debug('Response payload:', (request.response && request.response.source) ? request.response.source : '');
+                Logger.debug('***** Response end *****');
+            });
+
+            server.events.on('request', (event, tags) => {
+                if (tags.channel === 'internal') {
                     // @ts-ignore
-                    Logger.debug(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.pathname + ' --> ' + (request.response && request.response.statusCode ? request.response.statusCode : ''));
-                    // @ts-ignore
-                    Logger.debug('Response payload:', (request.response && request.response.source) ? request.response.source : '');
-                    Logger.debug('***** Response end *****');
-                });
-           // }
+                    Logger.error('Request error: ', tags.error);
+                }
+            });
+            // }
         } catch (error) {
             Logger.error('Error in registering plugins: ', error);
             throw error;
@@ -91,7 +98,7 @@ class Plugins {
             await this.register(server, [
                 {
                     options: {
-                        userLimit:30
+                        userLimit: 30
                     },
                     plugin: require('hapi-rate-limit')
                 }
@@ -112,7 +119,7 @@ class Plugins {
             throw error;
         }
     };
-    private inert =  async (server: Hapi.Server): Promise<Error | any> =>{
+    private inert = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             Logger.info('Plugins - Registering inert');
             await this.register(server, [
@@ -124,7 +131,7 @@ class Plugins {
         }
     };
 
-    private swagger =  async (server: Hapi.Server): Promise<Error | any> =>{
+    private swagger = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             Logger.info('Plugins - Registering hapi-swagger');
             await this.register(server, [
@@ -139,7 +146,7 @@ class Plugins {
         }
     };
 
-    private good = async (server: Hapi.Server): Promise<Error | any> =>{
+    private good = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             Logger.info('Plugins - Registering good');
 
@@ -185,7 +192,7 @@ class Plugins {
         }
     };
 
-    private register =  async (server: Hapi.Server, plugin: any): Promise<Error | any> =>{
+    private register = async (server: Hapi.Server, plugin: any): Promise<Error | any> => {
         return new Promise(async (resolve, reject) => {
             try {
                 await server.register(plugin);

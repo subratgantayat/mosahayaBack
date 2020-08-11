@@ -46,7 +46,7 @@ export default {
         hardWorker:'1.0.1'
     },
     sortOrder:['asc','desc'],
-    defaultSortOrder:['asc'],
+    defaultSortOrder:'asc',
     failAction: 'log',
     captchaScore: 0.4
 };

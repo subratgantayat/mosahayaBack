@@ -5864,11 +5864,28 @@ const getDistrictArray = (country: string, state: string): string[] => {
     return returnValue;
 };
 
+const getAllDistrictArray = (): string[] => {
+    const returnValue: string[] = [];
+    for (const a of keyvalue.country) {
+        if (a.value === 'india') {
+            for (const s of a.states) {
+                    for (const d of s.districts) {
+                        returnValue.push(d.value + ' ('+ s.value+')');
+                    }
+                    break;
+            }
+            break;
+        }
+    }
+    return returnValue;
+};
+
 export default {
     keyvalue,
     getValueArray,
     getCityArray,
     getStateArray,
     getDistrictArray,
-    getSkillArray
+    getSkillArray,
+    getAllDistrictArray
 };

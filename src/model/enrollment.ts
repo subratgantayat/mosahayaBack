@@ -70,7 +70,8 @@ const schema: Schema = new Schema(
                         enum: KeyvalueConfig.getValueArray('skillsBySector')
                     }
                 ],
-                required: true
+                required: true,
+                validate: v => Array.isArray(v) && v.length > 0
             },
             sectorsOther:{
                 type: [
@@ -92,7 +93,8 @@ const schema: Schema = new Schema(
                         enum: KeyvalueConfig.getSkillArray()
                     }
                 ],
-                required: true
+                required: true,
+                validate: v => Array.isArray(v) && v.length > 0
             },
             skillsOther:{
                 type: [
@@ -136,7 +138,8 @@ const schema: Schema = new Schema(
                         required: true
                     }
                 ],
-                required: true
+                required: true,
+                validate: v => Array.isArray(v) && v.length > 0
             },
             preferredLocationsOther:{
                 type: [

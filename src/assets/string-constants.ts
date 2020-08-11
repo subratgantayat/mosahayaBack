@@ -59,13 +59,18 @@ const stringConstants: any = {
             SIGNIN:'Method to signin business user',
             CHANGE_PASSWORD:'Method to change password for business user',
             PROFILE_EDIT:'Method to edit own profile for business user',
-            PROFILE_GET:'Method to get own profile for business user',
+            PROFILE_GET_SELF:'Method to get own profile for business user',
+            PROFILE_SEARCH:'Method to search other profiles for business user',
+            PROFILE_ONE:'Method to get profile detail by id for business user',
             VERIFY_TOKEN:'Method to verify access token',
             success:{
                 SIGNUP_SUCCESSFUL: 'Sign up successful',
                 SIGNIN_SUCCESSFUL: 'Sign in successful',
                 PASSWORD_CHANGE_SUCCESSFUL:'Password change successful',
-                PROFILE_EDIT_SUCCESSFUL:'Profile edit successful'
+                PROFILE_EDIT_SUCCESSFUL:'Profile update successful',
+                PROFILE_READ_SUCCESSFUL:'Profile read successful',
+                PROFILE_SEARCH_SUCCESSFUL:'Profile search successful',
+                PROFILE_ONE_SUCCESSFUL:'Profile read successful'
             },
             error:{
                 EMAIL_ALREADY_TAKEN: 'Email already taken',
@@ -74,7 +79,9 @@ const stringConstants: any = {
                 INACTIVE_USER: 'Account is not active',
                 PASSWORD_NOT_MATCHED: 'Current password is incorrect',
                 SAME_PASSWORD: 'No difference between current password and new password',
-                INVALID_USER: 'Invalid user'
+                INVALID_USER: 'Invalid user',
+                NO_PROFILE: 'No profile found',
+                INVALID_PROFILE_USER:''
             }
         },
         project:{
@@ -83,7 +90,16 @@ const stringConstants: any = {
             FIND_SELF:'Method to search own projects for business user',
             FIND_ONE_SELF:'Method to get own single project by id for business user',
             FIND:'Method to search others projects for business user',
-            FIND_ONE:'Method to get other single project by id for business user'
+            FIND_ONE:'Method to get other single project by id for business user',
+            success:{
+                PROJECT_CREATE_SUCCESSFUL:'Project create successful',
+                PROJECT_EDIT_SUCCESSFUL:'Project update successful',
+                PROJECT_READ_SUCCESSFUL:'Project read successful',
+                PROJECT_SEARCH_SUCCESSFUL:'Project search successful'
+            },
+            error:{
+                TITLE_ALREADY_TAKEN: 'Another project exists with the same title'
+            }
         }
     }
 };

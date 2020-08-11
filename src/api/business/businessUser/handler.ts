@@ -9,12 +9,14 @@ const STRING: any = EXTERNALIZED_STRING.business.businessUser;
 const JWT_PRIVATE_KEY: string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
 
 class Handler {
+    private profileFields:  string[] = ['address','sectors','sectorsOther','skills','skillsOther','yearOfExperience','geographyOfOp','largestContract','nameOfFounder','typeOfProjectManaged','companyWorkedWith','website','compliance','resources'];
     public checkEmailExist:any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            const {email}: any =  request.query;
+            let {email}: any =  request.query;
+            email = email.toLowerCase();
             let emailExist: boolean = false;
             const modal: Model<any> = connection.model('businessuser');
-            const data: any =  await modal.findOne({email}).select('_id').exec();
+            const data: any =  await modal.findOne({email}).select('_id').lean(true).exec();
             if(data){
                 emailExist = true;
             }
@@ -23,7 +25,7 @@ class Handler {
             if (error.name === 'MongoError' && error.code === 11000) {
                 return Boom.badData(STRING.PHONE_NUMBER_EXIST);
             }
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
@@ -31,6 +33,7 @@ class Handler {
     public signup: any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const payload: any =  request.payload;
+            payload.email = payload.email.toLowerCase();
             const modal: Model<any> = connection.model('businessuser');
             payload.password = Utils.encrypt(payload.password);
             payload.password_changed_at = new Date();
@@ -53,10 +56,13 @@ class Handler {
                     isAdmin: data.scope.includes('admin')
                 }};
         } catch (error) {
+            Logger.error(`Error: `, error);
             if (error.name === 'MongoError' && error.code === 11000) {
                 return Boom.badData(STRING.error.EMAIL_ALREADY_TAKEN);
             }
-            Logger.error(`${error}`);
+            if (error.name === 'ValidationError') {
+                return Boom.badData(error.message);
+            }
             return Boom.badImplementation(error);
         }
     };
@@ -64,8 +70,9 @@ class Handler {
     public signin: any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const payload: any = request.payload;
+            payload.email = payload.email.toLowerCase();
             const modal: Model<any> = connection.model('businessuser');
-            const data: any =  await modal.findOne({email:payload.email}).select('password name email emailVerified active scope password_changed_at').exec();
+            const data: any =  await modal.findOne({email:payload.email}).select('password name email emailVerified active scope password_changed_at').lean(true).exec();
             if(!(data && Utils.comparePassword(payload.password, data.password))){
                 return Boom.badData(STRING.error.INVALID_LOGIN);
             }
@@ -88,7 +95,7 @@ class Handler {
                     isAdmin: data.scope.includes('admin')
                 }};
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
@@ -98,7 +105,7 @@ class Handler {
             const credentials: any = request.auth.credentials;
             return { validToken:true, profileFilled: credentials.profileFilled};
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };
@@ -134,7 +141,10 @@ class Handler {
                     isAdmin: result.scope.includes('admin')
                 }};
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
+            if (error.name === 'ValidationError') {
+                return Boom.badData(error.message);
+            }
             return Boom.badImplementation(error);
         }
     };
@@ -145,7 +155,7 @@ class Handler {
             const modal: Model<any> = connection.model('businessuser');
             const data: any =  await modal.findById(credentials.id).select('profile').exec();
             if(!data){
-                return Boom.badData(STRING.error.PASSWORD_NOT_MATCHED);
+                return Boom.badData(STRING.error.INVALID_USER);
             }
             data.profile = payload;
             const result: any = await data.save();
@@ -154,19 +164,118 @@ class Handler {
             }
             return {
                 message: STRING.success.PROFILE_EDIT_SUCCESSFUL,
-                profile: result
+                profile: result.profile.toObject()
             };
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
+            if (error.name === 'ValidationError') {
+                return Boom.badData(error.message);
+            }
             return Boom.badImplementation(error);
         }
     };
 
-    public profile = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    public profileSelf = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            return 'ok';
+            const credentials: any = request.auth.credentials;
+            const modal: Model<any> = connection.model('businessuser');
+            const data: any =  await modal.findById(credentials.id).select('profile').lean(true).exec();
+            if(!data){
+                return Boom.badData(STRING.error.INVALID_USER);
+            }
+            if(!data.profile){
+                return Boom.badData(STRING.error.NO_PROFILE);
+            }
+            return {
+                message: STRING.success.PROFILE_READ_SUCCESSFUL,
+                profile: data.profile
+            };
         } catch (error) {
-            Logger.error(`${error}`);
+            Logger.error(`Error: `, error);
+            return Boom.badImplementation(error);
+        }
+    };
+
+    public profileSearch = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+        try {
+            const credentials: any = request.auth.credentials;
+            const andOp: any[] = [
+                {_id: {$ne: credentials.id}},
+                {active: true},
+                {emailVerified: true},
+                {profile: {$exists : true}},
+                {'profile.sectors': {$in: request.query.sectors}},
+                {'profile.geographyOfOp': {$in: request.query.geographyOfOp}}
+            ];
+            if(request.query.yearOfExperience){
+                andOp.push({'yearOfExperience': {$gte: request.query.yearOfExperience}});
+            }
+            for (const prop of ['labourContractorLicense', 'gstRegd', 'providentFund', 'esic', 'generalData.mobileNumber', 'gratuity']) {
+                if (request.query[prop]) {
+                    const s: any = {};
+                    s[prop] = request.query[prop];
+                    andOp.push(s);
+                }
+            }
+            const admin: boolean = credentials.scope && credentials.scope.includes('admin');
+            const select: any ={name: 1};
+            for(const item of this.profileFields){
+                select['profile.'+item] = 1;
+            }
+            if(admin){
+                select.email = 1;
+                select['profile.pointOfContact'] =1;
+            }
+            const sort: any = {};
+            sort[request.query.sort.toString()] = request.query.sortOrder === 'asc' ? 1 :-1;
+            const limit: number = parseInt(request.query.limit.toString(), 10);
+            const skip: number = limit * parseInt(request.query.page.toString(), 10);
+            const modal: Model<any> = connection.model('businessuser');
+            const data: any = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select(select).lean(true).exec();
+            const count: number = await modal.find({$and: andOp}).countDocuments().exec();
+            if (!data) {
+                return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);
+            }
+            return {
+                message: STRING.success.PROFILE_SEARCH_SUCCESSFUL,
+                profiles: data,
+                count
+            };
+        } catch (error) {
+            Logger.error(`Error: `, error);
+            return Boom.badImplementation(error);
+        }
+    };
+
+    public profileOne = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+        try {
+            const {id}: any = request.params;
+            const andOp: any[] = [
+                {_id: id},
+                {active: true},
+                {emailVerified: true}
+            ];
+            const credentials: any = request.auth.credentials;
+            const admin: boolean = credentials.scope && credentials.scope.includes('admin');
+            const select: any ={name: 1};
+            for(const item of this.profileFields){
+                select['profile.'+item] = 1;
+            }
+            if(admin){
+                select.email = 1;
+                select['profile.pointOfContact'] =1;
+            }
+            const modal: Model<any> = connection.model('businessuser');
+            const data: any = await modal.findOne({$and: andOp}).select(select).lean(true).exec();
+            if (!data) {
+                return Boom.badData(STRING.error.INVALID_USER);
+            }
+            return {
+                message: STRING.success.PROFILE_ONE_SUCCESSFUL,
+                profile: data
+            };
+        } catch (error) {
+            Logger.error(`Error: `, error);
             return Boom.badImplementation(error);
         }
     };

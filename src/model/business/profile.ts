@@ -1,16 +1,15 @@
-import { Schema} from 'mongoose';
+import {Schema} from 'mongoose';
 import KeyvalueConfig from '../../config/keyvalueConfig';
-import CityConfig from '../../config/cityConfig';
 
 const schema: Schema = new Schema(
     {
-     /*   userId:
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'businessuser',
-                required: true,
-                unique: true
-            },*/
+        /*   userId:
+               {
+                   type: Schema.Types.ObjectId,
+                   ref: 'businessuser',
+                   required: true,
+                   unique: true
+               },*/
         address: {
             type: String,
             required: true,
@@ -28,9 +27,22 @@ const schema: Schema = new Schema(
                     enum: KeyvalueConfig.getValueArray('skillsBySector')
                 }
             ],
-            required: true
+            required: true,
+            validate: v => Array.isArray(v) && v.length > 0
         },
-        skills:{
+        sectorsOther: {
+            type: [
+                {
+                    type: String,
+                    required: true,
+                    trim: true,
+                    minlength: 1,
+                    maxlength: 10000,
+                    match: /^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                }
+            ]
+        },
+        skills: {
             type: [
                 {
                     type: String,
@@ -39,12 +51,25 @@ const schema: Schema = new Schema(
                     enum: KeyvalueConfig.getSkillArray()
                 }
             ],
-            required: true
+            required: true,
+            validate: v => Array.isArray(v) && v.length > 0
+        },
+        skillsOther: {
+            type: [
+                {
+                    type: String,
+                    required: true,
+                    trim: true,
+                    minlength: 1,
+                    maxlength: 10000,
+                    match: /^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                }
+            ]
         },
         yearOfExperience: {
             type: Number,
             require: true,
-            min:0,
+            min: 0,
             max: 1000
         },
         geographyOfOp: {
@@ -53,80 +78,85 @@ const schema: Schema = new Schema(
                     type: String,
                     trim: true,
                     required: true,
-                    enum: CityConfig.getCityArray()
+                    enum: KeyvalueConfig.getAllDistrictArray()
                 }
             ],
-            required: true
+            required: true,
+            validate: v => Array.isArray(v) && v.length > 0
         },
-        largestContract:{
-            price:{
+        largestContract: {
+            price: {
                 type: Number,
                 min: 0,
                 max: 10000000000
             },
-            manpowerEmployed:{
+            manpowerEmployed: {
                 type: Number,
                 min: 0,
                 max: 10000000000
             }
         },
-        pointOfContact:{
-            name:{
-                type: String,
-                trim: true,
-                minlength:1,
-                maxlength:1000,
-                match:/^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i
+        pointOfContact: {
+            type: {
+                name: {
+                    type: String,
+                    trim: true,
+                    minlength: 1,
+                    maxlength: 1000,
+                    match: /^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i
+                },
+                email: {
+                    type: String,
+                    trim: true,
+                    minlength: 5,
+                    maxlength: 100,
+                    match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                },
+                phoneNumber: {
+                    type: String,
+                    trim: true,
+                    minlength: 10,
+                    maxlength: 10,
+                    match: /^[6-9]+[0-9]+$/
+                },
+                designation: {
+                    type: String,
+                    trim: true,
+                    minlength: 1,
+                    maxlength: 1000
+                }
             },
-            email: {
-                type: String,
-                trim: true,
-                minlength: 5,
-                maxlength: 100,
-                match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            },
-            phoneNumber: {
-                type: String,
-                trim: true,
-                minlength: 10,
-                maxlength: 10,
-                match: /^[6-9]+[0-9]+$/
-            },
-            designation:{
-                type: String,
-                trim: true,
-                minlength:1,
-                maxlength:1000
-            }
+            required: true,
+            select: false
         },
-        nameOfFounder:{
+        nameOfFounder: {
             type: String,
             trim: true,
-            minlength:1,
-            maxlength:1000,
-            match:/^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i
+            minlength: 1,
+            maxlength: 1000,
+            match: /^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i
         },
-        typeOfProjectManaged:{
+        typeOfProjectManaged: {
             type: [
                 {
                     type: String,
                     required: true,
                     trim: true,
-                    minlength:1,
-                    maxlength:10000,
-                    match:/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                    minlength: 1,
+                    maxlength: 10000,
+                    match: /^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
                 }
             ]
         },
-        companyWorkedWith:{
+        companyWorkedWith: {
             type: [
                 {
                     type: String,
                     required: true,
                     trim: true,
-                    minlength:1,
-                    maxlength:10000,
-                    match:/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                    minlength: 1,
+                    maxlength: 10000,
+                    match: /^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
                 }
             ]
         },
@@ -137,30 +167,43 @@ const schema: Schema = new Schema(
             minlength: 5,
             maxlength: 10000
         },
-        compliance:{
-            labourContractorLicense:{
-                type: Boolean
+        compliance: {
+            type: {
+                labourContractorLicense: {
+                    type: Boolean,
+                    required: true,
+                    default: false
+                },
+                gstRegd: {
+                    type: Boolean,
+                    required: true,
+                    default: false
+                },
+                providentFund: {
+                    type: Boolean,
+                    required: true,
+                    default: false
+                },
+                esic: {
+                    type: Boolean,
+                    required: true,
+                    default: false
+                },
+                gratuity: {
+                    type: Boolean,
+                    required: true,
+                    default: false
+                }
             },
-            gstRegd:{
-                type: Boolean
-            },
-            providentFund:{
-                type: Boolean
-            },
-            esic:{
-                type: Boolean
-            },
-            gratuity:{
-                type: Boolean
-            }
+            required: true
         },
-        resources:{
-            plantMachinery:{
+        resources: {
+            plantMachinery: {
                 type: Number,
                 min: 0,
                 max: 100000
             },
-            humanResources:{
+            humanResources: {
                 type: Number,
                 min: 0,
                 max: 1000000

@@ -14,8 +14,13 @@ class Routes {
                     method: 'POST',
                     path: '/api/v1/business/project',
                     options: {
+                        auth: {
+                            strategy: 'businesstoken',
+                            scope: ['business']
+                        },
                         handler: Handler.create,
-                        validate: Validate.create,
+                        validate: Validate.create.input,
+                        response: Validate.create.output,
                         description: STRING.CREATE,
                         tags: ['api', 'project']
                     }
@@ -63,7 +68,7 @@ class Routes {
             ]);
             Logger.info('ProjectRoutes - Finish adding project routes.');
         } catch (error) {
-            Logger.error(`Error in loading ProjectRoutes: ${error}`);
+            Logger.error('Error in loading ProjectRoutes: ', error);
             throw error;
         }
     };

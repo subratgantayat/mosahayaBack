@@ -1,7 +1,6 @@
 import {model, Schema} from 'mongoose';
 import KeyvalueConfig from '../../config/keyvalueConfig';
 import BusinessKeyValue from '../../config/businessKeyValue';
-import CityConfig from '../../config/cityConfig';
 
 const schema: Schema = new Schema(
     {
@@ -11,6 +10,11 @@ const schema: Schema = new Schema(
                 ref: 'businessuser',
                 required: true
             },
+        active: {
+            type: Boolean,
+            required: true,
+            default: true
+        },
         title: {
             type: String,
             trim: true,
@@ -48,35 +52,39 @@ const schema: Schema = new Schema(
             type: String,
             trim: true,
             required: true,
-            enum: CityConfig.getCityArray()
+            enum: KeyvalueConfig.getAllDistrictArray()
         },
         contactDetails: {
-            name: {
-                type: String,
-                trim: true,
-                minlength: 1,
-                maxlength: 1000,
-                match: /^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i
+            type:{
+                name: {
+                    type: String,
+                    trim: true,
+                    minlength: 1,
+                    maxlength: 1000,
+                    match: /^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i
+                },
+                email: {
+                    type: String,
+                    minlength: 5,
+                    maxlength: 100,
+                    match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                },
+                phoneNumber: {
+                    type: String,
+                    trim: true,
+                    minlength: 10,
+                    maxlength: 10,
+                    match: /^[6-9]+[0-9]+$/
+                },
+                designation: {
+                    type: String,
+                    trim: true,
+                    minlength: 1,
+                    maxlength: 1000
+                }
             },
-            email: {
-                type: String,
-                minlength: 5,
-                maxlength: 100,
-                match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            },
-            phoneNumber: {
-                type: String,
-                trim: true,
-                minlength: 10,
-                maxlength: 10,
-                match: /^[6-9]+[0-9]+$/
-            },
-            designation: {
-                type: String,
-                trim: true,
-                minlength: 1,
-                maxlength: 1000
-            }
+            required: true,
+            select: false
         },
         sectors: {
             type: [
@@ -86,7 +94,8 @@ const schema: Schema = new Schema(
                     enum: KeyvalueConfig.getValueArray('skillsBySector')
                 }
             ],
-            required: true
+            required: true,
+            validate: v => Array.isArray(v) && v.length > 0
         },
         requirements: {
             type: [
@@ -131,11 +140,13 @@ const schema: Schema = new Schema(
                                 }
                             }
                         ],
-                        required: true
+                        required: true,
+                        validate: v => Array.isArray(v) && v.length > 0
                     }
                 }
             ],
-            required: true
+            required: true,
+            validate: v => Array.isArray(v) && v.length > 0
         },
         noOfEmployeesCalculated:{
             type: Number,
@@ -225,5 +236,6 @@ const schema: Schema = new Schema(
     },
     {timestamps: true}
 );
+schema.index({userId: 1, title: 1}, {unique: true});
 // schema.index({location: 1, title: 1});
 export default model('project', schema);

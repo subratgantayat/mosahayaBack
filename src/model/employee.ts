@@ -58,7 +58,8 @@ const schema: Schema = new Schema(
                 },
                 _id:false
             }],
-            required: true
+            required: true,
+            validate: v => Array.isArray(v) && v.length > 0
         },
         uploadRef:{
             type: String,

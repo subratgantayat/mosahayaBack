@@ -100,7 +100,7 @@ class Routes {
                 },
                 {
                     method: 'PUT',
-                    path: '/api/v1/business/user/self/profile',
+                    path: '/api/v1/business/user/profile',
                     options: {
                         auth: {
                             strategy: 'businesstoken',
@@ -121,15 +121,46 @@ class Routes {
                             strategy: 'businesstoken',
                             scope: ['business']
                         },
-                        handler: Handler.profile,
-                        description: STRING.PROFILE_GET,
+                        handler: Handler.profileSelf,
+                        description: STRING.PROFILE_GET_SELF,
+                        response: Validate.profileSelf.output,
+                        tags: ['api', 'businessUser']
+                    }
+                },
+                {
+                    method: 'GET',
+                    path: '/api/v1/business/user/profile',
+                    options: {
+                        auth: {
+                            strategy: 'businesstoken',
+                            scope: ['business']
+                        },
+                        handler: Handler.profileSearch,
+                        description: STRING.PROFILE_SEARCH,
+                        validate: Validate.profileSearch.input,
+                        response: Validate.profileSearch.output,
+                        tags: ['api', 'businessUser']
+                    }
+                },
+                {
+                    method: 'GET',
+                    path: '/api/v1/business/user/profile/{id}',
+                    options: {
+                        auth: {
+                            strategy: 'businesstoken',
+                            scope: ['business']
+                        },
+                        handler: Handler.profileOne,
+                        description: STRING.PROFILE_ONE,
+                        validate: Validate.profileOne.input,
+                        response: Validate.profileOne.output,
                         tags: ['api', 'businessUser']
                     }
                 }
             ]);
             Logger.info('BusinessUserRoutes - Finish adding businessUser routes.');
         } catch (error) {
-            Logger.error(`Error in loading BusinessUserRoutes: ${error}`);
+            Logger.error('Error in loading BusinessUserRoutes: ', error);
             throw error;
         }
     };

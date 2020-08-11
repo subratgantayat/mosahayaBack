@@ -31,6 +31,7 @@ const schema: Schema = new Schema(
                 enum: ['company','admin']
             }],
             required: true,
+            validate: v => Array.isArray(v) && v.length > 0,
             default: ['company'],
             select: false
         },
