@@ -91,14 +91,20 @@ const stringConstants: any = {
             FIND_ONE_SELF:'Method to get own single project by id for business user',
             FIND:'Method to search others projects for business user',
             FIND_ONE:'Method to get other single project by id for business user',
+            APPLY_PROJECT:'Method to apply to project for business user',
+            GET_APPLY_PROJECT:'Method to get projects to which user has applied for business user',
             success:{
                 PROJECT_CREATE_SUCCESSFUL:'Project create successful',
                 PROJECT_EDIT_SUCCESSFUL:'Project update successful',
                 PROJECT_READ_SUCCESSFUL:'Project read successful',
-                PROJECT_SEARCH_SUCCESSFUL:'Project search successful'
+                PROJECT_SEARCH_SUCCESSFUL:'Project search successful',
+                PROJECT_APPLY_SUCCESSFUL:'Project apply successful'
             },
             error:{
-                TITLE_ALREADY_TAKEN: 'Another project exists with the same title'
+                TITLE_ALREADY_TAKEN: 'Another project exists with the same title',
+                ALREADY_APPLIED:'You have already applied to the project',
+                INVALID_PROJECT: 'Invalid project',
+                INVALID_PROJECT_TO_APPLY: 'Invalid project or can cant apply to this project or already applied'
             }
         }
     }

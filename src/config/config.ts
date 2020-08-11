@@ -47,6 +47,7 @@ export default {
     },
     sortOrder:['asc','desc'],
     defaultSortOrder:'asc',
+    defaultProjectApplicationStatus:'applied',
     failAction: 'log',
     captchaScore: 0.4
 };

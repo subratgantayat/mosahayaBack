@@ -153,18 +153,15 @@ class Handler {
             const payload: any = request.payload;
             const credentials: any = request.auth.credentials;
             const modal: Model<any> = connection.model('businessuser');
-            const data: any =  await modal.findById(credentials.id).select('profile').exec();
-            if(!data){
+            const data: any = await modal.findOneAndUpdate({
+                _id: credentials.id
+            }, {$set: {profile: payload}}, {new: true, fields: 'profile'}).exec();
+            if (!data) {
                 return Boom.badData(STRING.error.INVALID_USER);
-            }
-            data.profile = payload;
-            const result: any = await data.save();
-            if (!result) {
-                return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_UPDATING);
             }
             return {
                 message: STRING.success.PROFILE_EDIT_SUCCESSFUL,
-                profile: result.profile.toObject()
+                profile: data.toObject()
             };
         } catch (error) {
             Logger.error(`Error: `, error);
@@ -231,7 +228,7 @@ class Handler {
             const limit: number = parseInt(request.query.limit.toString(), 10);
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('businessuser');
-            const data: any = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select(select).lean(true).exec();
+            const data: any[] = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select(select).lean(true).exec();
             const count: number = await modal.find({$and: andOp}).countDocuments().exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);

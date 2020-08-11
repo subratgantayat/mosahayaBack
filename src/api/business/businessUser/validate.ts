@@ -162,44 +162,44 @@ class Validate{
             })
         },
         output:{
-           /* schema(out, options){
-                 console.log('aaa1');
-                const admin: boolean = options.context.credentials.scope && options.context.credentials.scope.includes('admin');
-                let schema: any = Joi.object().required().keys({
-                        message1:Joi.string().required(),
-                        profiles: Joi.array().required().min(0).max(1000).items(
-                            Joi.object().required().keys({
-                                name:Joi.string().required().trim().min(1).max(1000).pattern(/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i),
-                                profile:this.profile
-                            })
-                        ),
-                        count: Joi.number().integer().min(0).max(1000)
-                    });
-                if (admin) {
-                    schema = schema.Joi.object().required().keys({
-                        message:Joi.string().required(),
-                        profiles: Joi.array().required().min(0).max(1000).items(
-                            Joi.object().required().keys({
-                                name:Joi.string().required().trim().min(1).max(1000).pattern(/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i),
-                                email:Joi.string().required().trim().email().min(5).max(1000).lowercase(),
-                                profile:this.profile.append(this.pointOfContact)
-                            })
-                        ),
-                        count: Joi.number().integer().min(0).max(1000)
-                    });
-                }
-                const { error, value } = schema.validate(out);
-                if (error) {
-                    throw error;
-                }
-                return value;
-            },*/
+            /* schema(out, options){
+                  console.log('aaa1');
+                 const admin: boolean = options.context.credentials.scope && options.context.credentials.scope.includes('admin');
+                 let schema: any = Joi.object().required().keys({
+                         message1:Joi.string().required(),
+                         profiles: Joi.array().required().min(0).max(1000).items(
+                             Joi.object().required().keys({
+                                 name:Joi.string().required().trim().min(1).max(1000).pattern(/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i),
+                                 profile:this.profile
+                             })
+                         ),
+                         count: Joi.number().integer().min(0).max(1000)
+                     });
+                 if (admin) {
+                     schema = schema.Joi.object().required().keys({
+                         message:Joi.string().required(),
+                         profiles: Joi.array().required().min(0).max(1000).items(
+                             Joi.object().required().keys({
+                                 name:Joi.string().required().trim().min(1).max(1000).pattern(/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i),
+                                 email:Joi.string().required().trim().email().min(5).max(1000).lowercase(),
+                                 profile:this.profile.append(this.pointOfContact)
+                             })
+                         ),
+                         count: Joi.number().integer().min(0).max(1000)
+                     });
+                 }
+                 const { error, value } = schema.validate(out);
+                 if (error) {
+                     throw error;
+                 }
+                 return value;
+             },*/
             schema:Joi.object().required().keys({
                 message:Joi.string().required(),
                 profiles: Joi.array().required().min(0).max(1000).items(
-                this.fullProfile
+                    this.fullProfile
                 ),
-                count: Joi.number().integer().min(0).max(1000)
+                count: Joi.number().required().integer().min(0).max(1000)
             }),
             failAction: Config.failAction
         }

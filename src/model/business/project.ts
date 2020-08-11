@@ -1,6 +1,7 @@
 import {model, Schema} from 'mongoose';
 import KeyvalueConfig from '../../config/keyvalueConfig';
 import BusinessKeyValue from '../../config/businessKeyValue';
+import Config from '../../config/config';
 
 const schema: Schema = new Schema(
     {
@@ -218,24 +219,33 @@ const schema: Schema = new Schema(
             max: 10000000,
             default:0
         },
-        applications:[
-            {
-                user:{
-                    type: Schema.Types.ObjectId,
-                    ref: 'businessuser',
-                    required: true
-                },
-                status: {
-                    type: String,
-                    trim: true,
-                    required: true,
-                    enum: ['applied', 'accept','reject','wishlist','askMoSahay']
+        applications: {
+            type: [
+                {
+                    user: {
+                        type: Schema.Types.ObjectId,
+                        ref: 'businessuser',
+                        required: true
+                    },
+                    status: {
+                        type: String,
+                        trim: true,
+                        required: true,
+                        enum: BusinessKeyValue.getValueArray('applicationStatus'),
+                        default:Config.defaultProjectApplicationStatus
+                    },
+                    appliedOn:{
+                        type: Date,
+                        required: true
+                    }
                 }
-            }
-        ]
+            ],
+            select: false
+        }
     },
     {timestamps: true}
 );
 schema.index({userId: 1, title: 1}, {unique: true});
+// schema.index( { title: 'text'});
 // schema.index({location: 1, title: 1});
 export default model('project', schema);

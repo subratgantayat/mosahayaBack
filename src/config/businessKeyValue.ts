@@ -32,6 +32,28 @@ const keyvalue: any = {
             name: 'unskilled',
             value: 'unskilled'
         }
+    ],
+    applicationStatus:[
+        {
+            name: 'applied',
+            value: 'applied'
+        },
+        {
+            name: 'accept',
+            value: 'accept'
+        },
+        {
+            name: 'reject',
+            value: 'reject'
+        },
+        {
+            name: 'wishlist',
+            value: 'wishlist'
+        },
+        {
+            name: 'askMoSahay',
+            value: 'askMoSahay'
+        }
     ]
 };
 
