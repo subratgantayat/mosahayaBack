@@ -128,6 +128,21 @@ class Routes {
                         description: STRING.GET_APPLY_PROJECT,
                         tags: ['api', 'project']
                     }
+                },
+                {
+                    method: 'PUT',
+                    path: '/api/v1/business/project/status/{id}',
+                    options: {
+                        auth: {
+                            strategy: 'businesstoken',
+                            scope: ['business']
+                        },
+                        handler: Handler.changeStatus,
+                        validate: Validate.changeStatus.input,
+                        response: Validate.changeStatus.output,
+                        description: STRING.CHANGE_STATUS,
+                        tags: ['api', 'project']
+                    }
                 }
             ]);
             Logger.info('ProjectRoutes - Finish adding project routes.');

@@ -93,18 +93,21 @@ const stringConstants: any = {
             FIND_ONE:'Method to get other single project by id for business user',
             APPLY_PROJECT:'Method to apply to project for business user',
             GET_APPLY_PROJECT:'Method to get projects to which user has applied for business user',
+            CHANGE_STATUS:'Method to change staus of an applied project',
             success:{
                 PROJECT_CREATE_SUCCESSFUL:'Project create successful',
                 PROJECT_EDIT_SUCCESSFUL:'Project update successful',
                 PROJECT_READ_SUCCESSFUL:'Project read successful',
                 PROJECT_SEARCH_SUCCESSFUL:'Project search successful',
-                PROJECT_APPLY_SUCCESSFUL:'Project apply successful'
+                PROJECT_APPLY_SUCCESSFUL:'Project apply successful',
+                STATUS_CHANGE_SUCCESSFUL:'Application status change successful'
             },
             error:{
                 TITLE_ALREADY_TAKEN: 'Another project exists with the same title',
                 ALREADY_APPLIED:'You have already applied to the project',
                 INVALID_PROJECT: 'Invalid project',
-                INVALID_PROJECT_TO_APPLY: 'Invalid project or can cant apply to this project or already applied'
+                INVALID_PROJECT_TO_APPLY: 'Invalid project or can can not apply to this project or already applied',
+                INVALID_PROJECT_TO_CHANGE_STATUS: 'Invalid project or application reference or can not change status for the input'
             }
         }
     }

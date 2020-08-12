@@ -341,6 +341,39 @@ class Handler {
             return Boom.badImplementation(error);
         }
     };
+
+    public changeStatus = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+        try {
+            const {id}: any = request.params;
+            const payload: any = request.payload;
+            const modal: Model<any> = connection.model('project');
+            const credentials: any = request.auth.credentials;
+            const record: any = {
+                user: credentials.id,
+                status: Config.defaultProjectApplicationStatus,
+                appliedOn: new Date()
+            };
+            const data: any = await modal.findOneAndUpdate({
+                _id: id,
+                userId: credentials.id,
+                active: true,
+                'applications.user': payload.userId
+            },{ $set: { 'applications.$[element].status' : payload.status } },
+              {arrayFilters: [ { 'element.user': payload.userId } ],new: true, fields: '_id', rawResult: true}).exec();
+            if (!(data && data.value)) {
+                return Boom.badData(STRING.error.INVALID_PROJECT_TO_APPLY);
+            }
+            return {
+                message: STRING.success.STATUS_CHANGE_SUCCESSFUL
+            };
+        } catch (error) {
+            Logger.error(`Error: `, error);
+            if (error.name === 'ValidationError') {
+                return Boom.badData(error.message);
+            }
+            return Boom.badImplementation(error);
+        }
+    };
 }
 
 export default new Handler();

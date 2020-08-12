@@ -247,6 +247,24 @@ class Validate {
             failAction: Config.failAction
         }
     };
+
+    public changeStatus: any = {
+        input: {
+            params: Joi.object().required().keys({
+                id: JoiObjectIdInstance().required()
+            }),
+            payload:Joi.object().required().keys({
+                userId: JoiObjectIdInstance().required(),
+                status: Joi.string().required().valid(...BusinessKeyValue.getValueArray('applicationStatus'))
+            })
+        },
+        output: {
+            schema: Joi.object().required().keys({
+                message: Joi.string().required()
+            }),
+            failAction: Config.failAction
+        }
+    };
 }
 
 export default new Validate();
