@@ -9,7 +9,8 @@ const schema: Schema = new Schema(
             {
                 type: Schema.Types.ObjectId,
                 ref: 'businessuser',
-                required: true
+                required: true,
+                index: true
             },
         active: {
             type: Boolean,
@@ -98,6 +99,18 @@ const schema: Schema = new Schema(
             required: true,
             validate: v => Array.isArray(v) && v.length > 0
         },
+        sectorsOther: {
+            type: [
+                {
+                    type: String,
+                    required: true,
+                    trim: true,
+                    minlength: 1,
+                    maxlength: 10000,
+                    match: /^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
+                }
+            ]
+        },
         requirements: {
             type: [
                 {
@@ -105,6 +118,13 @@ const schema: Schema = new Schema(
                         type: String,
                         required: true,
                         enum: KeyvalueConfig.getSkillArray()
+                    },
+                    skillOther: {
+                        type: String,
+                        trim: true,
+                        minlength: 1,
+                        maxlength: 10000,
+                        match: /^[a-z]+([\sa-z0-9@&:'./()_-])*$/i
                     },
                     details: {
                         type: [

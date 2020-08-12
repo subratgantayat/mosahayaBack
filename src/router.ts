@@ -1,9 +1,9 @@
 import * as Hapi from '@hapi/hapi';
-import RegistrationRoutes from './api/registration/routes';
+// import RegistrationRoutes from './api/registration/routes';
 import EnrollmentRoutes from './api/enrollment/routes';
 import AdminRoutes from './api/admin/routes';
-import SeverHealthRoutes from './api/health';
-import SeverFileRoutes from './api/file';
+import HealthRoutes from './api/health';
+import PublicRoutes from './api/public';
 import SkillRoutes from './api/skill/routes';
 import EmployerRoutes from './api/employer/routes';
 import EmployeeRoutes from './api/employee/routes';
@@ -15,9 +15,9 @@ class Router {
     public loadRoutes =  async (server: Hapi.Server): Promise<any> => {
         try {
             Logger.info('Router - Start adding routes.');
-            await SeverHealthRoutes.register(server);
-            await SeverFileRoutes.register(server);
-            await RegistrationRoutes.register(server);
+            await HealthRoutes.register(server);
+            await PublicRoutes.register(server);
+          //  await RegistrationRoutes.register(server);
             await EnrollmentRoutes.register(server);
             await AdminRoutes.register(server);
             await SkillRoutes.register(server);

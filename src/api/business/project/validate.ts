@@ -14,6 +14,7 @@ class Validate {
         natureOfProject: Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
         location: Joi.string().required().valid(...KeyvalueConfig.getAllDistrictArray()),
         sectors: Joi.array().required().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('skillsBySector'))),
+        sectorsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
         natureOfEmployment: Joi.object().required().keys({
             employmentType: Joi.string().required().valid(...BusinessKeyValue.getValueArray('employmentType')),
             durationInDays: Joi.number().when('employmentType', {
@@ -25,6 +26,7 @@ class Validate {
         requirements: Joi.array().required().min(0).max(1000).items(
             Joi.object().required().keys({
                 skill: Joi.string().required().trim().valid(...KeyvalueConfig.getSkillArray()),
+                skillOther:Joi.string().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i),
                 details: Joi.array().required().min(0).max(1000).items(
                     Joi.object().required().keys({
                         skillLevel: Joi.string().required().trim().valid(...BusinessKeyValue.getValueArray('skillLevel')),
@@ -64,21 +66,28 @@ class Validate {
         appliedOn: Joi.date().required().max('now')
     }).unknown(true);
 
-    private calculatedFields: any = {
+    private commonFields: any = {
         active: Joi.boolean().required(),
         _id: Joi.any().required(),
-        userId: Joi.any().required(),
-        applications: Joi.array().min(0).max(100000000).items(
-            this.application
-        )
+        userId: Joi.any().required()
     };
     private privateProject: any = this.project.append({
         contactDetails: this.contactDetails
-    }).append(this.calculatedFields);
+    }).append(this.commonFields).append(
+        {
+            applications: this.application
+        }
+    );
 
     private fullProject: any = this.project.append({
         contactDetails: this.contactDetails.required()
-    }).append(this.calculatedFields).append(
+    }).append(this.commonFields).append(
+        {
+            applications: Joi.array().min(0).max(100000000).items(
+                this.application
+            )
+        }
+    ).append(
         {
             noOfEmployeesCalculated: Joi.number().required().integer().min(1).max(1000000),
             maxSalaryCalculated: Joi.number().required().integer().min(1).max(1000000000),
@@ -108,7 +117,7 @@ class Validate {
                 page: Joi.number().required().integer().min(0).max(500000),
                 limit: Joi.number().required().integer().positive().min(1).max(1000),
                 active: Joi.string().trim().valid('all', 'y', 'n').default('y'),
-                title: Joi.string().trim().min(1).max(1000),
+                title: Joi.string().trim().min(1).max(1000).pattern(/^[\x20-\x7E\s]+$/),
                 location: Joi.array().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getAllDistrictArray())).single(),
                 sort: Joi.string().valid('createdAt', 'noOfApplicationCalculated').default('noOfApplicationCalculated'),
                 sortOrder: Joi.string().valid(...Config.sortOrder).default(Config.defaultSortOrder)
@@ -158,8 +167,10 @@ class Validate {
                 page: Joi.number().required().integer().min(0).max(500000),
                 limit: Joi.number().required().integer().positive().min(1).max(1000),
                 sectors: Joi.array().required().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('skillsBySector'))).single(),
+                sectorsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(1000).pattern(/^[\x20-\x7E\s]+$/)).single(),
                 location: Joi.array().required().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getAllDistrictArray())).single(),
-                skills: Joi.array().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getSkillArray())).single(),
+                skill: Joi.array().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getSkillArray())).single(),
+                skillOther: Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(1000).pattern(/^[\x20-\x7E\s]+$/)).single(),
                 employmentType: Joi.array().min(0).max(1000).items(Joi.string().required().valid(...BusinessKeyValue.getValueArray('employmentType'))).single(),
                 expectedSalary: Joi.number().integer().min(0).max(100000000),
                 accommodation: Joi.boolean(),
@@ -180,7 +191,15 @@ class Validate {
             schema: Joi.object().required().keys({
                 message: Joi.string().required(),
                 projects: Joi.array().required().min(0).max(1000).items(
-                    this.privateProject
+                    this.project.append({
+                        contactDetails: this.contactDetails
+                    }).append(this.commonFields).append(
+                        {
+                            applications: Joi.array().min(0).max(100000000).items(
+                                this.application
+                            )
+                        }
+                    )
                 ),
                 count: Joi.number().required().integer().min(0).max(1000)
             }),
@@ -197,8 +216,7 @@ class Validate {
         output: {
             schema: Joi.object().required().keys({
                 message: Joi.string().required(),
-                project: this.privateProject,
-                application: this.application
+                project: this.privateProject
             }),
             failAction: Config.failAction
         }

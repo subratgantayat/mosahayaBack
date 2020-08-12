@@ -73,7 +73,7 @@ class Handler {
             const limit: number = parseInt(request.query.limit.toString(), 10);
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('project');
-            const data: any[] = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select('+contactDetails +applications').lean(true).exec();
+            const data: any[] = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select('+contactDetails +applications').populate('applications.user', 'name active').lean(true).exec();
             const count: number = await modal.find({$and: andOp}).countDocuments().exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);
@@ -94,11 +94,11 @@ class Handler {
             const credentials: any = request.auth.credentials;
             const {id}: any = request.params;
             const modal: Model<any> = connection.model('project');
-            const modalBusinessUser: Model<any> = connection.model('businessuser');
+            // const modalBusinessUser: Model<any> = connection.model('businessuser');
             const data: any = await modal.findOne({
                 _id: id,
                 userId: credentials.id
-            }).select('+contactDetails +applications').populate('applications.user', 'name').lean(true).exec();
+            }).select('+contactDetails +applications').populate('applications.user', 'name active').lean(true).exec();
             if (!data) {
                 return Boom.badData(STRING.error.INVALID_PROJECT);
             }
@@ -151,12 +151,20 @@ class Handler {
                 {'sectors': {$in: request.query.sectors}},
                 {'location': {$in: request.query.location}}
             ];
-            if (request.query.skills) {
-                andOp.push({'requirements.skill': {$in: request.query.skills}});
+            if (request.query.skill) {
+                andOp.push({'requirements.skill': {$in: request.query.skill}});
             }
             if (request.query.employmentType) {
                 andOp.push({'natureOfEmployment.employmentType': {$in: request.query.employmentType}});
             }
+            if (request.query.sectorsOther) {
+                andOp.push({'sectorsOther': {$in: request.query.sectorsOther}});
+            }
+
+            if (request.query.skillOther) {
+                andOp.push({'requirements.skillOther': {$in: request.query.skillOther}});
+            }
+
             if (request.query.expectedSalary) {
                 andOp.push({'maxSalaryCalculated': {$gte: request.query.expectedSalary}});
             }
@@ -180,7 +188,7 @@ class Handler {
             const limit: number = parseInt(request.query.limit.toString(), 10);
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('project');
-            const modalBusinessUser: Model<any> = connection.model('businessuser');
+            // const modalBusinessUser: Model<any> = connection.model('businessuser');
             const data: any[] = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select(select).populate('userId', 'name').lean(true).exec();
             const count: number = await modal.find({$and: andOp}).countDocuments().exec();
             if (!data) {
@@ -210,7 +218,7 @@ class Handler {
             }
             const {id}: any = request.params;
             const modal: Model<any> = connection.model('project');
-            const modalBusinessUser: Model<any> = connection.model('businessuser');
+            //  const modalBusinessUser: Model<any> = connection.model('businessuser');
             const data: any = await modal.findOne({
                 _id: id,
                 active: true
@@ -221,12 +229,13 @@ class Handler {
             let applied: any;
             if (data.applications) {
                 applied = data.applications.filter((v) => JSON.stringify(v.user) === JSON.stringify(credentials.id));
+                if(applied.length> 0 ){
+                    data.applications = applied[0];
+                }
             }
-            data.applications = undefined;
             return {
                 message: STRING.success.PROJECT_READ_SUCCESSFUL,
-                project: data,
-                application: applied? applied[0] : undefined
+                project: data
             };
         } catch (error) {
             Logger.error(`Error: `, error);
@@ -270,24 +279,52 @@ class Handler {
         try {
             const credentials: any = request.auth.credentials;
             const modal: Model<any> = connection.model('project');
+            const admin: boolean = credentials.scope && credentials.scope.includes('admin');
+            const select: any = {};
+            for (const item of this.projectFields) {
+                select[item] = 1;
+            }
+            if (admin) {
+                select.contactDetails = 1;
+            }
+            delete select.userId;
+            select['userId._id'] = 1;
+            select['userId.name'] = 1;
+            select['userId.active'] = 1;
+            select.applications = 1;
             const data: any[] = await modal.aggregate(
-                [{
-                    $match: {
-                        active: true,
-                        'applications.user': Types.ObjectId(credentials.id)
+                [
+                    {
+                        $match: {
+                            active: true,
+                            'applications.user': Types.ObjectId(credentials.id)
+                        }
+                    },
+                    {$unwind: '$applications'},
+                    {
+                        $match: {
+                            'applications.user': Types.ObjectId(credentials.id)
+                        }
+                    },
+                    {
+                        $sort: {
+                            'applications.appliedOn': -1
+                        }
+                    },
+                    {
+                        $lookup:
+                            {
+                                from: 'businessusers',
+                                localField: 'userId',
+                                foreignField: '_id',
+                                as: 'userId'
+                            }
+                    },
+                    {$unwind: '$userId'},
+                    {
+                        '$project': select
                     }
-                },
-                {$unwind: '$applications'},
-                {
-                    $match: {
-                        'applications.user': Types.ObjectId(credentials.id)
-                    }
-                },
-                {
-                    $sort: {
-                        'applications.appliedOn': -1
-                    }
-                }]
+                ]
             ).exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);

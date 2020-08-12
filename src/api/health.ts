@@ -6,7 +6,7 @@ const STRING: any = EXTERNALIZED_STRING.health;
 class Routes {
     public register = async (server: Hapi.Server): Promise<any> =>{
         try {
-            Logger.info('SeverHealthRoutes - Start adding server health route.');
+            Logger.info('HealthRoutes - Start adding health route.');
             server.route([
                 {
                     method: 'GET',
@@ -23,9 +23,9 @@ class Routes {
                     }
                 }
             ]);
-            Logger.info('SeverHealthRoutes - Finish adding server health route.');
+            Logger.info('HealthRoutes - Finish adding health route.');
         } catch (error) {
-            Logger.error('Error in loading server health route: ', error);
+            Logger.error('Error in loading health route: ', error);
             throw error;
         }
     };

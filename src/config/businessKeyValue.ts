@@ -1,57 +1,57 @@
 const keyvalue: any = {
     typeOfEmployer: [
         {
-            name: 'principal',
+            name: 'Config.TypeOfEmployer.principal',
             value: 'principal'
         },
         {
-            name: 'contracting',
+            name: 'Config.TypeOfEmployer.contracting',
             value: 'contracting'
         }
     ],
     employmentType: [
         {
-            name: 'contract',
+            name: 'Config.EmploymentType.contract',
             value: 'contract'
         },
         {
-            name: 'permanent',
+            name: 'Config.EmploymentType.permanent',
             value: 'permanent'
         }
     ],
     skillLevel:[
         {
-            name: 'skilled',
+            name: 'Config.SkillLevel.skilled',
             value: 'skilled'
         },
         {
-            name: 'semiskilled',
+            name: 'Config.SkillLevel.semiskilled',
             value: 'semiskilled'
         },
         {
-            name: 'unskilled',
+            name: 'Config.SkillLevel.unskilled',
             value: 'unskilled'
         }
     ],
     applicationStatus:[
         {
-            name: 'applied',
+            name: 'Config.ApplicationStatus.applied',
             value: 'applied'
         },
         {
-            name: 'accept',
+            name: 'Config.ApplicationStatus.accept',
             value: 'accept'
         },
         {
-            name: 'reject',
+            name: 'Config.ApplicationStatus.reject',
             value: 'reject'
         },
         {
-            name: 'wishlist',
+            name: 'Config.ApplicationStatus.wishlist',
             value: 'wishlist'
         },
         {
-            name: 'askMoSahay',
+            name: 'Config.ApplicationStatus.askMoSahay',
             value: 'askMoSahay'
         }
     ]

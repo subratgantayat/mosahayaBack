@@ -1,15 +1,16 @@
+/*
 import * as Boom from '@hapi/boom';
 import * as Hapi from '@hapi/hapi';
 import Logger from '../../helper/logger';
 import {connection, Model} from 'mongoose';
 import {OAuth2Client} from 'google-auth-library';
 import KeyValueConfig from '../../config/keyvalueConfig';
-/*import MakeskillsectorNew from '../../config/makeskillsectorNew';
+/!*import MakeskillsectorNew from '../../config/makeskillsectorNew';
 import UploadData from '../../config/uploadData';
 import CityConfig from '../../config/cityConfig';
 import Makeskillsector from '../../config/makeskillsector';
 import Verifycountry from '../../config/verifycountry';
-import Verifyenjson from '../../config/verifyenjson';*/
+import Verifyenjson from '../../config/verifyenjson';*!/
 
 import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Utils from '../../helper/utils';
@@ -38,7 +39,7 @@ class Handler {
         }
     };
 
-  /*  public addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+  /!*  public addskill = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             /!*await UploadData.verifySkill();
             return 'ok';*!/
@@ -49,7 +50,7 @@ class Handler {
             Logger.error(`${error}`);
             return Boom.badImplementation(error);
         }
-    };*/
+    };*!/
 
     public messaging = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
@@ -125,3 +126,4 @@ class Handler {
 
 export default new Handler();
 
+*/

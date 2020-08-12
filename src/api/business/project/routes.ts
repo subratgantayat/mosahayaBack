@@ -124,7 +124,7 @@ class Routes {
                             scope: ['business']
                         },
                         handler: Handler.getApplyProject,
-                       // response: Validate.getApplyProject.output,
+                        response: Validate.getApplyProject.output,
                         description: STRING.GET_APPLY_PROJECT,
                         tags: ['api', 'project']
                     }

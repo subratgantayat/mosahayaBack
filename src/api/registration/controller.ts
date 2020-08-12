@@ -1,3 +1,4 @@
+/*
 import * as Boom from '@hapi/boom';
 import Logger from '../../helper/logger';
 
@@ -13,3 +14,4 @@ class Controller {
 }
 
 export default new Controller();
+*/

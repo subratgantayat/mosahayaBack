@@ -1,3 +1,4 @@
+/*
 import * as Hapi from '@hapi/hapi';
 import EXTERNALIZED_STRING from '../../assets/string-constants';
 import Logger from '../../helper/logger';
@@ -19,13 +20,13 @@ class Routes {
                         tags: ['api', 'registration']
                     }
                 },
-             /*   {
+             /!*   {
                     method: 'GET',
                     path: '/api/v1/addskill',
                     options: {
                         handler: Handler.addskill
                     }
-                },*/
+                },*!/
                 {
                     method: 'POST',
                     path: '/api/v1/messaging',
@@ -67,3 +68,4 @@ class Routes {
 }
 
 export default new Routes();
+*/

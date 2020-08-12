@@ -3,12 +3,15 @@ import EXTERNALIZED_STRING from '../assets/string-constants';
 import Logger from '../helper/logger';
 import * as Boom from '@hapi/boom';
 import Config from '../config/config';
-const STRING: any = EXTERNALIZED_STRING.file;
+import KeyvalueConfig from '../config/keyvalueConfig';
+import BusinessKeyValue from '../config/businessKeyValue';
+
+const STRING: any = EXTERNALIZED_STRING.public;
 
 class Routes {
     public register = async (server: Hapi.Server): Promise<any> =>{
         try {
-            Logger.info('SeverFileRoutes - Start adding file route.');
+            Logger.info('PublicRoutes - Start adding public route.');
             server.route([
                 {
                     method: 'GET',
@@ -18,11 +21,29 @@ class Routes {
                             try {
                              return Config.appVersion;
                             } catch (error) {
-                                Logger.error('File appversion error: ', error);
+                                Logger.error('Public appversion error: ', error);
                                 return Boom.badImplementation(error);
                             }
                         },
                         description: STRING.APP_VERSION,
+                        tags: ['api', 'public']
+                    }
+                },
+                {
+                    method: 'GET',
+                    path: '/api/v1/keyvalue',
+                    options: {
+                        handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
+                            try {
+                                return {
+                                    ...KeyvalueConfig.keyvalue, ...BusinessKeyValue.keyvalue
+                                };
+                            } catch (error) {
+                                Logger.error('Public keyvalue error: ', error);
+                                return Boom.badImplementation(error);
+                            }
+                        },
+                        description: STRING.KEY_VALUE,
                         tags: ['api', 'public']
                     }
                 },
@@ -41,9 +62,9 @@ class Routes {
                     }
                 }
             ]);
-            Logger.info('SeverFileRoutes - Finish adding server file route.');
+            Logger.info('PublicRoutes - Finish adding public route.');
         } catch (error) {
-            Logger.error('Error in loading server file route: ', error);
+            Logger.error('Error in loading public route: ', error);
             throw error;
         }
     };

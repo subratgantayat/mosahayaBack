@@ -1,3 +1,4 @@
+/*
 import * as Joi from '@hapi/joi';
 import KeyvalueConfig from '../../config/keyvalueConfig';
 
@@ -122,3 +123,4 @@ export default {
         }).required()
     }
 };
+*/

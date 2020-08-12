@@ -2,7 +2,7 @@ import {createReadStream} from 'fs';
 import * as Csv from 'csv-parser';
 import * as Joi from '@hapi/joi';
 import {connection, Model} from 'mongoose';
-import BusinessKeyValue from './businessKeyValue';
+import BusinessKeyValue from '../config/businessKeyValue';
 
 const test = async (): Promise<void> => {
     try {
