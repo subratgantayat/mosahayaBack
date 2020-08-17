@@ -5,16 +5,16 @@ import Handler from './handler';
 import Validate from './validate';
 import PublicHandler from '../../helper/publicHandler';
 import Config from '../../config/config';
-const STRING: any = EXTERNALIZED_STRING.enrollment;
+const STRING: any = EXTERNALIZED_STRING.enrollment1;
 
 class Routes {
 public register =  async (server: Hapi.Server): Promise<any> => {
         try {
-            Logger.info('EnrollmentRoutes - Start adding enrollment routes.');
+            Logger.info('Enrollment1Routes - Start adding enrollment1 routes.');
             server.route([
                 {
                     method: 'POST',
-                    path: '/api/v1/enrollment',
+                    path: '/api/v1/enrollment1',
                     options: {
                         app:{
                             captchaAction: 'register',
@@ -27,34 +27,40 @@ public register =  async (server: Hapi.Server): Promise<any> => {
                         handler: Handler.create,
                         validate: Validate.create,
                         description: STRING.CREATE,
-                        tags: ['api', 'enrollment']
+                        tags: ['api', 'enrollment1']
                     }
                 },
                 {
                     method: 'GET',
-                    path: '/api/v1/enrollment/search',
+                    path: '/api/v1/enrollment1',
                     options: {
                         auth: {
-                            strategy: 'admintoken',
-                            scope: ['company']
+                            strategy: 'businesstoken',
+                            scope: ['business']
                         },
-                        app:{
-                            captchaAction: 'enrollment_search',
-                            captchaScore: 0,
-                            captchaIn: 'query'
-                        },
-                        pre:[
-                            { method: PublicHandler.validateCaptchaInput, assign: 'captcha' }
-                        ],
-                        handler: Handler.findall,
-                        validate: Validate.findall,
+                        handler: Handler.find,
                         description: STRING.FIND,
-                        tags: ['api', 'enrollment']
+                        validate: Validate.find,
+                        tags: ['api', 'enrollment1']
                     }
                 },
                 {
                     method: 'GET',
-                    path: '/api/v1/enrollment/{id}',
+                    path: '/api/v1/enrollment1/{id}',
+                    options: {
+                        auth: {
+                            strategy: 'businesstoken',
+                            scope: ['business']
+                        },
+                        handler: Handler.findOne,
+                        validate: Validate.findOne,
+                        description: STRING.FIND_ONE,
+                        tags: ['api', 'enrollment1']
+                    }
+                },
+                {
+                    method: 'GET',
+                    path: '/api/v1/enrollment1/self/{id}',
                     options: {
                         app:{
                             captchaAction: 'register',
@@ -67,13 +73,13 @@ public register =  async (server: Hapi.Server): Promise<any> => {
                         handler: Handler.viewForm,
                         validate: Validate.viewForm,
                         description: STRING.VIEW_FORM,
-                        tags: ['api', 'enrollment']
+                        tags: ['api', 'enrollment1']
                     }
                 }
             ]);
-            Logger.info('EnrollmentRoutes - Finish adding enrollment routes.');
+            Logger.info('Enrollment1Routes - Finish adding enrollment1 routes.');
         } catch (error) {
-            Logger.error('Error in loading EnrollmentRoutes: ', error);
+            Logger.error('Error in loading Enrollment1Routes: ', error);
             throw error;
         }
     };

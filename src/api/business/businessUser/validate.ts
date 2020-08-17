@@ -150,6 +150,7 @@ class Validate{
                 page: Joi.number().required().integer().min(0).max(500000),
                 limit: Joi.number().required().integer().positive().min(1).max(1000),
                 sectors: Joi.array().required().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('skillsBySector'))).single(),
+                sectorsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(1000).pattern(/^[\x20-\x7E\s]+$/)).single(),
                 geographyOfOp: Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getAllDistrictArray())).single(),
                 yearOfExperience: Joi.number().integer().min(0).max(1000),
                 labourContractorLicense: Joi.boolean(),

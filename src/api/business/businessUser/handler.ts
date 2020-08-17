@@ -205,12 +205,25 @@ class Handler {
                 {'profile.geographyOfOp': {$in: request.query.geographyOfOp}}
             ];
             if(request.query.yearOfExperience){
-                andOp.push({'yearOfExperience': {$gte: request.query.yearOfExperience}});
+                andOp.push({'profile.yearOfExperience': {$gte: request.query.yearOfExperience}});
             }
-            for (const prop of ['labourContractorLicense', 'gstRegd', 'providentFund', 'esic', 'generalData.mobileNumber', 'gratuity']) {
+
+            for (const prop of ['profile.sectorsOther']) {
+                const p: string = prop.split('.')[1] || prop;
+                if (request.query[p]) {
+                    const b: any[] = [];
+                    for (const a of request.query[p]) {
+                        b.push(new RegExp(a, 'i'));
+                    }
+                    const s: any = {};
+                    s[prop] = {$in: b};
+                    andOp.push(s);
+                }
+            }
+            for (const prop of ['labourContractorLicense', 'gstRegd', 'providentFund', 'esic', 'gratuity']) {
                 if (request.query[prop]) {
                     const s: any = {};
-                    s[prop] = request.query[prop];
+                    s['profile.'+prop] = request.query[prop];
                     andOp.push(s);
                 }
             }
@@ -223,8 +236,13 @@ class Handler {
                 select.email = 1;
                 select['profile.pointOfContact'] =1;
             }
+            const sortOrder:number = request.query.sortOrder === 'asc' ? 1 :-1;
             const sort: any = {};
-            sort[request.query.sort.toString()] = request.query.sortOrder === 'asc' ? 1 :-1;
+            if(request.query.sort === 'yearOfExperience'){
+                sort['profile.yearOfExperience'] = sortOrder;
+            } else{
+                sort[request.query.sort.toString()] = sortOrder;
+            }
             const limit: number = parseInt(request.query.limit.toString(), 10);
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('businessuser');

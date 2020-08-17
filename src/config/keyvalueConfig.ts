@@ -35,6 +35,32 @@ const keyvalue: any = {
             value: 'others'
         }
     ],
+    education: [
+        {
+            name: 'Config.Education.belowPrimary',
+            value: 'passed primary (class 8th)'
+        },
+        {
+            name: 'Config.Education.primary',
+            value: 'passed secondary (class 10th)'
+        },
+        {
+            name: 'Config.Education.secondary',
+            value: 'secondary'
+        },
+        {
+            name: 'Config.Education.higherSecondary',
+            value: 'passed higher secondary (Class 12th)'
+        },
+        {
+            name: 'Config.Education.diploma',
+            value: 'iti & diploma'
+        },
+        {
+            name: 'Config.Education.graduate',
+            value: 'graduate'
+        }
+    ],
     currentCondition: [
         {
             name: 'Config.CurrentCondition.asthma',

@@ -32,6 +32,11 @@ How to run the project
 
 
 /***** OTHERS********/
+
+404
+401
+403 author
+
 406  for validation notAcceptable
 
 422 for mongoose validation  badData

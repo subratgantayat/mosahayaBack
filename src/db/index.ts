@@ -3,6 +3,7 @@ import Logger from '../helper/logger';
 import {connection, connect, ConnectionOptions} from 'mongoose';
 import registration from '../model/registration';
 import enrollment from '../model/enrollment';
+import enrollment1 from '../model/enrollment1';
 import admin from '../model/admin';
 import employee from '../model/employee';
 import skill from '../model/skill';
@@ -67,6 +68,7 @@ class Db {
     public addModals = (): void => {
         this.models.registration = registration;
         this.models.enrollment = enrollment;
+        this.models.enrollment1 = enrollment1;
         this.models.admin = admin;
         this.models.employee = employee;
         this.models.skill = skill;

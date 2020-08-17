@@ -1,6 +1,7 @@
 import * as Hapi from '@hapi/hapi';
 // import RegistrationRoutes from './api/registration/routes';
 import EnrollmentRoutes from './api/enrollment/routes';
+import Enrollment1Routes from './api/enrollment1/routes';
 import AdminRoutes from './api/admin/routes';
 import HealthRoutes from './api/health';
 import PublicRoutes from './api/public';
@@ -19,6 +20,7 @@ class Router {
             await PublicRoutes.register(server);
           //  await RegistrationRoutes.register(server);
             await EnrollmentRoutes.register(server);
+            await Enrollment1Routes.register(server);
             await AdminRoutes.register(server);
             await SkillRoutes.register(server);
             await EmployerRoutes.register(server);

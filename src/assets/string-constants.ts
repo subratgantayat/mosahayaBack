@@ -26,9 +26,24 @@ const stringConstants: any = {
     },
     enrollment:{
         CREATE:'Method to create enrollment',
-        FINDALL:'Method to search enrollment',
+        FIND:'Method to search enrollment',
         INVALID_ID: 'Invalid enrollment ID',
         VIEW_FORM: 'Method to get enrollment data by enrollment ID'
+    },
+    enrollment1:{
+        CREATE:'Method to create enrollment',
+        FIND:'Method to search enrollment',
+        VIEW_FORM: 'Method to get enrollment data by enrollment ID',
+        FIND_ONE:'Method to get single enrollment by id',
+        success:{
+            CREATE_SUCCESS: 'Enrollment create successful',
+            READ_SUCCESSFUL:'Enrollment read successful',
+            SEARCH_SUCCESSFUL:'Enrollment search successful'
+        },
+        error:{
+            INVALID_ID: 'Invalid enrollment ID',
+            INVALID_ENROLLMENT: 'Invalid enrollment'
+        }
     },
     admin:{
         CREATE:'Method to signup admin',

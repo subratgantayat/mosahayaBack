@@ -8,7 +8,7 @@ import Config from '../../../config/config';
 const STRING: any = EXTERNALIZED_STRING.business.project;
 
 class Handler {
-    private projectFields: string[] = ['active', 'userId', 'title', 'description', 'typeOfEmployer', 'natureOfProject', 'location', 'sectors', 'requirements', 'natureOfEmployment', 'facility'];
+    private projectFields: string[] = ['active', 'userId', 'title', 'description', 'typeOfEmployer', 'natureOfProject', 'location', 'sectors','sectorsOther', 'requirements', 'natureOfEmployment', 'facility'];
 
     private fillCalculated = (payload: any): void => {
         payload.maxSalaryCalculated = 0;
@@ -157,14 +157,34 @@ class Handler {
             if (request.query.employmentType) {
                 andOp.push({'natureOfEmployment.employmentType': {$in: request.query.employmentType}});
             }
-            if (request.query.sectorsOther) {
-                andOp.push({'sectorsOther': {$in: request.query.sectorsOther}});
+            for (const prop of ['sectorsOther' ,'requirements.skillOther']) {
+                const p: string = prop.split('.')[1] || prop;
+                if (request.query[p]) {
+                    const b: any[] = [];
+                    for (const a of request.query[p]) {
+                        b.push(new RegExp(a, 'i'));
+                    }
+                    const s: any = {};
+                    s[prop] = {$in: b};
+                    andOp.push(s);
+                }
             }
-
+         /*   if (request.query.sectorsOther) {
+                const orOp: any[] =[];
+                for(const other of request.query.sectorsOther)
+                {
+                    orOp.push({sectorsOther: new RegExp(other, 'i')});
+                }
+                andOp.push({$or: orOp});
+            }
             if (request.query.skillOther) {
-                andOp.push({'requirements.skillOther': {$in: request.query.skillOther}});
-            }
-
+                const orOp: any[] =[];
+                for(const other of request.query.skillOther)
+                {
+                    orOp.push({'requirements.skillOther': new RegExp(other, 'i')});
+                }
+                andOp.push({$or: orOp});
+            }*/
             if (request.query.expectedSalary) {
                 andOp.push({'maxSalaryCalculated': {$gte: request.query.expectedSalary}});
             }
