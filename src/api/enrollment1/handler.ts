@@ -43,11 +43,7 @@ class Handler {
     public find = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             const credentials: any = request.auth.credentials;
-            const andOp: any[] = [
-                {'skillData.sectors': {$in: request.query.sectors}},
-                {'skillData.skills': {$in: request.query.skills}},
-                {'skillData.preferredLocations': {$in: request.query.preferredLocations}}
-            ];
+            const andOp: any = {'skillData.sectors': {$in: request.query.sectors}, 'skillData.skills': {$in: request.query.skills}, 'skillData.preferredLocations': {$in: request.query.preferredLocations}};
             for (const prop of ['skillData.sectorsOther' ,'skillData.skillsOther']) {
                 const p: string = prop.split('.')[1] || prop;
                 if (request.query[p]) {
@@ -55,9 +51,7 @@ class Handler {
                     for (const a of request.query[p]) {
                         b.push(new RegExp(a, 'i'));
                     }
-                    const s: any = {};
-                    s[prop] = {$in: b};
-                    andOp.push(s);
+                    andOp[prop] = {$in: b};
                 }
             }
             const admin: boolean = credentials.scope && credentials.scope.includes('admin');
@@ -80,8 +74,8 @@ class Handler {
             const limit: number = parseInt(request.query.limit.toString(), 10);
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('enrollment1');
-            const data: any[] = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select(select).populate('userId', 'name').lean(true).exec();
-            const count: number = await modal.find({$and: andOp}).countDocuments().exec();
+            const data: any[] = await modal.find(andOp).sort(sort).skip(skip).limit(limit).select(select).populate('userId', 'name').lean(true).exec();
+            const count: number = await modal.find(andOp).countDocuments().exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);
             }

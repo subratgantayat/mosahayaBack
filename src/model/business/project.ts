@@ -266,6 +266,7 @@ const schema: Schema = new Schema(
     {timestamps: true}
 );
 schema.index({userId: 1, title: 1}, {unique: true});
+schema.index( { 'applications.user': 1});
 // schema.index( { title: 'text'});
 // schema.index({location: 1, title: 1});
 export default model('project', schema);

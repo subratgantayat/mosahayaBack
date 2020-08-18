@@ -205,5 +205,5 @@ const schema: Schema = new Schema(
     },
     {timestamps: true}
 );
-schema.index({createdAt: 1});
+schema.index({'skillData.sectors': 1});
 export default model('enrollment1', schema);

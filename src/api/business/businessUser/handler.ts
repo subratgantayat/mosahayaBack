@@ -196,16 +196,9 @@ class Handler {
     public profileSearch = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const credentials: any = request.auth.credentials;
-            const andOp: any[] = [
-                {_id: {$ne: credentials.id}},
-                {active: true},
-                {emailVerified: true},
-                {profile: {$exists : true}},
-                {'profile.sectors': {$in: request.query.sectors}},
-                {'profile.geographyOfOp': {$in: request.query.geographyOfOp}}
-            ];
+            const andOp: any = {'profile.sectors': {$in: request.query.sectors}, 'profile.geographyOfOp': {$in: request.query.geographyOfOp},active: true,emailVerified: true,profile: {$exists : true},_id: {$ne: credentials.id}};
             if(request.query.yearOfExperience){
-                andOp.push({'profile.yearOfExperience': {$gte: request.query.yearOfExperience}});
+                andOp['profile.yearOfExperience']= {$gte: request.query.yearOfExperience};
             }
 
             for (const prop of ['profile.sectorsOther']) {
@@ -215,16 +208,12 @@ class Handler {
                     for (const a of request.query[p]) {
                         b.push(new RegExp(a, 'i'));
                     }
-                    const s: any = {};
-                    s[prop] = {$in: b};
-                    andOp.push(s);
+                    andOp[prop] = {$in: b};
                 }
             }
             for (const prop of ['labourContractorLicense', 'gstRegd', 'providentFund', 'esic', 'gratuity']) {
                 if (request.query[prop]) {
-                    const s: any = {};
-                    s['profile.'+prop] = request.query[prop];
-                    andOp.push(s);
+                    andOp['profile.'+prop] = request.query[prop];
                 }
             }
             const admin: boolean = credentials.scope && credentials.scope.includes('admin');
@@ -246,8 +235,8 @@ class Handler {
             const limit: number = parseInt(request.query.limit.toString(), 10);
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('businessuser');
-            const data: any[] = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select(select).lean(true).exec();
-            const count: number = await modal.find({$and: andOp}).countDocuments().exec();
+            const data: any[] = await modal.find(andOp).sort(sort).skip(skip).limit(limit).select(select).lean(true).exec();
+            const count: number = await modal.find(andOp).countDocuments().exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);
             }
@@ -265,11 +254,7 @@ class Handler {
     public profileOne = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const {id}: any = request.params;
-            const andOp: any[] = [
-                {_id: id},
-                {active: true},
-                {emailVerified: true}
-            ];
+            const andOp: any = {_id: id, active: true,emailVerified: true};
             const credentials: any = request.auth.credentials;
             const admin: boolean = credentials.scope && credentials.scope.includes('admin');
             const select: any ={name: 1};
@@ -281,7 +266,7 @@ class Handler {
                 select['profile.pointOfContact'] =1;
             }
             const modal: Model<any> = connection.model('businessuser');
-            const data: any = await modal.findOne({$and: andOp}).select(select).lean(true).exec();
+            const data: any = await modal.findOne(andOp).select(select).lean(true).exec();
             if (!data) {
                 return Boom.badData(STRING.error.INVALID_USER);
             }

@@ -58,5 +58,5 @@ const schema: Schema = new Schema(
     },
     {timestamps: true}
 );
-// schema.index({'profile.sectors': 1, 'profile.geographyOfOp': 1});
+schema.index({'profile.sectors': 1});
 export default model('businessuser', schema);

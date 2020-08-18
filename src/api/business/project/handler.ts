@@ -54,27 +54,25 @@ class Handler {
     public findSelf = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             const credentials: any = request.auth.credentials;
-            const andOp: any[] = [
-                {userId: credentials.id}
-            ];
+            const andOp: any  = {userId: credentials.id};
             if (request.query.title) {
-                andOp.push({title: new RegExp(request.query.title.toString(), 'i')});
+                andOp.title = new RegExp(request.query.title.toString(), 'i');
                 // andOp.push({$text:  { $search : request.query.title}});
                 //  sort.score = { $meta : 'textScore' };
             }
             if (request.query.active !== 'all') {
-                andOp.push({active: (request.query.active === 'y')});
+                andOp.active = (request.query.active === 'y');
             }
             if (request.query.loctaion) {
-                andOp.push({location: {$in: request.query.loctaion}});
+                andOp.location = {$in: request.query.loctaion};
             }
             const sort: any = {};
             sort[request.query.sort.toString()] = request.query.sortOrder === 'asc' ? 1 : -1;
             const limit: number = parseInt(request.query.limit.toString(), 10);
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('project');
-            const data: any[] = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select('+contactDetails +applications').populate('applications.user', 'name active').lean(true).exec();
-            const count: number = await modal.find({$and: andOp}).countDocuments().exec();
+            const data: any[] = await modal.find(andOp).sort(sort).skip(skip).limit(limit).select('+contactDetails +applications').populate('applications.user', 'name active').lean(true).exec();
+            const count: number = await modal.find(andOp).countDocuments().exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);
             }
@@ -145,17 +143,12 @@ class Handler {
     public find = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             const credentials: any = request.auth.credentials;
-            const andOp: any[] = [
-                {userId: {$ne: credentials.id}},
-                {active: true},
-                {'sectors': {$in: request.query.sectors}},
-                {'location': {$in: request.query.location}}
-            ];
+            const andOp: any = {'sectors': {$in: request.query.sectors, active: true, 'location': {$in: request.query.location}},userId: {$ne: credentials.id}};
             if (request.query.skill) {
-                andOp.push({'requirements.skill': {$in: request.query.skill}});
+                andOp['requirements.skill']= {$in: request.query.skill};
             }
             if (request.query.employmentType) {
-                andOp.push({'natureOfEmployment.employmentType': {$in: request.query.employmentType}});
+                andOp['natureOfEmployment.employmentType']= {$in: request.query.employmentType};
             }
             for (const prop of ['sectorsOther' ,'requirements.skillOther']) {
                 const p: string = prop.split('.')[1] || prop;
@@ -164,9 +157,7 @@ class Handler {
                     for (const a of request.query[p]) {
                         b.push(new RegExp(a, 'i'));
                     }
-                    const s: any = {};
-                    s[prop] = {$in: b};
-                    andOp.push(s);
+                    andOp[prop] = {$in: b};
                 }
             }
          /*   if (request.query.sectorsOther) {
@@ -186,13 +177,11 @@ class Handler {
                 andOp.push({$or: orOp});
             }*/
             if (request.query.expectedSalary) {
-                andOp.push({'maxSalaryCalculated': {$gte: request.query.expectedSalary}});
+                andOp.maxSalaryCalculated = {$gte: request.query.expectedSalary};
             }
             for (const prop of ['accommodation', 'transport', 'canteen', 'cookingArea', 'medicalCheckup', 'healthInsurance', 'industrialSafetyGears', 'quarantineFacility', 'guaranteedMinPay', 'overTime']) {
                 if (request.query[prop]) {
-                    const s: any = {};
-                    s[prop] = request.query[prop];
-                    andOp.push(s);
+                    andOp[prop] = request.query[prop];
                 }
             }
             const admin: boolean = credentials.scope && credentials.scope.includes('admin');
@@ -209,8 +198,8 @@ class Handler {
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('project');
             // const modalBusinessUser: Model<any> = connection.model('businessuser');
-            const data: any[] = await modal.find({$and: andOp}).sort(sort).skip(skip).limit(limit).select(select).populate('userId', 'name').lean(true).exec();
-            const count: number = await modal.find({$and: andOp}).countDocuments().exec();
+            const data: any[] = await modal.find(andOp).sort(sort).skip(skip).limit(limit).select(select).populate('userId', 'name').lean(true).exec();
+            const count: number = await modal.find(andOp).countDocuments().exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);
             }
@@ -316,8 +305,8 @@ class Handler {
                 [
                     {
                         $match: {
-                            active: true,
-                            'applications.user': Types.ObjectId(credentials.id)
+                            'applications.user': Types.ObjectId(credentials.id),
+                            active: true
                         }
                     },
                     {$unwind: '$applications'},
