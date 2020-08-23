@@ -105,17 +105,7 @@ export class Strategies {
            // await server.auth.strategy('firebase-mosahaya', 'firebase-mosahaya-scheme');
             /*  await server.auth.strategy('firebase', 'firebase', {
                   credential: {
-                      'type': 'service_account',
-                      'project_id': 'nearbybackend-d30f6',
-                      'private_key_id': '70fb9d196efc4cea931fe5f2659c07f239089555',
-                      'private_key': '-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC4RkY7yWYaemDA\n5WPHk62FYPByWDZRtr4T78JHTx7tcYzaRHrWAqDSJdF1s1SXEljkeIOqnqMdpckq\nMY52qg+69YedYDRyjVhQVAZuhBNBKK0W8Geo1xhUJiP5dOi8uLgM93naKi8HyaTe\nm5rkQekMHZmMNL7Q/HqENx8uyk4I66z7y9vmkaXxoWc2iwPag6aecItwZldsoq35\nLAHDgBpPNSQmXUJDx7CZQrnfMUYG31LBY/CB0kNTn6+jZJuDROJMfxGGKnGh1s/g\nRh4uiP8CZGBxH3WKTNgv5rWAIfL8CLSB+7XgixBBdK7Fcnn4Z+MOJqEAhD8QFPG1\nmQkdUXHxAgMBAAECggEAAeZgYs034ZQ01PhO5MFhVVIDcjv1/2l7bZ6X6bIao9Ph\nlTFS9OVQPcQIp1NPtXXWd2PFgI5XKMvLSavHuyVHH6Q/Bc12oCtUTd7rHA7Kv6Ei\noiBpz5dVvfrD4/zWsEKiGMKHPct+jApO48Hfjg5R6Uwq1GojNFA0ffivHriuQLBG\ndKo9LHZMuyjikMklESDv3F0XQpdy6HJSz4nLjbLT1nve9OjPZHghS3/yprj4b3Cc\nVry25ydlj0rKMz7TkAnUQANA3oovtisYMUgansGXZizCkf96J4d/5KAphQmduuAa\nL95kUgssN2l6ovUGVbh/feKyk55LOC0I05oyp+z7EwKBgQD0vbXsF8sgHVbTXVRy\nuis01ApmOpHjQu9Ma+Ei/FApAv2e7/hGA2NMWH9jNvEeJVFPHm0aI4ejLdg/T+uH\nl09mZBorolajUcSnrlGMdPYdhSOohrL41LeeMs7APIg0a+R4VlKaBHbZK6aYwObZ\nSfumnoE5bB0aOXEzHjjqxoDb1wKBgQDAwHSjgO2zO5ohQKPGLX2dgvaPacTh7BXJ\n8bCZVZKMNj1DhkWnA7Bxk+hytF25LCLXSoRAxBfQfsGIB50kkTk6zX5J833IpZ3c\nILffyVSJTU3FrzoT/PqQloN2kj1Z5sarV0au9cTIMl+NYoTZV7AWGd/0K8Vt7ueP\nhaxTB86ndwKBgQDQl5SjSdA9aeQjt8sPEW9b0lGeudK3oMf2GYhEWkoz+jGRsjOn\n8KFEY7UHKb+uEt5PEb6pZZjoUl2Z8JLs+OCagzzu7ajr//gddmxYyyMtG9m9fDiz\n7hEly2X94FmyXDbY/bHfRWjKRfLzBI58qhrK8xNujp/rRwQdLmgSaedP9wKBgEWS\nccc+Vw21eql78mEqtEdxKNuU2rqNA0RT12FREMdJII3J3kQtQbeNIn6ceaPHuX+p\n5tiVrt7TkbkuvlqfjF+cInRAzerpVHRK3vOIcNnqLCMpXzYtvqcHnMXkfP6BHL5l\njx7BmNiFzhVzNO5aBzXC+yHf1rAaZjxYjF2f2Mh7AoGBAOakrRhbVpVDJh0UVxl0\ne+1m9K9fNV7WD+tgm61SmdIoK76QmfSLze7iHRecHZnBmrjagq6ztaPUC7wfKeHv\nP0nX7MbERlm9d1sRtcAPIlPTa3EbZ+Oo3AuU+dIXQkEPkGUyNlWNEOAUtYyoVHw5\nMajgdB5kt3scVE12v8+VAmI8\n-----END PRIVATE KEY-----\n',
-                      'client_email': 'firebase-adminsdk-azx58@nearbybackend-d30f6.iam.gserviceaccount.com',
-                      'client_id': '108555835639023634803',
-                      'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
-                      'token_uri': 'https://oauth2.googleapis.com/token',
-                      'auth_provider_x509_cert_url': 'https://www.googleapis.com/oauth2/v1/certs',
-                      'client_x509_cert_url': 'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-azx58%40nearbybackend-d30f6.iam.gserviceaccount.com'
-                  }
+                       }
               });*/
         } catch (error) {
             Logger.error('Error in registering strategies: ', error);

@@ -49,3 +49,5 @@ How to run the project
 to deploy
 gcloud app deploy --stop-previous-version
 gcloud app logs read
+
+gcloud app deploy app-test.yaml --project mosahaya-test --stop-previous-version

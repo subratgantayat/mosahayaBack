@@ -4,8 +4,10 @@ pm2logs/
 .env
 .env_test
 app_test.yaml
+app-test.yaml
 city list
 db config to copy
+future release
 .gcloudignore
 .gitignore
 app.json
