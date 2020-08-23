@@ -1,6 +1,7 @@
 import * as Hapi from '@hapi/hapi';
-import {hashSync, compareSync} from 'bcrypt';
+import * as argon2 from 'argon2';
 import Logger from './logger';
+import {compareSync, hashSync} from 'bcrypt';
 
 class Utils {
     public getUrl = (request: Hapi.Request): string =>{
@@ -34,12 +35,26 @@ class Utils {
         return this._base_dir;
     };
 
-    public encrypt = (password: string): string =>{
+    public encrypt =  (password: string): string =>{
         return hashSync(password,10);
     };
 
-    public comparePassword = (password: string, passwordRef: string): boolean =>{
-        return compareSync(password,passwordRef);
+    public comparePassword =  (password: string, passwordRef: string): boolean =>{
+       return compareSync(password,passwordRef);
+    };
+
+    public encryptArgon2 = async (password: string): Promise<string> =>{
+        return await argon2.hash(password);
+    };
+
+    public comparePasswordArgon2 = async (password: string, passwordRef: string): Promise<boolean> =>{
+        return await argon2.verify(passwordRef, password);
+    };
+
+    public getIpAddress = (request: Hapi.Request): string =>{
+        const xFF = request.headers['x-forwarded-for'];
+        // @ts-ignore
+        return (xFF ? xFF.split(',')[0] : request.info.remoteAddress) || request.location;
     };
 
     private _base_dir: string;

@@ -8,32 +8,32 @@ const schema: Schema = new Schema(
             trim: true,
             minlength:1,
             maxlength:1000,
-            lowercase: true,
-            match:/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i
+            lowercase: true
+           // match:/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i
         },
         email: {
             type: String,
             required: true,
             select: false,
             trim: true,
-            unique: true,
-            minlength: 5,
-            maxlength: 100,
             lowercase: true,
-            match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            unique: true
+          //  minlength: 5,
+          //  maxlength: 100
+          //  match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         },
         emailVerified: {
             type: Boolean,
             required: true,
             default: false
         },
-        password: {
+      /*  password: {
             type: String,
             required: true,
             minlength: 8,
             maxlength: 5000,
             select: false
-        },
+        },*/
         scope: {
             type: [{
                 type: String,
@@ -60,4 +60,4 @@ const schema: Schema = new Schema(
     {timestamps: true}
 );
 schema.index({'profile.sectors': 1});
-export default model('businessuser', schema);
+export default model('businessuser1', schema);

@@ -34,8 +34,9 @@ class Handler {
         try {
             const payload: any =  request.payload;
             payload.email = payload.email.toLowerCase();
+            payload.name = payload.name.toLowerCase();
             const modal: Model<any> = connection.model('businessuser');
-            payload.password = Utils.encrypt(payload.password);
+            payload.password = await Utils.encryptArgon2(payload.password);
             payload.password_changed_at = new Date();
             payload.emailVerified = true;
             const newModal: any = new modal(payload);
@@ -73,7 +74,7 @@ class Handler {
             payload.email = payload.email.toLowerCase();
             const modal: Model<any> = connection.model('businessuser');
             const data: any =  await modal.findOne({email:payload.email}).select('password name email emailVerified active scope password_changed_at').lean(true).exec();
-            if(!(data && Utils.comparePassword(payload.password, data.password))){
+            if(!(data && await Utils.comparePasswordArgon2(payload.password, data.password))){
                 return Boom.badData(STRING.error.INVALID_LOGIN);
             }
             if(!data.emailVerified){
@@ -119,10 +120,10 @@ class Handler {
             const credentials: any = request.auth.credentials;
             const modal: Model<any> = connection.model('businessuser');
             const data: any =  await modal.findById(credentials.id).select('password name email emailVerified active scope password_changed_at').exec();
-            if(!(data && Utils.comparePassword(payload.currentPassword, data.password))){
+            if(!(data && await Utils.comparePasswordArgon2(payload.currentPassword, data.password))){
                 return Boom.badData(STRING.error.PASSWORD_NOT_MATCHED);
             }
-            data.password = Utils.encrypt(payload.newPassword);
+            data.password = await Utils.encryptArgon2(payload.newPassword);
             data.password_changed_at = new Date();
             const result: any = await data.save();
             if (!result) {

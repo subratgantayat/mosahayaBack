@@ -28,9 +28,11 @@
     "@hapi/inert": "^6.0.1",
     "@hapi/joi": "^17.1.1",
     "@hapi/vision": "^6.0.0",
+    "argon2": "^0.27.0",
     "bcrypt": "^4.0.1",
     "bluebird": "^3.7.2",
     "csv-parser": "^2.3.3",
+    "firebase-admin": "^9.1.1",
     "good": "^8.1.2",
     "good-console": "^8.0.0",
     "good-squeeze": "^5.1.0",
@@ -42,11 +44,9 @@
     "joi-objectid": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.11",
-    "nodemon": "^2.0.4",
     "randomatic": "^3.1.1",
     "request": "^2.88.2",
-    "request-promise": "^4.2.5",
-    "ts-node": "^8.10.2"
+    "request-promise": "^4.2.5"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -60,6 +60,8 @@
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^6.1.1",
     "tslint-consistent-codestyle": "^1.16.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "ts-node": "^8.10.2",
+    "nodemon": "^2.0.4"
   }
 }

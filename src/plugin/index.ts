@@ -13,13 +13,14 @@ class Plugins {
         try {
             await this.inert(server);
             await this.hapiGeoLocate(server);
+           // await this.hapiFirebaseAuth(server);
             await this.hapiRateLimit(server);
             await this.hapiAuthJwt2(server);
-            if (NODE_ENV === 'development') {
+           // if (NODE_ENV === 'development') {
                 await this.vision(server);
                 await this.swagger(server);
                 Logger.info(`Visit: ${server.info.uri}/documentation for Swagger docs`);
-            }
+           // }
             await this.good(server);
             // if (LOG_LEVEL === 'debug') {
             server.ext({
@@ -28,6 +29,8 @@ class Plugins {
                     if (request.url.pathname.substring(1, 10) === 'swaggerui' || request.url.pathname === '/documentation' || request.url.pathname === '/health' || request.url.pathname === '/swagger.json') {
                         return h.continue;
                     }
+                    // @ts-ignore
+                    Logger.info('Request Ip address: ', Utils.getIpAddress(request));
                     /*    if (request.headers['x-forwarded-for']) {
                             request.info.remoteAddress = request.headers['x-forwarded-for'].split(',')[0].trim();
                         }
@@ -91,6 +94,18 @@ class Plugins {
             throw error;
         }
     };
+
+ /*   private hapiFirebaseAuth = async (server: Hapi.Server): Promise<Error | any> => {
+        try {
+            Logger.info('Plugins - Registering hapiFirebaseAuth');
+            await this.register(server, [
+                require('hapi-firebase-auth')
+            ]);
+        } catch (error) {
+            Logger.error('Plugins - Ups, something went wrong when registering hapiFirebaseAuth plugin: ', error);
+            throw error;
+        }
+    };*/
 
     private hapiRateLimit = async (server: Hapi.Server): Promise<Error | any> => {
         try {
