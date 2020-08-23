@@ -1,8 +1,8 @@
 import * as Winston from 'winston';
-import {LoggingWinston}  from '@google-cloud/logging-winston';
+// import {LoggingWinston}  from '@google-cloud/logging-winston';
 import {ConsoleTransportInstance} from 'winston/lib/winston/transports';
 import Utils from './utils';
-const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
+// const NODE_ENV: string = Utils.getEnvVariable('NODE_ENV', true);
 
 export class ApiLogger {
     public newInstance = (): Winston.Logger =>{
@@ -23,10 +23,10 @@ export class ApiLogger {
         });
         const transports: any[] = [consoleTransport];
 
-        if (NODE_ENV !== 'development') {
+      /*  if (NODE_ENV !== 'development') {
             const loggingWinston: LoggingWinston = new LoggingWinston();
             transports.push(loggingWinston);
-        }
+        }*/
 
         return Winston.createLogger({
             level:  process.env.LOG_LEVEL || 'info',
