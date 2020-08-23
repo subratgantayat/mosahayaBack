@@ -25,7 +25,7 @@ process.on('uncaughtException', err => {
 
 (async () => {
     try {
-        if(process.env.NODE_ENV === 'development'){
+        if(process.env.NODE_ENV !== 'development'){
             const r: any = await ValidateEnv('./.env.template', { silent: true });
             if (r.result === 'fail') {
                 const { failedVar } = r;
