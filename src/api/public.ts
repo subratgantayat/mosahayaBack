@@ -3,10 +3,10 @@ import EXTERNALIZED_STRING from '../assets/string-constants';
 import Logger from '../helper/logger';
 import * as Boom from '@hapi/boom';
 import Config from '../config/config';
-import KeyvalueConfig from '../config/keyvalueConfig';
+/*import KeyvalueConfig from '../config/keyvalueConfig';
 import BusinessKeyValue from '../config/businessKeyValue';
 import CityConfig from '../config/cityConfig';
-import AllCityConfig from '../test/allCity';
+import AllCityConfig from '../test/allCity';*/
 
 const STRING: any = EXTERNALIZED_STRING.public;
 
@@ -31,7 +31,7 @@ class Routes {
                         tags: ['api', 'public']
                     }
                 },
-                {
+             /*   {
                     method: 'GET',
                     path: '/test',
                     options: {
@@ -94,7 +94,7 @@ class Routes {
                         description: STRING.KEY_VALUE,
                         tags: ['api', 'public']
                     }
-                },
+                },*/
                 {
                     method: 'GET',
                     path: '/public/{param*}',

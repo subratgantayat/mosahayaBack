@@ -16,11 +16,11 @@ class Plugins {
            // await this.hapiFirebaseAuth(server);
             await this.hapiRateLimit(server);
             await this.hapiAuthJwt2(server);
-           // if (NODE_ENV === 'development') {
+            if (NODE_ENV === 'development' || NODE_ENV === 'test') {
                 await this.vision(server);
                 await this.swagger(server);
                 Logger.info(`Visit: ${server.info.uri}/documentation for Swagger docs`);
-           // }
+            }
             await this.good(server);
             // if (LOG_LEVEL === 'debug') {
             server.ext({

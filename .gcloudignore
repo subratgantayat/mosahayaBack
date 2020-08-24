@@ -1,10 +1,10 @@
 src/
+dataupload/
 node_modules/
 pm2logs/
 .env
 .env_test
 app_test.yaml
-app-test.yaml
 city list
 db config to copy
 future release
@@ -12,9 +12,10 @@ future release
 .gitignore
 app.json
 read_me
-to_do
+todo1
 tsconfig.json
 tslint.json
 .idea/*
 **/.DS_Store
 .git/*
+package-lock.json

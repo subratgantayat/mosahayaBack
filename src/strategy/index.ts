@@ -1,18 +1,18 @@
 import * as Hapi from '@hapi/hapi';
 import Logger from '../helper/logger';
 import Utils from '../helper/utils';
-import BusinessController from '../api/business/businessUser/controller';
 import {connection, Model} from 'mongoose';
-/*import * as admin from 'firebase-admin';
-import * as serviceAccount from '../config/nearbybackend-d30f6-firebase-adminsdk-azx58-70fb9d196e.json';*/
-import * as Boom from '@hapi/boom';
+/*import BusinessController from '../api/business/businessUser/controller';
+import * as admin from 'firebase-admin';
+import * as serviceAccount from '../config/nearbybackend-d30f6-firebase-adminsdk-azx58-70fb9d196e.json';
+import * as Boom from '@hapi/boom';*/
 
 const JWT_PRIVATE_KEY: string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
 
 export class Strategies {
 
     constructor() {
-   /*     try {
+       /* try {
             admin.initializeApp({
                 credential: admin.credential.cert(serviceAccount as any)
                 // databaseURL: "https://fbauthdemo-2a451.firebaseio.com"
@@ -83,7 +83,7 @@ export class Strategies {
 
     public registerAll = async (server: Hapi.Server): Promise<Error | any> => {
         try {
-          //  await this.registerFirebaseScheme(server);
+           // await this.registerFirebaseScheme(server);
             await server.auth.strategy('admintoken', 'jwt',
                 {
                     key: JWT_PRIVATE_KEY,
@@ -102,18 +102,14 @@ export class Strategies {
                     validate: this.validateBusiness,
                     verifyOptions: {algorithms: ['HS256']}
                 });
-           // await server.auth.strategy('firebase-mosahaya', 'firebase-mosahaya-scheme');
-            /*  await server.auth.strategy('firebase', 'firebase', {
-                  credential: {
-                       }
-              });*/
+          //  await server.auth.strategy('firebase-mosahaya', 'firebase-mosahaya-scheme');
         } catch (error) {
             Logger.error('Error in registering strategies: ', error);
             throw error;
         }
     };
 
-/*    private registerFirebaseScheme = async (server: Hapi.Server): Promise<Error | any> => {
+  /*  private registerFirebaseScheme = async (server: Hapi.Server): Promise<Error | any> => {
         try {
             Logger.info('Scheme - Registering firebase');
             await server.auth.scheme('firebase-mosahaya-scheme', (): Hapi.ServerAuthSchemeObject => {

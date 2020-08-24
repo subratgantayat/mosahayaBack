@@ -2,12 +2,18 @@ import {model, Schema} from 'mongoose';
 import Profile from './profile';
 const schema: Schema = new Schema(
     {
+        uid:{
+            type: String,
+            required: true,
+            trim: true,
+            unique: true
+        },
         name:{
             type: String,
             required: true,
             trim: true,
-            minlength:1,
-            maxlength:1000,
+           // minlength:1,
+           // maxlength:1000,
             lowercase: true
            // match:/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i
         },
@@ -16,17 +22,17 @@ const schema: Schema = new Schema(
             required: true,
             select: false,
             trim: true,
-            lowercase: true,
-            unique: true
+            lowercase: true
+          //  unique: true
           //  minlength: 5,
           //  maxlength: 100
           //  match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         },
-        emailVerified: {
+      /*  emailVerified: {
             type: Boolean,
             required: true,
             default: false
-        },
+        },*/
       /*  password: {
             type: String,
             required: true,

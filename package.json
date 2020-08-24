@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": "12.x.x"
+    "node": "12.x.x",
+    "npm": ">=6.0.0"
   },
   "scripts": {
     "start": "node dist/index.js",
@@ -13,7 +14,8 @@
     "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only ./src/index.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "build": "tsc && npm run lint && npm run delete && npm run copy",
-    "deploy": "npm run build && gcloud app deploy --stop-previous-version",
+    "deploy": "npm run build && gcloud app deploy app.yaml --project mosahay-production --stop-previous-version",
+    "deploytest": "npm run build && gcloud app deploy app-test.yaml --project mosahay-testing --stop-previous-version",
     "copy": "copyfiles -u 1 \"src/public/**/*\" dist",
     "delete": "del-cli \"dist/public/**/*\""
   },
