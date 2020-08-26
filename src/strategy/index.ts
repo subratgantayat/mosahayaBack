@@ -2,25 +2,25 @@ import * as Hapi from '@hapi/hapi';
 import Logger from '../helper/logger';
 import Utils from '../helper/utils';
 import {connection, Model} from 'mongoose';
-/*import BusinessController from '../api/business/businessUser/controller';
-import * as admin from 'firebase-admin';
+import BusinessController from '../api/business/businessUser/controller';
+import * as FirebaseAdmin from 'firebase-admin';
 import * as serviceAccount from '../config/nearbybackend-d30f6-firebase-adminsdk-azx58-70fb9d196e.json';
-import * as Boom from '@hapi/boom';*/
+import * as Boom from '@hapi/boom';
 
 const JWT_PRIVATE_KEY: string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
 
 export class Strategies {
 
     constructor() {
-       /* try {
-            admin.initializeApp({
-                credential: admin.credential.cert(serviceAccount as any)
+        try {
+            FirebaseAdmin.initializeApp({
+                credential: FirebaseAdmin.credential.cert(serviceAccount as any)
                 // databaseURL: "https://fbauthdemo-2a451.firebaseio.com"
             });
         } catch (err) {
             Logger.error('Error while initializing firebase', err);
             process.exit(1);
-        }*/
+        }
     }
 
     private validateCompany = async (decoded, request, h) => {
@@ -83,7 +83,8 @@ export class Strategies {
 
     public registerAll = async (server: Hapi.Server): Promise<Error | any> => {
         try {
-           // await this.registerFirebaseScheme(server);
+            await this.registerFirebaseScheme(server);
+            await this.registerProfileExistScheme(server);
             await server.auth.strategy('admintoken', 'jwt',
                 {
                     key: JWT_PRIVATE_KEY,
@@ -96,22 +97,26 @@ export class Strategies {
                     validate: this.validateEmployer,
                     verifyOptions: {algorithms: ['HS256']}
                 });
-            await server.auth.strategy('businesstoken', 'jwt',
+            await server.auth.strategy('businessjwttoken', 'jwt',
                 {
                     key: JWT_PRIVATE_KEY,
                     validate: this.validateBusiness,
                     verifyOptions: {algorithms: ['HS256']}
                 });
-          //  await server.auth.strategy('firebase-mosahaya', 'firebase-mosahaya-scheme');
+            await server.auth.strategy('firebase-mosahaya', 'firebase-mosahaya-scheme');
+            await server.auth.strategy('profile-exist', 'profile-exist-scheme');
+            await server.auth.strategy('businesstoken', 'multiple-strategies', {
+                strategies: ['firebase-mosahaya', 'profile-exist']
+            });
         } catch (error) {
             Logger.error('Error in registering strategies: ', error);
             throw error;
         }
     };
 
-  /*  private registerFirebaseScheme = async (server: Hapi.Server): Promise<Error | any> => {
+    private registerFirebaseScheme = async (server: Hapi.Server): Promise<Error | any> => {
         try {
-            Logger.info('Scheme - Registering firebase');
+            Logger.info('Scheme - Registering firebase-mosahaya-scheme');
             await server.auth.scheme('firebase-mosahaya-scheme', (): Hapi.ServerAuthSchemeObject => {
                 return {
                     async authenticate(request: Hapi.Request, h: Hapi.ResponseToolkit) {
@@ -120,25 +125,45 @@ export class Strategies {
                             return Boom.unauthorized('Missing authentication');
                         }
                         try {
-                            const result: any = await admin.auth().verifyIdToken(token);
+                            const result: any = await FirebaseAdmin.auth().verifyIdToken(token);
+                            console.log(result);
                             if (!(result && result.uid && result.name && result.email && result.email_verified)) {
                                 return Boom.unauthorized('Invalid token');
                             }
                             if (!(result.scope && result.mosahayaId)) {
-                                const user: any = await BusinessController.create({
-                                    name: result.name,
-                                    email: result.email
-                                });
-                                if (!(user && user.scope && user._id)) {
-                                    throw new Error('Error while creating user in mosahaya db');
+                                let user: any = await BusinessController.checkUID(result.uid);
+                                if (!user) {
+                                    console.log('a');
+                                    user = await BusinessController.create({
+                                        name: result.name,
+                                        email: result.email,
+                                        uid: result.uid
+                                    });
+                                    if (!(user && user.scope && user._id)) {
+                                        throw new Error('Error while creating user in mosahaya db');
+                                    }
+                                    await FirebaseAdmin.auth().setCustomUserClaims(result.uid, {
+                                        scope: user.scope,
+                                        mosahayaId: user._id
+                                    });
+                                } else {
+                                    console.log('b');
+                                    result.profileExist = !!user.profile;
                                 }
-                                await admin.auth().setCustomUserClaims(result.uid, {
-                                    scope: user.scope,
-                                    mosahayaId: user._id
-                                });
+                                result.scope = user.scope;
+                                result.mosahayaId = user._id;
                             }
-                            console.log(result);
-                            return h.authenticated({credentials: {}});
+                            // console.log(result);
+                            // @ts-ignore
+                            request.profileExist = result.profileExist;
+                            return h.authenticated({
+                                credentials: {
+                                    uid: result.uid,
+                                    id: result.mosahayaId,
+                                    scope: result.scope,
+                                    profileExist: !!result.profileExist
+                                }
+                            });
                         } catch (err) {
                             Logger.error('Firebase user create error: ', err);
                             return Boom.unauthorized('Invalid token');
@@ -147,10 +172,30 @@ export class Strategies {
                 };
             });
         } catch (error) {
-            Logger.error(`Error in registering pass-jwt schemes: ${error}`);
+            Logger.error(`Error in registering firebase-mosahaya-scheme schemes: ${error}`);
             throw error;
         }
-    };*/
+    };
+
+    private registerProfileExistScheme = async (server: Hapi.Server): Promise<Error | any> => {
+        try {
+            Logger.info('Scheme - Registering profile-exist-scheme');
+            await server.auth.scheme('profile-exist-scheme', (): Hapi.ServerAuthSchemeObject => {
+                return {
+                    async authenticate(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+                        // @ts-ignore
+                        if (!request.profileExist) {
+                            return Boom.unauthorized('No profile');
+                        }
+                        return h.authenticated({credentials: {}});
+                    }
+                };
+            });
+        } catch (error) {
+            Logger.error(`Error in registering profile-exist-scheme schemes: ${error}`);
+            throw error;
+        }
+    };
 }
 
 export default new Strategies();

@@ -26,7 +26,7 @@ class Handler {
     public create = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
             const payload: any = request.payload;
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             payload.userId = credentials.id;
             this.fillCalculated(payload);
             const modal: Model<any> = connection.model('project');
@@ -53,7 +53,7 @@ class Handler {
 
     public findSelf = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             const andOp: any  = {userId: credentials.id};
             if (request.query.title) {
                 andOp.title = new RegExp(request.query.title.toString(), 'i');
@@ -71,7 +71,7 @@ class Handler {
             const limit: number = parseInt(request.query.limit.toString(), 10);
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('project');
-            const data: any[] = await modal.find(andOp).sort(sort).skip(skip).limit(limit).select('+contactDetails +applications').populate('applications.user', 'name active').lean(true).exec();
+            const data: any[] = await modal.find(andOp).sort(sort).skip(skip).limit(limit).select('+contactDetails +applications').populate('applications.user', 'profile.name active').lean(true).exec();
             const count: number = await modal.find(andOp).countDocuments().exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);
@@ -89,14 +89,14 @@ class Handler {
 
     public findOneSelf = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             const {id}: any = request.params;
             const modal: Model<any> = connection.model('project');
             // const modalBusinessUser: Model<any> = connection.model('businessuser');
             const data: any = await modal.findOne({
                 _id: id,
                 userId: credentials.id
-            }).select('+contactDetails +applications').populate('applications.user', 'name active').lean(true).exec();
+            }).select('+contactDetails +applications').populate('applications.user', 'profile.name active').lean(true).exec();
             if (!data) {
                 return Boom.badData(STRING.error.INVALID_PROJECT);
             }
@@ -114,7 +114,7 @@ class Handler {
         try {
             const payload: any = request.payload;
             const {id}: any = request.params;
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             this.fillCalculated(payload);
             const modal: Model<any> = connection.model('project');
             const data: any = await modal.findOneAndUpdate({
@@ -142,8 +142,8 @@ class Handler {
 
     public find = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            const credentials: any = request.auth.credentials;
-            const andOp: any = {'sectors': {$in: request.query.sectors, active: true, 'location': {$in: request.query.location}},userId: {$ne: credentials.id}};
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
+            const andOp: any = {'sectors': {$in: request.query.sectors}, active: true, 'location': {$in: request.query.location},userId: {$ne: credentials.id}};
             if (request.query.skill) {
                 andOp['requirements.skill']= {$in: request.query.skill};
             }
@@ -198,7 +198,7 @@ class Handler {
             const skip: number = limit * parseInt(request.query.page.toString(), 10);
             const modal: Model<any> = connection.model('project');
             // const modalBusinessUser: Model<any> = connection.model('businessuser');
-            const data: any[] = await modal.find(andOp).sort(sort).skip(skip).limit(limit).select(select).populate('userId', 'name').lean(true).exec();
+            const data: any[] = await modal.find(andOp).sort(sort).skip(skip).limit(limit).select(select).populate('userId', 'profile.name').lean(true).exec();
             const count: number = await modal.find(andOp).countDocuments().exec();
             if (!data) {
                 return Boom.badGateway(EXTERNALIZED_STRING.global.ERROR_IN_READING);
@@ -216,7 +216,7 @@ class Handler {
 
     public findOne = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             const admin: boolean = credentials.scope && credentials.scope.includes('admin');
             const select: any = {applications: 1};
             for (const item of this.projectFields) {
@@ -231,7 +231,7 @@ class Handler {
             const data: any = await modal.findOne({
                 _id: id,
                 active: true
-            }).select(select).populate('userId', 'name').lean(true).exec();
+            }).select(select).populate('userId', 'profile.name').lean(true).exec();
             if (!data) {
                 return Boom.badData(STRING.error.INVALID_PROJECT);
             }
@@ -256,7 +256,7 @@ class Handler {
         try {
             const {id}: any = request.params;
             const modal: Model<any> = connection.model('project');
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             const record: any = {
                 user: credentials.id,
                 status: Config.defaultProjectApplicationStatus,
@@ -286,7 +286,7 @@ class Handler {
 
     public getApplyProject = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> => {
         try {
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             const modal: Model<any> = connection.model('project');
             const admin: boolean = credentials.scope && credentials.scope.includes('admin');
             const select: any = {};
@@ -298,7 +298,7 @@ class Handler {
             }
             delete select.userId;
             select['userId._id'] = 1;
-            select['userId.name'] = 1;
+            select['userId.profile.name'] = 1;
             select['userId.active'] = 1;
             select.applications = 1;
             const data: any[] = await modal.aggregate(
@@ -356,7 +356,7 @@ class Handler {
             const {id}: any = request.params;
             const payload: any = request.payload;
             const modal: Model<any> = connection.model('project');
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             const record: any = {
                 user: credentials.id,
                 status: Config.defaultProjectApplicationStatus,

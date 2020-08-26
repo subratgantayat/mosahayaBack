@@ -10,6 +10,19 @@ const schema: Schema = new Schema(
                    required: true,
                    unique: true
                },*/
+        name: {
+            type: String,
+            trim: true,
+            minlength: 1,
+            maxlength: 1000,
+            match: /^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i
+        },
+        designation: {
+            type: String,
+            trim: true,
+            minlength: 1,
+            maxlength: 1000
+        },
         address: {
             type: String,
             required: true,
@@ -96,15 +109,8 @@ const schema: Schema = new Schema(
                 max: 10000000000
             }
         },
-        pointOfContact: {
+        contact: {
             type: {
-                name: {
-                    type: String,
-                    trim: true,
-                    minlength: 1,
-                    maxlength: 1000,
-                    match: /^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i
-                },
                 email: {
                     type: String,
                     trim: true,
@@ -118,12 +124,6 @@ const schema: Schema = new Schema(
                     minlength: 10,
                     maxlength: 10,
                     match: /^[6-9]+[0-9]+$/
-                },
-                designation: {
-                    type: String,
-                    trim: true,
-                    minlength: 1,
-                    maxlength: 1000
                 }
             },
             required: true,

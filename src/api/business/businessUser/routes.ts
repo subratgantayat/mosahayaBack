@@ -3,8 +3,8 @@ import EXTERNALIZED_STRING from '../../../assets/string-constants';
 import Logger from '../../../helper/logger';
 import Handler from './handler';
 import Validate from './validate';
-import PublicHandler from '../../../helper/publicHandler';
-import Config from '../../../config/config';
+/*import PublicHandler from '../../../helper/publicHandler';
+import Config from '../../../config/config';*/
 const STRING: any = EXTERNALIZED_STRING.business.businessUser;
 
 class Routes {
@@ -12,7 +12,7 @@ class Routes {
         try {
             Logger.info('BusinessUserRoutes - Start adding businessUser routes.');
             server.route([
-                {
+              /*  {
                     method: 'GET',
                     path: '/api/v1/business/user/check-email-exist',
                     options: {
@@ -70,6 +70,21 @@ class Routes {
                     }
                 },
                 {
+                    method: 'POST',
+                    path: '/api/v1/business/user/changepassword',
+                    options: {
+                        auth: {
+                            strategy: 'business-user',
+                            scope: ['business']
+                        },
+                        handler: Handler.changePassword,
+                        validate: Validate.changePassword.input,
+                        response: Validate.changePassword.output,
+                        description: STRING.CHANGE_PASSWORD,
+                        tags: ['api', 'businessUser']
+                    }
+                },*/
+                {
                     method: 'GET',
                     path: '/api/v1/business/user/verifytoken',
                     options: {
@@ -84,26 +99,11 @@ class Routes {
                     }
                 },
                 {
-                    method: 'POST',
-                    path: '/api/v1/business/user/changepassword',
-                    options: {
-                        auth: {
-                            strategy: 'businesstoken',
-                            scope: ['business']
-                        },
-                        handler: Handler.changePassword,
-                        validate: Validate.changePassword.input,
-                        response: Validate.changePassword.output,
-                        description: STRING.CHANGE_PASSWORD,
-                        tags: ['api', 'businessUser']
-                    }
-                },
-                {
                     method: 'PUT',
                     path: '/api/v1/business/user/profile',
                     options: {
                         auth: {
-                            strategy: 'businesstoken',
+                            strategy: 'firebase-mosahaya',
                             scope: ['business']
                         },
                         handler: Handler.profileEdit,

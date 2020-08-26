@@ -39,6 +39,7 @@
     "good-console": "^8.0.0",
     "good-squeeze": "^5.1.0",
     "hapi-auth-jwt2": "^10.1.0",
+    "hapi-auth-multiple-strategies": "^3.0.0",
     "hapi-geo-locate": "^4.1.0",
     "hapi-good-winston": "^3.0.0",
     "hapi-rate-limit": "^5.0.0",

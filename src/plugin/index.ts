@@ -14,6 +14,7 @@ class Plugins {
             await this.inert(server);
             await this.hapiGeoLocate(server);
            // await this.hapiFirebaseAuth(server);
+            await this.hapiAuthMultipleStrategies(server);
             await this.hapiRateLimit(server);
             await this.hapiAuthJwt2(server);
             if (NODE_ENV === 'development' || NODE_ENV === 'test') {
@@ -91,6 +92,18 @@ class Plugins {
             ]);
         } catch (error) {
             Logger.error('Plugins - Ups, something went wrong when registering hapiAuthJwt2 plugin: ', error);
+            throw error;
+        }
+    };
+
+    private hapiAuthMultipleStrategies = async (server: Hapi.Server): Promise<Error | any> => {
+        try {
+            Logger.info('Plugins - Registering hapiAuthMultipleStrategies');
+            await this.register(server, [
+                require('hapi-auth-multiple-strategies')
+            ]);
+        } catch (error) {
+            Logger.error('Plugins - Ups, something went wrong when registering hapiAuthMultipleStrategies plugin: ', error);
             throw error;
         }
     };

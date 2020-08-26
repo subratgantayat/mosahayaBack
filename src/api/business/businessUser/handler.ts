@@ -1,16 +1,18 @@
 import * as Boom from '@hapi/boom';
 import * as Hapi from '@hapi/hapi';
-import {sign} from 'jsonwebtoken';
 import Logger from '../../../helper/logger';
 import {connection, Model} from 'mongoose';
 import EXTERNALIZED_STRING from '../../../assets/string-constants';
-import Utils from '../../../helper/utils';
+import * as FirebaseAdmin from 'firebase-admin';
 const STRING: any = EXTERNALIZED_STRING.business.businessUser;
-const JWT_PRIVATE_KEY: string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
+/*import Utils from '../../../helper/utils';
+import {sign} from 'jsonwebtoken';
+const JWT_PRIVATE_KEY: string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);*/
 
 class Handler {
-    private profileFields:  string[] = ['address','sectors','sectorsOther','skills','skillsOther','yearOfExperience','geographyOfOp','largestContract','nameOfFounder','typeOfProjectManaged','companyWorkedWith','website','compliance','resources'];
-    public checkEmailExist:any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+    private profileFields:  string[] = ['name','designation','address','sectors','sectorsOther','skills','skillsOther','yearOfExperience','geographyOfOp','largestContract','nameOfFounder','typeOfProjectManaged','companyWorkedWith','website','compliance','resources'];
+
+    /*   public checkEmailExist:any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             let {email}: any =  request.query;
             email = email.toLowerCase();
@@ -113,6 +115,7 @@ class Handler {
 
     public changePassword = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
+            console.log(request.auth.credentials);
             const payload: any = request.payload;
             if (payload.currentPassword === payload.newPassword) {
                 return Boom.notAcceptable(STRING.error.SAME_PASSWORD);
@@ -148,7 +151,18 @@ class Handler {
             }
             return Boom.badImplementation(error);
         }
+    };*/
+
+    public verifyToken: any = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
+        try {
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
+            return { validToken:true, profileFilled: credentials.profileExist};
+        } catch (error) {
+            Logger.error(`Error: `, error);
+            return Boom.badImplementation(error);
+        }
     };
+
     public profileEdit = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const payload: any = request.payload;
@@ -156,13 +170,20 @@ class Handler {
             const modal: Model<any> = connection.model('businessuser');
             const data: any = await modal.findOneAndUpdate({
                 _id: credentials.id
-            }, {$set: {profile: payload}}, {new: true, fields: 'profile'}).exec();
+            }, {$set: {profile: payload}}, {new: true, fields: 'uid scope _id profile'}).exec();
             if (!data) {
                 return Boom.badData(STRING.error.INVALID_USER);
             }
+            if(!credentials.profileExist){
+                await FirebaseAdmin.auth().setCustomUserClaims(data.uid, {
+                    scope: data.scope,
+                    mosahayaId: data._id,
+                    profileExist: true
+                });
+            }
             return {
                 message: STRING.success.PROFILE_EDIT_SUCCESSFUL,
-                profile: data.toObject()
+                profile: data.profile.toObject()
             };
         } catch (error) {
             Logger.error(`Error: `, error);
@@ -175,7 +196,7 @@ class Handler {
 
     public profileSelf = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             const modal: Model<any> = connection.model('businessuser');
             const data: any =  await modal.findById(credentials.id).select('profile').lean(true).exec();
             if(!data){
@@ -196,7 +217,7 @@ class Handler {
 
     public profileSearch = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
-            const credentials: any = request.auth.credentials;
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             const andOp: any = {'profile.sectors': {$in: request.query.sectors}, 'profile.geographyOfOp': {$in: request.query.geographyOfOp},active: true,emailVerified: true,profile: {$exists : true},_id: {$ne: credentials.id}};
             if(request.query.yearOfExperience){
                 andOp['profile.yearOfExperience']= {$gte: request.query.yearOfExperience};
@@ -218,13 +239,12 @@ class Handler {
                 }
             }
             const admin: boolean = credentials.scope && credentials.scope.includes('admin');
-            const select: any ={name: 1};
+            const select: any ={};
             for(const item of this.profileFields){
                 select['profile.'+item] = 1;
             }
             if(admin){
-                select.email = 1;
-                select['profile.pointOfContact'] =1;
+                select['profile.contact'] =1;
             }
             const sortOrder:number = request.query.sortOrder === 'asc' ? 1 :-1;
             const sort: any = {};
@@ -255,16 +275,15 @@ class Handler {
     public profileOne = async (request: Hapi.Request, h: Hapi.ResponseToolkit): Promise<any> =>{
         try {
             const {id}: any = request.params;
-            const andOp: any = {_id: id, active: true,emailVerified: true};
-            const credentials: any = request.auth.credentials;
+            const andOp: any = {_id: id, active: true,emailVerified: true,profile: {$exists : true}};
+            const credentials: any = request.auth.credentials['firebase-mosahaya'];
             const admin: boolean = credentials.scope && credentials.scope.includes('admin');
-            const select: any ={name: 1};
+            const select: any ={};
             for(const item of this.profileFields){
                 select['profile.'+item] = 1;
             }
             if(admin){
-                select.email = 1;
-                select['profile.pointOfContact'] =1;
+                select['profile.contact'] =1;
             }
             const modal: Model<any> = connection.model('businessuser');
             const data: any = await modal.findOne(andOp).select(select).lean(true).exec();

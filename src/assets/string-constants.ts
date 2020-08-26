@@ -69,34 +69,33 @@ const stringConstants: any = {
     },
     business:{
         businessUser:{
-            EMAIL_EXIST:'Method to check if email already exists for business user',
+            /*EMAIL_EXIST:'Method to check if email already exists for business user',
             SIGNUP:'Method to signup business user',
             SIGNIN:'Method to signin business user',
-            CHANGE_PASSWORD:'Method to change password for business user',
+            CHANGE_PASSWORD:'Method to change password for business user',*/
+            VERIFY_TOKEN:'Method to verify access token',
             PROFILE_EDIT:'Method to edit own profile for business user',
             PROFILE_GET_SELF:'Method to get own profile for business user',
             PROFILE_SEARCH:'Method to search other profiles for business user',
             PROFILE_ONE:'Method to get profile detail by id for business user',
-            VERIFY_TOKEN:'Method to verify access token',
             success:{
-                SIGNUP_SUCCESSFUL: 'Sign up successful',
+              /*  SIGNUP_SUCCESSFUL: 'Sign up successful',
                 SIGNIN_SUCCESSFUL: 'Sign in successful',
-                PASSWORD_CHANGE_SUCCESSFUL:'Password change successful',
+                PASSWORD_CHANGE_SUCCESSFUL:'Password change successful',*/
                 PROFILE_EDIT_SUCCESSFUL:'Profile update successful',
                 PROFILE_READ_SUCCESSFUL:'Profile read successful',
                 PROFILE_SEARCH_SUCCESSFUL:'Profile search successful',
                 PROFILE_ONE_SUCCESSFUL:'Profile read successful'
             },
             error:{
-                EMAIL_ALREADY_TAKEN: 'Email already taken',
+               /* EMAIL_ALREADY_TAKEN: 'Email already taken',
                 INVALID_LOGIN: 'Invalid email or password',
                 EMAIL_NOT_VERIFIED: 'Email not verified',
                 INACTIVE_USER: 'Account is not active',
                 PASSWORD_NOT_MATCHED: 'Current password is incorrect',
-                SAME_PASSWORD: 'No difference between current password and new password',
+                SAME_PASSWORD: 'No difference between current password and new password',*/
                 INVALID_USER: 'Invalid user',
-                NO_PROFILE: 'No profile found',
-                INVALID_PROFILE_USER:''
+                NO_PROFILE: 'No profile found'
             }
         },
         project:{
@@ -108,7 +107,7 @@ const stringConstants: any = {
             FIND_ONE:'Method to get other single project by id for business user',
             APPLY_PROJECT:'Method to apply to project for business user',
             GET_APPLY_PROJECT:'Method to get projects to which user has applied for business user',
-            CHANGE_STATUS:'Method to change staus of an applied project',
+            CHANGE_STATUS:'Method to change status of an applied project',
             success:{
                 PROJECT_CREATE_SUCCESSFUL:'Project create successful',
                 PROJECT_EDIT_SUCCESSFUL:'Project update successful',

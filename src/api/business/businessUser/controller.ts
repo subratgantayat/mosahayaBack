@@ -5,6 +5,19 @@ import * as Boom from '@hapi/boom';
 const STRING: any = EXTERNALIZED_STRING.business.businessUser;
 
 class Controller {
+    public checkUID = async (uid: string): Promise<any> =>{
+        try {
+            const modal: Model<any> = connection.model('businessuser');
+            const data: any = await modal.findOne({uid});
+            if (!data) {
+                return false;
+            }
+            return data;
+        } catch (error) {
+            Logger.error(`Error: `, error);
+            return Promise.reject(Boom.badImplementation(error));
+        }
+    };
     public create = async (payload: any): Promise<any> =>{
         try {
             payload.name = payload.name.toLowerCase();

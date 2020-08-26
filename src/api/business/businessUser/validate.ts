@@ -5,7 +5,7 @@ import * as JoiObjectId from 'joi-objectid';
 const JoiObjectIdInstance: any = JoiObjectId(Joi);
 
 class Validate{
-    private signUpOutput: any = {
+  /*  private signUpOutput: any = {
         schema: Joi.object().required().keys({
             message:Joi.string().required(),
             token:Joi.string().required(),
@@ -16,9 +16,11 @@ class Validate{
             })
         }),
         failAction: Config.failAction
-    };
+    };*/
 
     private profile: any = Joi.object().required().keys({
+        name:Joi.string().required().trim().min(1).max(1000).pattern( /^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i),
+        designation:Joi.string().required().trim().min(1).max(1000),
         address: Joi.string().required().min(1).max(100000).pattern(/^[\x20-\x7E\s]+$/),
         skills:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getSkillArray())),
         sectors:Joi.array().required().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('skillsBySector'))),
@@ -47,22 +49,20 @@ class Validate{
         })
     }).unknown(true);
 
-    private pointOfContact: any = Joi.object().keys({
-        name:Joi.string().required().trim().min(1).max(1000).pattern( /^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i),
+    private contact: any = Joi.object().keys({
         email:Joi.string().required().trim().email().min(5).max(100),
-        phoneNumber:Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/),
-        designation:Joi.string().required().trim().min(1).max(1000)
+        phoneNumber:Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/)
     });
 
     private fullProfile: any = Joi.object().keys({
-        name:Joi.string().required().trim().min(1).max(1000).pattern(/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i),
-        email:Joi.string().trim().email().min(5).max(1000).lowercase(),
+/*        name:Joi.string().required().trim().min(1).max(1000).pattern(/^[a-z0-9]+([\sa-z0-9@&:'./()_-])*$/i),
+        email:Joi.string().trim().email().min(5).max(1000).lowercase(),*/
         profile:this.profile.append({
-            pointOfContact: this.pointOfContact
+            contact: this.contact
         })
     }).unknown(true);
 
-    public checkEmailExist: any = {
+  /*  public checkEmailExist: any = {
         input:{
             query: Joi.object().required().keys({
                 'g-recaptcha-response':Joi.string().required().trim().min(1).max(10000),
@@ -97,6 +97,15 @@ class Validate{
         },
         output: this.signUpOutput
     };
+    public changePassword : any= {
+        input:{
+            payload: Joi.object().required().keys({
+                currentPassword: Joi.string().required().min(8).max(50),
+                newPassword: Joi.string().required().min(8).max(50).required()
+            })
+        },
+        output: this.signUpOutput
+    };*/
     public verifyToken: any = {
         output:{
             schema:  Joi.object().required().keys({
@@ -106,27 +115,18 @@ class Validate{
             failAction: Config.failAction
         }
     };
-    public changePassword : any= {
-        input:{
-            payload: Joi.object().required().keys({
-                currentPassword: Joi.string().required().min(8).max(50),
-                newPassword: Joi.string().required().min(8).max(50).required()
-            })
-        },
-        output: this.signUpOutput
-    };
 
     public profileEdit: any = {
         input:{
             payload: this.profile.append({
-                pointOfContact: this.pointOfContact.required()
+                contact: this.contact.required()
             })
         },
         output:{
             schema: Joi.object().required().keys({
                 message:Joi.string().required(),
                 profile: this.profile.append({
-                    pointOfContact: this.pointOfContact.required()
+                    contact: this.contact.required()
                 })
             }),
             failAction: Config.failAction
@@ -137,7 +137,7 @@ class Validate{
             schema: Joi.object().required().keys({
                 message:Joi.string().required(),
                 profile: this.profile.append({
-                    pointOfContact: this.pointOfContact.required()
+                    contact: this.contact.required()
                 })
             }),
             failAction: Config.failAction
