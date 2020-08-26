@@ -4,7 +4,6 @@ import Utils from '../helper/utils';
 import {connection, Model} from 'mongoose';
 import BusinessController from '../api/business/businessUser/controller';
 import * as FirebaseAdmin from 'firebase-admin';
-import * as serviceAccount from '../config/nearbybackend-d30f6-firebase-adminsdk-azx58-70fb9d196e.json';
 import * as Boom from '@hapi/boom';
 
 const JWT_PRIVATE_KEY: string = Utils.getEnvVariable('JWT_PRIVATE_KEY', true);
@@ -13,10 +12,9 @@ export class Strategies {
 
     constructor() {
         try {
-            FirebaseAdmin.initializeApp({
-                credential: FirebaseAdmin.credential.cert(serviceAccount as any)
-                // databaseURL: "https://fbauthdemo-2a451.firebaseio.com"
-            });
+        FirebaseAdmin.initializeApp({
+            credential: FirebaseAdmin.credential.applicationDefault()
+        });
         } catch (err) {
             Logger.error('Error while initializing firebase', err);
             process.exit(1);
@@ -126,14 +124,12 @@ export class Strategies {
                         }
                         try {
                             const result: any = await FirebaseAdmin.auth().verifyIdToken(token);
-                            console.log(result);
                             if (!(result && result.uid && result.name && result.email && result.email_verified)) {
                                 return Boom.unauthorized('Invalid token');
                             }
                             if (!(result.scope && result.mosahayaId)) {
                                 let user: any = await BusinessController.checkUID(result.uid);
                                 if (!user) {
-                                    console.log('a');
                                     user = await BusinessController.create({
                                         name: result.name,
                                         email: result.email,
@@ -147,13 +143,11 @@ export class Strategies {
                                         mosahayaId: user._id
                                     });
                                 } else {
-                                    console.log('b');
                                     result.profileExist = !!user.profile;
                                 }
                                 result.scope = user.scope;
                                 result.mosahayaId = user._id;
                             }
-                            // console.log(result);
                             // @ts-ignore
                             request.profileExist = result.profileExist;
                             return h.authenticated({

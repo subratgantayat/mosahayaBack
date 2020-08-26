@@ -2,5 +2,10 @@ dist/
 node_modules/
 pm2logs/*
 .env
+.env_test
+app-test.yaml
+app.yaml
+mosahay-ui-testing-firebase-adminsdk-npb7i-7b727d43e8.json
 .idea/*
 **/.DS_Store
+
