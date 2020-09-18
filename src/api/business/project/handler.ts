@@ -8,7 +8,7 @@ import Config from '../../../config/config';
 const STRING: any = EXTERNALIZED_STRING.business.project;
 
 class Handler {
-    private projectFields: string[] = ['active', 'userId', 'title', 'description', 'typeOfEmployer', 'natureOfProject', 'location', 'sectors','sectorsOther', 'requirements', 'natureOfEmployment', 'facility'];
+    private projectFields: string[] = ['active', 'userId', 'title', 'description', 'typeOfEmployer', 'natureOfProject', 'location', 'sectors','sectorsOther', 'requirements', 'natureOfEmployment', 'facility', 'noOfEmployeesCalculated', 'applications'];
 
     private fillCalculated = (payload: any): void => {
         payload.maxSalaryCalculated = 0;
