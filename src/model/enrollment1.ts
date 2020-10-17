@@ -56,6 +56,20 @@ const schema: Schema = new Schema(
                 maxlength:6,
                 match:/^([1-9])([0-9]){5}$/
             },
+            state:{
+                type: String,
+                required: true,
+                validate (v) {
+                    return ( KeyvalueConfig.getStateArray('india').includes(v) || 'NULL');
+                }
+            },
+            district:{
+                type: String,
+                required: true,
+                validate (v) {
+                    return (KeyvalueConfig.getDistrictArray('india', this.generalData.presentAddress.state ).includes(v) || 'NULL');
+                }
+            },
             address:{
                 type: String,
                 trim: true,

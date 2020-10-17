@@ -268,7 +268,7 @@ class Handler {
                 userId: {$ne: credentials.id},
                 'applications.user': {$ne: credentials.id}
                 // @ts-ignore
-            }, {$push: {applications: record}}, {new: true, fields: '_id', rawResult: true}).exec();
+            }, {$push: {applications: record}, $inc: { noOfApplicationCalculated : 1 }}, {new: true, fields: '_id', rawResult: true}).exec();
             if (!(data && data.value)) {
                 return Boom.badData(STRING.error.INVALID_PROJECT_TO_APPLY);
             }

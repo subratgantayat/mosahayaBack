@@ -126,7 +126,7 @@ class Plugins {
             await this.register(server, [
                 {
                     options: {
-                        userLimit: 30
+                        userLimit: 200
                     },
                     plugin: require('hapi-rate-limit')
                 }

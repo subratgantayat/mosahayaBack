@@ -14,7 +14,7 @@ class Validate {
         natureOfProject: Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
         location: Joi.string().required().valid(...KeyvalueConfig.getAllDistrictArray()),
         sectors: Joi.array().required().min(0).max(1000).items(Joi.string().required().valid(...KeyvalueConfig.getValueArray('skillsBySector'))),
-        sectorsOther:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
+        sectorsOther:Joi.array().min(0).max(1000).items(Joi.string().trim().min(1).max(10000).pattern(/^[a-z]+([\sa-z0-9@&:'./()_-])*$/i)),
         natureOfEmployment: Joi.object().required().keys({
             employmentType: Joi.string().required().valid(...BusinessKeyValue.getValueArray('employmentType')),
             durationInDays: Joi.number().when('employmentType', {
@@ -56,7 +56,7 @@ class Validate {
     private contactDetails: any = Joi.object().keys({
         name: Joi.string().trim().min(1).max(1000).pattern(/^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i),
         email: Joi.string().trim().email().min(5).max(100),
-        phoneNumber: Joi.string().trim().length(10).pattern(/^[6-9]+[0-9]+$/),
+        phoneNumber: Joi.string().trim().length(10).pattern(/^[0-9]+$/),
         designation: Joi.string().trim().min(1).max(1000)
     });
 
