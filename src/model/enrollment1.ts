@@ -46,7 +46,7 @@ const schema: Schema = new Schema(
                 minlength:10,
                 maxlength:10,
                 select: false,
-                match:/^[6-9]+[0-9]+$/
+                match:/^[0-9]+$/
             },
             pinCode:{
                 type: String,
@@ -55,20 +55,6 @@ const schema: Schema = new Schema(
                 minlength:6,
                 maxlength:6,
                 match:/^([1-9])([0-9]){5}$/
-            },
-            state:{
-                type: String,
-                required: true,
-                validate (v) {
-                    return ( KeyvalueConfig.getStateArray('india').includes(v) || 'NULL');
-                }
-            },
-            district:{
-                type: String,
-                required: true,
-                validate (v) {
-                    return (KeyvalueConfig.getDistrictArray('india', this.generalData.presentAddress.state ).includes(v) || 'NULL');
-                }
             },
             address:{
                 type: String,

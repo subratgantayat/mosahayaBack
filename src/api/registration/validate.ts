@@ -12,7 +12,7 @@ export default {
                 name:Joi.string().required().trim().min(1).max(1000),
                 dob:Joi.date().required().max('now'),
                 gender:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('gender')),
-                mobileNumber:Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/),
+                mobileNumber:Joi.string().required().trim().length(10).pattern(/^[0-9]+$/),
                 aadhaarNumber:Joi.string().required().trim().length(12).pattern(/^\d{12}$/),
                 noOfFamilyMember:Joi.number().required().integer().min(0).max(1000),
                 presentAddress:Joi.object().keys({
@@ -41,7 +41,7 @@ export default {
                 }).required(),
                 contactPerson:Joi.object().keys({
                     contactName:Joi.string().required().trim().min(0).max(1000),
-                    contactMobNumber:Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/)
+                    contactMobNumber:Joi.string().required().trim().length(10).pattern(/^[0-9]+$/)
                 }).required()
             }).required(),
             skillData:Joi.object().keys({

@@ -151,7 +151,7 @@ const verifyEmployee = async (): Promise<any> => {
                     } else if (row.address && !(row.address.length > 0 && row.address.length < 100000)) {
                         console.log('address error');
                         clean = false;
-                    } else if (!(row.contactNo && row.contactNo.length === 10 && /^[6-9]+[0-9]+$/.test(row.contactNo))) {
+                    } else if (!(row.contactNo && row.contactNo.length === 10 && /^[0-9]+$/.test(row.contactNo))) {
                         console.log('contactNo error');
                         clean = false;
                     } else if (!row.skills) {

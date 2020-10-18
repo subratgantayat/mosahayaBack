@@ -11,7 +11,7 @@ export default {
                 name:Joi.string().required().trim().min(1).max(1000).pattern(/^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i),
                 age:Joi.number().required().integer().min(14).max(80),
                 gender:Joi.string().required().valid( ...KeyvalueConfig.getValueArray('gender')),
-                mobileNumber:Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/),
+                mobileNumber:Joi.string().required().trim().length(10).pattern(/^[0-9]+$/),
                 pinCode:Joi.string().required().trim().length(6).pattern(/^([1-9])([0-9]){5}$/),
                 address:Joi.string().trim().min(1).max(100000).pattern(/^[\x20-\x7E\s]+$/)
             }).required(),
@@ -52,7 +52,7 @@ export default {
             expTo:Joi.number().integer().min(0).max(150),
             education:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('education'))).single(),
             registerBy:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('registerBy'))).single(),
-            mobileNumber:Joi.array().min(0).max(1000).items(Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/)).single(),
+            mobileNumber:Joi.array().min(0).max(1000).items(Joi.string().required().trim().length(10).pattern(/^[0-9]+$/)).single(),
             enrollmentID:Joi.array().min(0).max(1000).items(Joi.string().required().trim().length(16).pattern(/^[0-9]+$/)).single(),
             name:Joi.array().min(0).max(1000).items(Joi.string().required()).single(),
             gender:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getValueArray('gender'))).single(),

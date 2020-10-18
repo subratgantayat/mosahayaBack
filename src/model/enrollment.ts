@@ -43,7 +43,7 @@ const schema: Schema = new Schema(
                 trim: true,
                 minlength:10,
                 maxlength:10,
-                match:/^[6-9]+[0-9]+$/
+                match:/^[0-9]+$/
             },
             pinCode:{
                 type: String,

@@ -13,7 +13,7 @@ export default {
             state:Joi.array().min(0).max(1000).items(Joi.string().required().valid( ...KeyvalueConfig.getStateArray('in'))).single(),
             city:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000)).single(),
             district:Joi.array().min(0).max(1000).items(Joi.string().required().trim().min(1).max(10000)).single(),
-            contactNo:Joi.array().min(0).max(1000).items(Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/)).single()
+            contactNo:Joi.array().min(0).max(1000).items(Joi.string().required().trim().length(10).pattern(/^[0-9]+$/)).single()
         }).required()
     },
     findlimit: {

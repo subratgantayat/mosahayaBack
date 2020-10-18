@@ -51,7 +51,7 @@ class Validate{
 
     private contact: any = Joi.object().keys({
         email:Joi.string().required().trim().email().min(5).max(100),
-        phoneNumber:Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/)
+        phoneNumber:Joi.string().required().trim().length(10).pattern(/^[0-9]+$/)
     });
 
     private fullProfile: any = Joi.object().keys({

@@ -14,7 +14,7 @@ class Validate {
                 name: Joi.string().required().trim().min(1).max(1000).pattern(/^[a-z]([a-z,.'-]*)+(\s[a-z,.'-]+)*$/i),
                 age: Joi.number().required().integer().min(14).max(80),
                 gender: Joi.string().required().valid(...KeyvalueConfig.getValueArray('gender')),
-                mobileNumber: Joi.string().required().trim().length(10).pattern(/^[6-9]+[0-9]+$/),
+                mobileNumber: Joi.string().required().trim().length(10).pattern(/^[0-9]+$/),
                 pinCode: Joi.string().required().trim().length(6).pattern(/^([1-9])([0-9]){5}$/),
                 address: Joi.string().trim().min(1).max(100000).pattern(/^[\x20-\x7E\s]+$/)
             }).required(),
