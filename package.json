@@ -45,7 +45,7 @@
     "hapi-rate-limit": "^5.0.0",
     "hapi-swagger": "^13.0.0",
     "joi-objectid": "^3.0.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.9.11",
     "randomatic": "^3.1.1",
     "request": "^2.88.2",
